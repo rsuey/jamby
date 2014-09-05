@@ -28,6 +28,12 @@
       </span>
     </time>
 
-    <span class='group_session_meta_price'>Free</span>
+    <span class='group_session_meta_price'>
+      <% if group_session.free? %>
+        Free
+      <% else %>
+        <%= number_to_currency(group_session.price) %>
+      <% end %>
+    </span>
   </aside>
 </article>
