@@ -20,4 +20,20 @@ feature 'User creates a group session' do
       expect(page).to have_css(page.price_selector, text: 'Free')
     end
   end
+
+  scenario 'Creating an invalid group session' do
+    page = NewGroupSessionPage.new
+    page.visit
+    page.fill_in_form(title: nil,
+                      description: nil,
+                      starts_at: nil)
+    page.submit_form
+
+    expect(current_path).to eq(page.after_failed_create_path)
+    within(page.error_field_css) do
+      expect(page).to have_content(page.blank_title_error)
+      expect(page).to have_content(page.blank_description_error)
+      expect(page).to have_content(page.blank_starts_at_error)
+    end
+  end
 end

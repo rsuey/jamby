@@ -4,7 +4,7 @@ class NewGroupSessionPage
   include Rails.application.routes.url_helpers
 
   def visit
-    super(new_group_session_path)
+    super(path)
   end
 
   def fill_in_form(attributes)
@@ -19,6 +19,30 @@ class NewGroupSessionPage
 
   def after_successful_create_path
     root_path
+  end
+
+  def after_failed_create_path
+    group_sessions_path
+  end
+
+  def blank_title_error
+    t('activerecord.errors.models.group_session.attributes.title.blank')
+  end
+
+  def blank_description_error
+    t('activerecord.errors.models.group_session.attributes.description.blank')
+  end
+
+  def blank_starts_at_error
+    t('activerecord.errors.models.group_session.attributes.starts_at.blank')
+  end
+
+  def form_selector
+    '.new_group_session'
+  end
+
+  def error_field_css
+    '.errors'
   end
 
   def date_selector
@@ -43,5 +67,10 @@ class NewGroupSessionPage
 
   def price_selector
     '.group_session_meta_price'
+  end
+
+  private
+  def path
+    new_group_session_path
   end
 end

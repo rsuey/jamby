@@ -7,3 +7,14 @@ en:
     models:
       group_sessions:
         create: 'Create group session'
+  activerecord:
+    errors:
+      models:
+        group_session:
+          attributes:
+            title:
+              blank: "Title can't be blank"
+            description:
+              blank: "Description can't be blank"
+            starts_at:
+              blank: "Starts at can't be blank"
