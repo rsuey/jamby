@@ -1,20 +1,23 @@
 en:
   links:
     models:
-      group_sessions:
+      group_session:
         add: 'Add a group session'
+        edit: 'Edit this group session'
   forms:
     models:
-      group_sessions:
+      group_session:
         create: 'Create group session'
+        edit: 'Save'
   activerecord:
     errors:
+      could_not_be_saved: "Sorry, this %{model} could not be saved:"
       models:
         group_session:
           attributes:
             title:
-              blank: "Title can't be blank"
+              blank: "can't be blank"
             description:
-              blank: "Description can't be blank"
+              blank: "can't be blank"
             starts_at:
-              blank: "Starts at can't be blank"
+              blank: "can't be blank"

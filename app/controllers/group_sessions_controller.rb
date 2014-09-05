@@ -3,6 +3,10 @@ class GroupSessionsController < ApplicationController
     load_sessions
   end
 
+  def show
+    load_session
+  end
+
   def new
     build_session
   end
@@ -12,16 +16,30 @@ class GroupSessionsController < ApplicationController
     save_session or render :new
   end
 
+  def edit
+    load_session
+  end
+
+  def update
+    load_session
+    build_session
+    save_session(redirect: group_session_path(@group_session)) or render :edit
+  end
+
   private
   def build_session
-    @group_session = group_scope.new
+    @group_session ||= group_scope.new
     @group_session.attributes = group_session_params
   end
 
-  def save_session
+  def save_session(options = { redirect: root_path })
     if @group_session.save
-      redirect_to root_path
+      redirect_to options[:redirect]
     end
+  end
+
+  def load_session
+    @group_session = group_scope.find(params[:id])
   end
 
   def load_sessions

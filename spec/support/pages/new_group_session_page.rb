@@ -1,20 +1,13 @@
-class NewGroupSessionPage
-  include ActionView::Helpers
-  include Capybara::DSL
-  include Rails.application.routes.url_helpers
-
-  def visit
-    super(path)
+class NewGroupSessionPage < GroupSessionPage
+  def initialize
   end
 
-  def fill_in_form(attributes)
-    attributes.each do |name, value|
-      fill_in name.to_s.humanize, with: value
-    end
+  def path
+    new_group_session_path
   end
 
-  def submit_form
-    click_button t('forms.models.group_sessions.create')
+  def form_button
+    t('forms.models.group_session.create')
   end
 
   def after_successful_create_path
@@ -26,15 +19,15 @@ class NewGroupSessionPage
   end
 
   def blank_title_error
-    t('activerecord.errors.models.group_session.attributes.title.blank')
+    "Title " + t('activerecord.errors.models.group_session.attributes.title.blank')
   end
 
   def blank_description_error
-    t('activerecord.errors.models.group_session.attributes.description.blank')
+    "Description " + t('activerecord.errors.models.group_session.attributes.description.blank')
   end
 
   def blank_starts_at_error
-    t('activerecord.errors.models.group_session.attributes.starts_at.blank')
+    "Starts at " + t('activerecord.errors.models.group_session.attributes.starts_at.blank')
   end
 
   def form_selector
@@ -45,32 +38,7 @@ class NewGroupSessionPage
     '.errors'
   end
 
-  def date_selector
-    '.group_session_meta time .group_session_meta_date'
-  end
-
-  def time_selector
-    '.group_session_meta time .group_session_meta_time'
-  end
-
   def session_list_selector
     '#group_sessions'
-  end
-
-  def title_selector
-    '.group_session_info_title'
-  end
-
-  def description_selector
-    '.group_session_info_description'
-  end
-
-  def price_selector
-    '.group_session_meta_price'
-  end
-
-  private
-  def path
-    new_group_session_path
   end
 end
