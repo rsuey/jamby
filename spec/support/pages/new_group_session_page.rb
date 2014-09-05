@@ -9,7 +9,7 @@ class NewGroupSessionPage
 
   def fill_in_form(attributes)
     attributes.each do |name, value|
-      fill_in name.to_s.capitalize, with: value
+      fill_in name.to_s.humanize, with: value
     end
   end
 
@@ -19,6 +19,14 @@ class NewGroupSessionPage
 
   def after_successful_create_path
     root_path
+  end
+
+  def date_selector
+    '.group_session_meta time .group_session_meta_date'
+  end
+
+  def time_selector
+    '.group_session_meta time .group_session_meta_time'
   end
 
   def session_list_selector

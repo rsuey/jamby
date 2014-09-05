@@ -1,4 +1,8 @@
 en:
+  links:
+    models:
+      group_sessions:
+        add: 'Add a group session'
   forms:
     models:
       group_sessions:

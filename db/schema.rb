@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 20140905001726) do
   create_table "group_sessions", force: true do |t|
     t.string   "title",                                             null: false
     t.text     "description",                                       null: false
+    t.datetime "starts_at",                                         null: false
     t.decimal  "price",       precision: 5, scale: 2, default: 0.0, null: false
     t.datetime "created_at"
     t.datetime "updated_at"

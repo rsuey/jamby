@@ -14,6 +14,7 @@ class GroupSessionsController < ApplicationController
 
   private
   def group_session_params
-    params.require(:group_session).permit(:title, :description, :price)
+    params.require(:group_session)
+          .permit(:title, :description, :starts_at, :price)
   end
 end
