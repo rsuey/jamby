@@ -17,8 +17,10 @@ gem 'spring', group: :development
 gem "foundation-rails", "~> 5.3.3.0"
 gem "friendly_id", "~> 5.0.4"
 gem "draper", "~> 1.3.1"
+gem 'permanent_records', '~> 3.1.6'
 
 group :test do
+  gem 'timecop', '~> 0.7.1'
   gem "pry-rails", "~> 0.3.2"
   gem "rspec-rails", "~> 3.0.2"
   gem "database_cleaner", "~> 1.3.0"
