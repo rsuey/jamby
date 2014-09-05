@@ -1,6 +1,7 @@
 ruby '2.1.2'
 #ruby-gemset=jamby
 source 'https://rubygems.org'
+
 gem 'rails', '4.1.5'
 gem 'pg'
 gem 'sass-rails', '~> 4.0.3'
@@ -9,13 +10,14 @@ gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
-gem 'sdoc', '~> 0.4.0',          group: :doc
-gem 'spring',        group: :development
 
+gem 'sdoc', '~> 0.4.0', group: :doc
+gem 'spring', group: :development
 
 gem "foundation-rails", "~> 5.3.3.0"
 gem "friendly_id", "~> 5.0.4"
 gem "draper", "~> 1.3.1"
+
 group :test do
   gem "pry-rails", "~> 0.3.2"
   gem "rspec-rails", "~> 3.0.2"
