@@ -1,0 +1,20 @@
+<%= form_for @group_session do |f| %>
+  <div class='small-12'>
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+  </div>
+
+  <div class='small-12'>
+    <%= f.label :description %>
+    <%= f.text_area :description %>
+  </div>
+
+  <div class='small-12'>
+    <%= f.label :price %>
+    <%= f.number_field :price %>
+  </div>
+
+  <div class='small-12'>
+    <%= f.submit t('forms.models.group_sessions.create'), class: 'button' %>
+  </div>
+<% end %>
