@@ -37,8 +37,4 @@ class NewGroupSessionPage < GroupSessionPage
   def error_field_css
     '.errors'
   end
-
-  def session_list_selector
-    '#group_sessions'
-  end
 end

@@ -26,6 +26,11 @@ class GroupSessionsController < ApplicationController
     save_session(redirect: group_session_path(@group_session)) or render :edit
   end
 
+  def destroy
+    load_session
+    destroy_session
+  end
+
   private
   def build_session
     @group_session ||= group_scope.new
@@ -43,7 +48,12 @@ class GroupSessionsController < ApplicationController
   end
 
   def load_sessions
-    @group_sessions = group_scope.all
+    @group_sessions = group_scope.not_deleted
+  end
+
+  def destroy_session
+    @group_session.destroy
+    redirect_to root_path
   end
 
   def group_scope

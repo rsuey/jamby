@@ -15,8 +15,20 @@ class GroupSessionPage < PageObject
     click_link t('links.models.group_session.edit')
   end
 
+  def confirm_delete
+    click_link t('links.models.group_session.delete')
+  end
+
   def after_successful_edit_path
     path
+  end
+
+  def after_successful_delete_path
+    root_path
+  end
+
+  def session_list_selector
+    '#group_sessions'
   end
 
   def session_selector

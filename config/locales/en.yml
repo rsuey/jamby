@@ -4,6 +4,7 @@ en:
       group_session:
         add: 'Add a group session'
         edit: 'Edit this group session'
+        delete: 'Cancel'
   forms:
     models:
       group_session:
