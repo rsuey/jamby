@@ -7,6 +7,13 @@ class GroupSessionsController < ApplicationController
     load_session
   end
 
+  def book
+    load_session
+    @group_session.add_participant(current_user)
+    flash[:info] = t('controllers.group_sessions.book.successful')
+    redirect_to group_session_path(@group_session)
+  end
+
   def new
     build_session
   end

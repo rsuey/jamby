@@ -11,12 +11,28 @@ class GroupSessionPage < PageObject
     t('forms.models.group_session.edit')
   end
 
+  def session_booked_text
+    t('text.models.group_session.booked')
+  end
+
+  def successful_booking_text
+    t('controllers.group_sessions.book.successful')
+  end
+
   def click_edit_link
     click_link t('links.models.group_session.edit')
   end
 
+  def click_book_link
+    click_link t('links.models.group_session.book_now')
+  end
+
   def confirm_delete
     click_link t('links.models.group_session.delete')
+  end
+
+  def after_successful_book_path
+    path
   end
 
   def after_successful_edit_path

@@ -1,15 +1,24 @@
 en:
+  text:
+    models:
+      group_session:
+        booked: 'Booked!'
   links:
     models:
       group_session:
         add: 'Add a group session'
         edit: 'Edit this group session'
         delete: 'Cancel'
+        book_now: 'Book now'
   forms:
     models:
       group_session:
         create: 'Create group session'
         edit: 'Save'
+  controllers:
+    group_sessions:
+      book:
+        successful: 'You are now booked for this session!'
   activerecord:
     errors:
       could_not_be_saved: "Sorry, this %{model} could not be saved:"
