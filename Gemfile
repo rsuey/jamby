@@ -14,6 +14,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'spring', group: :development
 
+gem 'active_type', '~> 0.2.1'
 gem "foundation-rails", "~> 5.3.3.0"
 gem "friendly_id", "~> 5.0.4"
 gem "draper", "~> 1.3.1"
