@@ -9,7 +9,6 @@ feature 'User creates an account' do
                       password: 'secret83',
                       password_confirmation: 'secret83')
     page.submit_form
-    page.open_in_browser
 
     expect(current_path).to eq(page.after_successful_signup_path)
     expect(page).to have_css('.alert-box.info',
