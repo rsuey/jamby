@@ -4,27 +4,26 @@ describe GroupSession do
   describe '#add_participant' do
     it 'adds a participant to the guest list' do
       group_session = create(:group_session)
-      participant = create(:participant)
+      user = create(:user)
 
-      group_session.add_participant(participant)
-      expect(group_session.guest_list).to include(participant)
+      group_session.add_participant(user)
+      expect(group_session.guest_list).to include(user)
     end
 
     it 'does not add duplicates to the guest list' do
       group_session = create(:group_session)
-      participant = create(:participant)
+      user = create(:user)
 
-      2.times { group_session.add_participant(participant) }
-      expect(group_session.guest_list).to eq([participant])
+      2.times { group_session.add_participant(user) }
+      expect(group_session.guest_list).to eq([user])
     end
 
     it 'persists the relationship' do
       group_session = create(:group_session)
-      participant = create(:participant)
+      user = create(:user)
 
-      group_session.add_participant(participant)
-      participant_ids = GroupSessionsUser.all.map(&:participant_id)
-      expect(participant_ids).to include(participant.id)
+      group_session.add_participant(user)
+      expect(Booking.all.map(&:participant_id)).to include(user.id)
     end
   end
 
@@ -32,17 +31,17 @@ describe GroupSession do
     context 'when the participant has not booked the session' do
       it 'returns false' do
         group_session = create(:group_session)
-        participant = create(:participant)
-        expect(group_session.booked_by?(participant)).to be false
+        user = create(:user)
+        expect(group_session).to_not be_booked_by(user)
       end
     end
 
     context 'when the participant has booked the session' do
       it 'returns true' do
         group_session = create(:group_session)
-        participant = create(:participant)
-        group_session.add_participant(participant)
-        expect(group_session.booked_by?(participant)).to be true
+        user = create(:user)
+        group_session.add_participant(user)
+        expect(group_session).to be_booked_by(user)
       end
     end
   end

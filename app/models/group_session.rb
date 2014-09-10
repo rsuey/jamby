@@ -1,5 +1,6 @@
 class GroupSession < ActiveRecord::Base
-  has_and_belongs_to_many :participants
+  has_many :bookings
+  has_many :participants, through: :bookings, source_type: 'User'
 
   validates :title, :description, :starts_at, presence: true
 
@@ -8,16 +9,17 @@ class GroupSession < ActiveRecord::Base
   end
 
   def booked_by?(user)
-    participants.include?(user)
+    guest_list.include?(user)
+  end
+
+  def add_participant(user)
+    unless booked_by?(user)
+      guest_list << user
+      save
+    end
   end
 
   def guest_list
     participants
-  end
-
-  def add_participant(user)
-    unless participants.include?(user)
-      participants << user
-    end
   end
 end
