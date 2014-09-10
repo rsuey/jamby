@@ -1,0 +1,20 @@
+<%= form_for @signup do |f| %>
+  <div class='small-12'>
+    <%= f.label :username %>
+    <%= f.text_field :username %>
+  </div>
+
+  <div class='small-12'>
+    <%= f.label :password %>
+    <%= f.password_field :password %>
+  </div>
+
+  <div class='small-12'>
+    <%= f.label :password_confirmation %>
+    <%= f.password_field :password_confirmation %>
+  </div>
+
+  <div class='small-12'>
+    <%= f.submit t('forms.models.signup.create') %>
+  </div>
+<% end %>

@@ -15,10 +15,15 @@ en:
       group_session:
         create: 'Create group session'
         edit: 'Save'
+      signup:
+        create: 'Sign up'
   controllers:
     group_sessions:
       book:
         successful: 'You are now booked for this session!'
+    signups:
+      create:
+        successful: 'Thank you for signing up!'
   activerecord:
     errors:
       could_not_be_saved: "Sorry, this %{model} could not be saved:"
