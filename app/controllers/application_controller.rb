@@ -5,6 +5,10 @@ class ApplicationController < ActionController::Base
 
   private
   def current_user
-    Participant.last
+    if session[:user_id] && user = User.find_by(id: session[:user_id])
+      user
+    else
+      Guest.new
+    end
   end
 end
