@@ -17,6 +17,8 @@ en:
         edit: 'Save'
       signup:
         create: 'Sign up'
+      signin:
+        create: 'Sign in'
   controllers:
     group_sessions:
       book:

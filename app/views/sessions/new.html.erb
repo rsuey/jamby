@@ -1,0 +1,15 @@
+<%= form_for @signin do |f| %>
+  <div class='small-12'>
+    <%= f.label :username %>
+    <%= f.text_field :username %>
+  </div>
+
+  <div class='small-12'>
+    <%= f.label :password %>
+    <%= f.password_field :password %>
+  </div>
+
+  <div class='small-12'>
+    <%= f.submit t('forms.models.signin.create'), class: 'button' %>
+  </div>
+<% end %>

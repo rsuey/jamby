@@ -3,7 +3,9 @@ Rails.application.routes.draw do
     get :book, on: :member
   end
 
-  get 'signup' => 'signups#new', as: :new_signup
+  get 'signin' => 'sessions#new'
+  get 'signup' => 'signups#new'
+
   resources :users, controller: :signups, only: :create
 
   root 'group_sessions#index'

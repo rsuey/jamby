@@ -1,6 +1,6 @@
 class SignUpPage < PageObject
   def path
-    new_signup_path
+    signup_path
   end
 
   def form_button
