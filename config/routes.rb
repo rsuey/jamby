@@ -10,5 +10,9 @@ Rails.application.routes.draw do
   resources :signups, only: :create
   resources :signins, only: :create
 
+  resource :account, only: :destroy do
+    get :dashboard
+  end
+
   root 'group_sessions#index'
 end

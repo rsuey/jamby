@@ -5,6 +5,8 @@ en:
         booked: 'Booked!'
   links:
     models:
+      account:
+        destroy: 'Delete your account'
       group_session:
         add: 'Add a group session'
         edit: 'Edit this group session'
@@ -26,6 +28,10 @@ en:
       signin:
         create: 'Sign in'
   controllers:
+    accounts:
+      destroy:
+        successful: 'Your account is deleted. Hope to see you again!'
+        confirm: 'Are you sure you want to delete your account?'
     group_sessions:
       book:
         successful: 'You are now booked for this session!'
