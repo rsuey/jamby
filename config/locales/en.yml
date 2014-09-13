@@ -28,6 +28,9 @@ en:
     signups:
       create:
         successful: 'Thank you for signing up!'
+    signins:
+      create:
+        successful: 'Welcome back!'
   activerecord:
     errors:
       could_not_be_saved: "Sorry, this %{model} could not be saved:"
