@@ -10,6 +10,8 @@ en:
         edit: 'Edit this group session'
         delete: 'Cancel'
         book_now: 'Book now'
+      signup:
+        new: 'Sign up'
   forms:
     models:
       group_session:

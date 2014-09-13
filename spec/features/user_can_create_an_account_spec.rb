@@ -4,7 +4,9 @@ feature 'User creates an account' do
   scenario 'User creates a valid, new account' do
     page = SignUpPage.new
 
-    page.visit
+    visit root_path
+    click_link page.signup_link_text
+
     page.fill_in_form(username: 'joemsak',
                       password: 'secret83',
                       password_confirmation: 'secret83')

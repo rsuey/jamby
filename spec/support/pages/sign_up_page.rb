@@ -3,6 +3,10 @@ class SignUpPage < PageObject
     signup_path
   end
 
+  def signup_link_text
+    t('links.models.signup.new')
+  end
+
   def form_button
     t('forms.models.signup.create')
   end
