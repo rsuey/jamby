@@ -9,6 +9,12 @@ class SigninsController < ApplicationController
     save_signin or render :new
   end
 
+  def destroy
+    session[:user_id] = nil
+    flash[:info] = t('controllers.signins.destroy.successful')
+    redirect_to root_path
+  end
+
   private
   def load_signin
     @signin = signin_scope.find_by(username: signin_params[:username])

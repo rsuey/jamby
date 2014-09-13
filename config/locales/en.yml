@@ -14,6 +14,8 @@ en:
         new: 'Sign up'
       signin:
         new: 'Sign in'
+        destroy: 'Log out'
+        confirm_logout: 'Are you sure you want to log out?'
   forms:
     models:
       group_session:
@@ -33,6 +35,8 @@ en:
     signins:
       create:
         successful: 'Welcome back!'
+      destroy:
+        successful: 'You have been logged out. See you later!'
   activerecord:
     errors:
       could_not_be_saved: "Sorry, this %{model} could not be saved:"

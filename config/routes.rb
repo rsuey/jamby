@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   end
 
   get 'signin' => 'signins#new'
+  delete 'logout' => 'signins#destroy', as: :signout
   get 'signup' => 'signups#new'
 
   resources :signups, only: :create
