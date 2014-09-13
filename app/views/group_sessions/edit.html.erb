@@ -1,4 +1,6 @@
 <%= render 'form', button_name: t('forms.models.group_session.edit') %>
 
 <%= link_to t('links.models.group_session.delete'), @group_session,
-                                                    method: :delete %>
+                                                    method: :delete, data: {
+                        confirm: t('controllers.group_sessions.destroy.confirm')
+                      } %>

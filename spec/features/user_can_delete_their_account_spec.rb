@@ -6,7 +6,8 @@ feature 'Users can delete their accounts' do
     user = create(:signin)
 
     logged_in(user) do
-      page.visit
+      visit root_path
+      click_link page.account_dashboard_link_text
       click_link page.delete_account_link_text
 
       expect(current_path).to eq(page.after_successful_delete_path)

@@ -6,6 +6,7 @@ en:
   links:
     models:
       account:
+        dashboard: 'My account'
         destroy: 'Delete your account'
       group_session:
         add: 'Add a group session'
@@ -17,7 +18,6 @@ en:
       signin:
         new: 'Sign in'
         destroy: 'Log out'
-        confirm_logout: 'Are you sure you want to log out?'
   forms:
     models:
       group_session:
@@ -35,6 +35,8 @@ en:
     group_sessions:
       book:
         successful: 'You are now booked for this session!'
+      destroy:
+        confirm: 'Are you sure you want to cancel this session?'
     signups:
       create:
         successful: 'Thank you for signing up!'
@@ -43,6 +45,7 @@ en:
         successful: 'Welcome back!'
         failure: 'Sorry, we cannot find an account with that username and password'
       destroy:
+        confirm: 'Are you sure you want to log out?'
         successful: 'You have been logged out. See you later!'
   activerecord:
     errors:

@@ -1,9 +1,11 @@
 <nav>
   <%= link_to t('links.models.signup.new'), signup_path %>&nbsp;|
   <%= link_to t('links.models.signin.new'), signin_path %>&nbsp;|
-  <%= link_to t('links.models.signin.destroy'), signout_path, method: :delete, confirm: t('links.models.signin.confirm_logout') %>
+  <%= link_to t('links.models.signin.destroy'), signout_path, method: :delete,
+                  data: { confirm: t('controllers.signins.destroy.confirm') } %>
 </nav>
 
 <div class='account-info'>
-  <span class='username'><%= current_user.username %></span>
+  <span class='username'><%= current_user.username %></span>&nbsp;|
+  <%= link_to t('links.models.account.dashboard'), dashboard_account_path %>
 </div>

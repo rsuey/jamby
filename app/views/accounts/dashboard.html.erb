@@ -1,4 +1,4 @@
 <%= link_to t('links.models.account.destroy'),
             account_path(current_user),
             method: :delete,
-            confirm: t('controllers.accounts.destroy.confirm') %>
+            data: { confirm: t('controllers.accounts.destroy.confirm') } %>
