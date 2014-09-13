@@ -7,7 +7,7 @@ feature 'Users can delete their accounts' do
 
     logged_in(user) do
       visit root_path
-      click_link page.account_dashboard_link_text
+      click_link user.username
       click_link page.delete_account_link_text
 
       expect(current_path).to eq(page.after_successful_delete_path)

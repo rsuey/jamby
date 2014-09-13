@@ -6,7 +6,6 @@ en:
   links:
     models:
       account:
-        dashboard: 'My account'
         destroy: 'Delete your account'
       group_session:
         add: 'Add a group session'

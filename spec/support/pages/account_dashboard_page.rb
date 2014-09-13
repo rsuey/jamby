@@ -3,10 +3,6 @@ class AccountDashboardPage < PageObject
     dashboard_account_path
   end
 
-  def account_dashboard_link_text
-    t('links.models.account.dashboard')
-  end
-
   def delete_account_link_text
     t('links.models.account.destroy')
   end
