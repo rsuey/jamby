@@ -10,7 +10,7 @@ class SigninsController < ApplicationController
   end
 
   def destroy
-    session[:user_id] = nil
+    sign_out
     flash[:info] = t('controllers.signins.destroy.successful')
     redirect_to root_path
   end

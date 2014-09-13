@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  helper_method :current_user, :sign_in
+  helper_method :current_user, :sign_in, :sign_out
 
   protect_from_forgery with: :exception
 
@@ -11,5 +11,10 @@ class ApplicationController < ActionController::Base
 
   def sign_in(signin)
     session[:user_id] = signin.id
+  end
+
+  def sign_out
+    session[:user_id] = nil
+    @current_user = nil
   end
 end
