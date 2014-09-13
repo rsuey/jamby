@@ -1,6 +1,6 @@
 class GroupSession < ActiveRecord::Base
   has_many :bookings
-  has_many :participants, through: :bookings, source_type: 'User'
+  has_many :participants, through: :bookings, source: :user
 
   validates :title, :description, :starts_at, presence: true
 

@@ -23,7 +23,7 @@ describe GroupSession do
       user = create(:user)
 
       group_session.add_participant(user)
-      expect(Booking.all.map(&:participant_id)).to include(user.id)
+      expect(Booking.all.map(&:user_id)).to include(user.id)
     end
   end
 
