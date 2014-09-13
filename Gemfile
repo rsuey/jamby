@@ -5,7 +5,6 @@ source 'https://rubygems.org'
 gem 'rails', '4.1.5'
 gem 'pg', '~> 0.17.1'
 gem 'bcrypt', '~> 3.1.7'
-gem 'active_type', '~> 0.2.1'
 gem 'permanent_records', '~> 3.1.6'
 
 gem "friendly_id", "~> 5.0.4"

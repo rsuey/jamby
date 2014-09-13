@@ -1,4 +1,4 @@
-class Guest < ActiveType::Record[User]
+class Guest < User
   def username
     'guest'
   end

@@ -1,2 +1,2 @@
-class Booking < ActiveType::Record[GroupSessionsUser]
+class Booking < GroupSessionsUser
 end
