@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   get 'signin' => 'sessions#new'
   get 'signup' => 'signups#new'
 
-  resources :users, controller: :signups, only: :create
+  resources :signups, only: :create
 
   root 'group_sessions#index'
 end

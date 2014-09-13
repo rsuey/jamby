@@ -29,7 +29,7 @@ class SignupsController < ApplicationController
   end
 
   def signup_attributes
-    if attributes = params[:user]
+    if attributes = params[:signup]
       attributes.permit(:username, :password, :password_confirmation)
     else
       {}
