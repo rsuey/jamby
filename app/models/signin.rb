@@ -1,5 +1,5 @@
 class Signin < Signup
   def save
-    authenticate(password)
+    persisted? && authenticate(password)
   end
 end

@@ -11,8 +11,16 @@ class SignInPage < PageObject
     root_path
   end
 
+  def after_failed_signin_path
+    signins_path
+  end
+
   def after_successful_signout_path
     root_path
+  end
+
+  def invalid_credentials_text
+    t('controllers.signins.create.failure')
   end
 
   def signin_link_text

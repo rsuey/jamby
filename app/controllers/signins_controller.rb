@@ -6,7 +6,7 @@ class SigninsController < ApplicationController
   def create
     load_signin
     build_signin
-    save_signin or render :new
+    save_signin || fail_and_try_again
   end
 
   def destroy
@@ -16,6 +16,11 @@ class SigninsController < ApplicationController
   end
 
   private
+  def fail_and_try_again
+    flash[:alert] = t('controllers.signins.create.failure')
+    render :new
+  end
+
   def load_signin
     @signin = signin_scope.find_by(username: signin_params[:username])
   end
@@ -42,6 +47,6 @@ class SigninsController < ApplicationController
   end
 
   def signin_scope
-    Signin.where(nil)
+    Signin.not_deleted
   end
 end
