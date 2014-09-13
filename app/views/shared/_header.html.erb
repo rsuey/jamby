@@ -1,4 +1,7 @@
-<%= link_to t('links.models.signup.new'), signup_path %>
+<nav>
+  <%= link_to t('links.models.signup.new'), signup_path %>&nbsp;|
+  <%= link_to t('links.models.signin.new'), signin_path %>
+</nav>
 
 <div class='account-info'>
   <span class='username'><%= current_user.username %></span>

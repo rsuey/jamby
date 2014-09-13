@@ -4,8 +4,9 @@ feature 'Users can sign in' do
   scenario 'User enters valid credentials' do
     create(:signup, username: 'coolguy', password: 'secret83')
     page = SignInPage.new
+    visit root_path
+    click_link page.signin_link_text
 
-    page.visit
     page.fill_in_form(username: 'coolguy', password: 'secret83')
     page.submit_form
 
