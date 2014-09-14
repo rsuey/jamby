@@ -1,20 +1,24 @@
-<%= form_for @signup do |f| %>
-  <div class='columns small-6 small-centered'>
-    <%= f.label :username %>
-    <%= f.text_field :username %>
-  </div>
+<div class='row'>
+  <%= render 'shared/errors', record: @signup %>
 
-  <div class='columns small-6 small-centered'>
-    <%= f.label :password %>
-    <%= f.password_field :password %>
-  </div>
+  <%= form_for @signup do |f| %>
+    <div class='columns small-6 small-centered'>
+      <%= f.label :username %>
+      <%= f.text_field :username %>
+    </div>
 
-  <div class='columns small-6 small-centered'>
-    <%= f.label :password_confirmation %>
-    <%= f.password_field :password_confirmation %>
-  </div>
+    <div class='columns small-6 small-centered'>
+      <%= f.label :password %>
+      <%= f.password_field :password %>
+    </div>
 
-  <div class='columns small-6 small-centered'>
-    <%= f.submit t('forms.models.signup.create'), class: 'button' %>
-  </div>
-<% end %>
+    <div class='columns small-6 small-centered'>
+      <%= f.label :password_confirmation %>
+      <%= f.password_field :password_confirmation %>
+    </div>
+
+    <div class='columns small-6 small-centered'>
+      <%= f.submit t('forms.models.signup.create'), class: 'button' %>
+    </div>
+  <% end %>
+</div>
