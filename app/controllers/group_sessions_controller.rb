@@ -72,10 +72,11 @@ class GroupSessionsController < ApplicationController
   end
 
   def group_session_params
-    if attributes = params[:group_session]
-      attributes.permit(:title, :description, :starts_at, :price)
-    else
-      {}
-    end
+    parameters = if attributes = params[:group_session]
+                   attributes.permit(:title, :description, :starts_at, :price)
+                 else
+                   {}
+                 end
+    parameters.merge(host: current_user)
   end
 end

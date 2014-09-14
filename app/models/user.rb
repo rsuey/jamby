@@ -5,4 +5,8 @@ class User < ActiveRecord::Base
   def is_guest?
     false
   end
+
+  def name
+    username
+  end
 end

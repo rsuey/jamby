@@ -26,6 +26,10 @@ class NewGroupSessionPage < GroupSessionPage
     "Description " + t('activerecord.errors.models.group_session.attributes.description.blank')
   end
 
+  def host_name_selector
+    '.group_session_host_name'
+  end
+
   def form_selector
     '.new_group_session'
   end

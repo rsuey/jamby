@@ -1,6 +1,15 @@
 require 'rails_helper'
 
 describe GroupSession do
+  describe '#host_name' do
+    it 'returns the username of the host' do
+      user = create(:user, username: 'coolhost')
+      group_session = create(:group_session, host: user)
+
+      expect(group_session.host_name).to eq('coolhost')
+    end
+  end
+
   describe '#add_participant' do
     it 'adds a participant to the guest list' do
       group_session = create(:group_session)
