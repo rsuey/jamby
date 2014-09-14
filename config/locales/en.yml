@@ -6,16 +6,21 @@ en:
       group_session:
         booked: 'Booked!'
         titles:
+          new: 'Host a live session'
           live: 'Live sessions'
           booked: 'Your sessions'
           upcoming: 'Upcoming sessions'
+      signup:
+        new: 'Sign up'
+      signin:
+        new: 'Sign in'
   links:
     models:
       account:
         destroy: 'Delete your account'
       group_session:
-        add: 'Host a group session'
-        edit: 'Edit this group session'
+        add: 'Host a live session'
+        edit: 'Edit this session'
         delete: 'Cancel'
         book_now: 'Book now'
       signup:
@@ -26,7 +31,7 @@ en:
   forms:
     models:
       group_session:
-        create: 'Create group session'
+        create: 'Create live session'
         edit: 'Save'
       signup:
         create: 'Sign up'

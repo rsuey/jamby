@@ -1,4 +1,8 @@
 <div class='row'>
+  <div class='columns small-6 small-centered'>
+    <h3><%= t('text.models.signin.new') %></h3>
+  </div>
+
   <%= form_for @signin do |f| %>
     <div class='columns small-6 small-centered'>
       <%= f.label :username %>
@@ -12,6 +16,7 @@
 
     <div class='columns small-6 small-centered'>
       <%= f.submit t('forms.models.signin.create'), class: 'button' %>
+      or <%= link_to t('links.models.signup.new'), signup_path %>
     </div>
   <% end %>
 </div>
