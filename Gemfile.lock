@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/joemsak/rehearsal.git
-  revision: b3a26073cb3cd679c605ccd66841069b84df8716
+  revision: 91d628294d9e5dd44d0699e2fd77ba8bee113af8
   specs:
     rehearsal (2.0.1)
       rails (>= 3.0.20)
@@ -135,7 +135,7 @@ GEM
       thor (>= 0.18.1, < 2.0)
     raindrops (0.13.0)
     rake (10.3.2)
-    rdoc (4.1.1)
+    rdoc (4.1.2)
       json (~> 1.4)
     request_store (1.0.8)
     rspec-core (3.0.4)
