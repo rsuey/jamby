@@ -1,9 +1,9 @@
 <% if record.errors.any? %>
-  <div class='errors'>
-    <h1>
+  <div class='panel callout radius columns small-6 small-centered'>
+    <h3>
       <%= t('activerecord.errors.could_not_be_saved',
-            model: record.class.name) %>
-    </h1>
+          model: record.class.name.titleize) %>
+    </h3>
     <ul>
       <% record.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>

@@ -1,17 +1,39 @@
-<nav>
-  <%= link_to t('application.title'), root_path %>&nbsp;|
-  <% if current_user.is_guest? %>
-    <%= link_to t('links.models.signup.new'), signup_path %>&nbsp;|
-    <%= link_to t('links.models.signin.new'), signin_path %>
-  <% else %>
-    <%= link_to t('links.models.signin.destroy'), signout_path, method: :delete,
-                data: { confirm: t('controllers.signins.destroy.confirm') } %>
-  <% end %>
-</nav>
+<nav class="top-bar" data-topbar role="navigation">
+  <ul class="title-area">
+    <li class="name">
+      <h1><%= link_to t('application.title'), root_path %></h1>
+    </li>
+     <!-- Remove the class "menu-icon" to get rid of menu icon.
+          Take out "Menu" to just have icon alone -->
+    <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+  </ul>
 
-<div class='account-info'>
-  <span class='username'>
-    <%= link_to_unless current_user.is_guest?,
-                       current_user.username, dashboard_account_path %>
-  </span>
-</div>
+  <section class="top-bar-section">
+    <ul class="right">
+      <li class="<%= active_if_current(dashboard_account_path) %>">
+        <%= link_to "<i class='fa fa-user'></i>
+                     #{current_user.username}".html_safe, dashboard_account_path %>
+      </li>
+      <li class="<%= active_if_current(new_group_session_path) %>">
+        <%= link_to "<i class='fa fa-plus'></i>
+                     #{t('links.models.group_session.add')}".html_safe,
+                    new_group_session_path %>
+      </li>
+      <% if current_user.is_guest? %>
+        <li class="<%= active_if_current(signup_path) %>">
+          <%= link_to t('links.models.signup.new'), signup_path %>
+        </li>
+        <li class="<%= active_if_current(signin_path) %>">
+          <%= link_to t('links.models.signin.new'), signin_path %>
+        </li>
+      <% else %>
+        <li class="<%= active_if_current(signout_path) %>">
+           <%= link_to t('links.models.signin.destroy'),
+                        signout_path, method: :delete, data: {
+                          confirm: t('controllers.signins.destroy.confirm')
+                        } %>
+        </li>
+      <% end %>
+    </ul>
+  </section>
+</nav>

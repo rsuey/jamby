@@ -1,15 +1,17 @@
-<%= form_for @signin do |f| %>
-  <div class='small-12'>
-    <%= f.label :username %>
-    <%= f.text_field :username %>
-  </div>
+<div class='row'>
+  <%= form_for @signin do |f| %>
+    <div class='columns small-6 small-centered'>
+      <%= f.label :username %>
+      <%= f.text_field :username %>
+    </div>
 
-  <div class='small-12'>
-    <%= f.label :password %>
-    <%= f.password_field :password %>
-  </div>
+    <div class='columns small-6 small-centered'>
+      <%= f.label :password %>
+      <%= f.password_field :password %>
+    </div>
 
-  <div class='small-12'>
-    <%= f.submit t('forms.models.signin.create'), class: 'button' %>
-  </div>
-<% end %>
+    <div class='columns small-6 small-centered'>
+      <%= f.submit t('forms.models.signin.create'), class: 'button' %>
+    </div>
+  <% end %>
+</div>

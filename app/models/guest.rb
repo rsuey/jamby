@@ -1,6 +1,6 @@
 class Guest < User
   def username
-    'guest'
+    'Guest'
   end
 
   def is_guest?

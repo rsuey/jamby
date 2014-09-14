@@ -17,7 +17,11 @@
   <body>
     <%= rehearsal_banner "Jamby 1.0 Staging" %>
     <%= render 'shared/header' %>
-    <%= render 'shared/flash_messages' %>
+
+    <div class='row'>
+      <%= render 'shared/flash_messages' %>
+    </div>
+
     <%= yield %>
   </body>
 </html>

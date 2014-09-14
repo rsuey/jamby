@@ -1337,3 +1337,9 @@ $sub-nav-active-cursor: default;
 // $range-slider-handle-cursor: pointer;
 
 @import 'foundation';
+
+select.inline {
+  width: auto;
+  display: inline;
+  padding-right: 7%;
+}
