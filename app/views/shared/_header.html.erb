@@ -1,6 +1,6 @@
 <nav>
   <%= link_to t('application.title'), root_path %>&nbsp;|
-  <% if guest? %>
+  <% if current_user.is_guest? %>
     <%= link_to t('links.models.signup.new'), signup_path %>&nbsp;|
     <%= link_to t('links.models.signin.new'), signin_path %>
   <% else %>
@@ -11,6 +11,7 @@
 
 <div class='account-info'>
   <span class='username'>
-    <%= link_to_unless guest?, current_user.username, dashboard_account_path %>
+    <%= link_to_unless current_user.is_guest?,
+                       current_user.username, dashboard_account_path %>
   </span>
 </div>

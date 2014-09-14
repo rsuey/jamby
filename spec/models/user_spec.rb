@@ -11,4 +11,10 @@ describe User do
       expect(user.booked_sessions).to include(group_session)
     end
   end
+
+  describe '#is_guest?' do
+    it 'returns false' do
+      expect(User.new).to_not be_is_guest
+    end
+  end
 end
