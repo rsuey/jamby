@@ -10,13 +10,13 @@
 
   <section class="top-bar-section">
     <ul class="right">
-      <li class="<%= active_if_current(dashboard_account_path) %>">
-        <%= link_to icon('user', current_user.username),
-                    dashboard_account_path %>
-      </li>
       <li class="<%= active_if_current(new_group_session_path) %>">
         <%= link_to icon('plus', t('links.models.group_session.add')),
                     new_group_session_path %>
+      </li>
+      <li class="<%= active_if_current(dashboard_account_path) %>">
+        <%= link_to icon('user', current_user.username),
+                    dashboard_account_path %>
       </li>
       <% if current_user.is_guest? %>
         <li class="<%= active_if_current(signup_path) %>">
