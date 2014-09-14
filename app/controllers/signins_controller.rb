@@ -17,7 +17,7 @@ class SigninsController < ApplicationController
 
   private
   def fail_and_try_again
-    flash[:alert] = t('controllers.signins.create.failure')
+    flash.now[:alert] = t('controllers.signins.create.failure')
     render :new
   end
 

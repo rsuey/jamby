@@ -1,4 +1,6 @@
 en:
+  application:
+    title: 'Jamby'
   text:
     models:
       group_session:
