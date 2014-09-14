@@ -1,6 +1,7 @@
 class GroupSessionsController < ApplicationController
   def index
     @live_sessions = load_sessions('starts_at <= ?', Time.current)
+    @booked_sessions = current_user.booked_sessions
     @upcoming_sessions = load_sessions('starts_at > ?', Time.current)
   end
 

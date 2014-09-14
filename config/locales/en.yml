@@ -7,6 +7,7 @@ en:
         booked: 'Booked!'
         titles:
           live: 'Live sessions'
+          booked: 'Your sessions'
           upcoming: 'Upcoming sessions'
   links:
     models:

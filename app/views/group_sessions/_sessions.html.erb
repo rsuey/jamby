@@ -1,0 +1,4 @@
+<%= content_tag :div, id: "#{type}_sessions" do %>
+  <%= content_tag :h1, t("text.models.group_session.titles.#{type}") %>
+  <%= render instance_variable_get("@#{type}_sessions") %>
+<% end %>

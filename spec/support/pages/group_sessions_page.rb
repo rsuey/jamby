@@ -7,6 +7,10 @@ class GroupSessionsPage < PageObject
     t('text.models.group_session.titles.live')
   end
 
+  def booked_sessions_title
+    t('text.models.group_session.titles.booked')
+  end
+
   def upcoming_sessions_title
     t('text.models.group_session.titles.upcoming')
   end
