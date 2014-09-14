@@ -14,7 +14,7 @@ en:
       account:
         destroy: 'Delete your account'
       group_session:
-        add: 'Add a group session'
+        add: 'Host a group session'
         edit: 'Edit this group session'
         delete: 'Cancel'
         book_now: 'Book now'
