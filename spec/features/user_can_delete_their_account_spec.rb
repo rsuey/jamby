@@ -13,13 +13,13 @@ feature 'Users can delete their accounts' do
       expect(current_path).to eq(page.after_successful_delete_path)
       expect(page).to have_css('.alert-box.info',
                                text: page.successful_delete_text)
-      expect(page).to have_css('.account-info .username', text: 'guest')
+      expect(page).to have_link('Guest')
     end
 
     page = SignInPage.new
     page.visit
 
-    page.fill_in_form(username: user.username, password: user.password)
+    page.fill_in_form('Username' => user.username, 'Password' => user.password)
     page.submit_form
 
     expect(current_path).to eq(page.after_failed_signin_path)

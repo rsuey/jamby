@@ -26,15 +26,11 @@ class NewGroupSessionPage < GroupSessionPage
     "Description " + t('activerecord.errors.models.group_session.attributes.description.blank')
   end
 
-  def blank_starts_at_error
-    "Starts at " + t('activerecord.errors.models.group_session.attributes.starts_at.blank')
-  end
-
   def form_selector
     '.new_group_session'
   end
 
   def error_field_css
-    '.errors'
+    '.panel.callout'
   end
 end

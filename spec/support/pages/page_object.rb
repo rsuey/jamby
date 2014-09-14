@@ -9,7 +9,11 @@ class PageObject
 
   def fill_in_form(attributes)
     attributes.each do |name, value|
-      fill_in name.to_s.humanize, with: value
+      if name.match(/\di\z/)
+        select value, from: name
+      else
+        fill_in name, with: value
+      end
     end
   end
 

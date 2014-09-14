@@ -7,13 +7,13 @@ feature 'Users can sign in' do
     visit root_path
     click_link page.signin_link_text
 
-    page.fill_in_form(username: 'coolguy', password: 'secret83')
+    page.fill_in_form('Username' => 'coolguy', 'Password' => 'secret83')
     page.submit_form
 
     expect(current_path).to eq(page.after_successful_signin_path)
     expect(page).to have_css('.alert-box.info',
                              text: page.successful_signin_text)
-    expect(page).to have_css('.account-info .username', text: 'coolguy')
+    expect(page).to have_link('coolguy')
   end
 
   scenario 'User logs out' do
@@ -26,7 +26,7 @@ feature 'Users can sign in' do
       expect(current_path).to eq(page.after_successful_signout_path)
       expect(page).to have_css('.alert-box.info',
                                text: page.successful_signout_text)
-      expect(page).to have_css('.account-info .username', text: 'guest')
+      expect(page).to have_link('Guest')
     end
   end
 end

@@ -7,14 +7,14 @@ feature 'User creates an account' do
     visit root_path
     click_link page.signup_link_text
 
-    page.fill_in_form(username: 'joemsak',
-                      password: 'secret83',
-                      password_confirmation: 'secret83')
+    page.fill_in_form('Username' => 'joemsak',
+                      'Password' => 'secret83',
+                      'Password confirmation' => 'secret83')
     page.submit_form
 
     expect(current_path).to eq(page.after_successful_signup_path)
     expect(page).to have_css('.alert-box.info',
                              text: page.successful_signup_text)
-    expect(page).to have_css('.account-info .username', text: 'joemsak')
+    expect(page).to have_link('joemsak')
   end
 end

@@ -6,7 +6,7 @@ feature 'User edits group sessions' do
     page = GroupSessionPage.new(group_session)
     page.visit
     page.click_edit_link
-    page.fill_in_form(title: 'Paid session', price: 1)
+    page.fill_in_form('Title' => 'Paid session', 'Price' => 1)
     page.submit_form
 
     expect(current_path).to eq(page.after_successful_edit_path)
