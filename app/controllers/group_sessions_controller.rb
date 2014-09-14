@@ -57,7 +57,7 @@ class GroupSessionsController < ApplicationController
   end
 
   def load_sessions(*args)
-    @group_sessions = group_scope.not_deleted.where(*args)
+    @group_sessions = group_scope.where(*args)
   end
 
   def destroy_session
@@ -66,7 +66,7 @@ class GroupSessionsController < ApplicationController
   end
 
   def group_scope
-    GroupSession.where(nil)
+    GroupSession.not_deleted.where(nil)
   end
 
   def group_session_params
