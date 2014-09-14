@@ -22,7 +22,7 @@ en:
         list: 'Live sessions'
         add: 'Host your own session'
         edit: 'Edit this session'
-        delete: 'Cancel'
+        delete: 'cancel this session'
         book_now: 'Book now'
       signup:
         new: 'Sign up'
