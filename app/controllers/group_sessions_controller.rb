@@ -1,6 +1,7 @@
 class GroupSessionsController < ApplicationController
   def index
-    load_sessions
+    @live_sessions = load_sessions('starts_at <= ?', Time.current)
+    @upcoming_sessions = load_sessions('starts_at > ?', Time.current)
   end
 
   def show
@@ -54,8 +55,8 @@ class GroupSessionsController < ApplicationController
     @group_session = group_scope.find(params[:id])
   end
 
-  def load_sessions
-    @group_sessions = group_scope.not_deleted
+  def load_sessions(*args)
+    @group_sessions = group_scope.not_deleted.where(*args)
   end
 
   def destroy_session

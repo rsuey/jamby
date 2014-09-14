@@ -3,6 +3,9 @@ en:
     models:
       group_session:
         booked: 'Booked!'
+        titles:
+          live: 'Live sessions'
+          upcoming: 'Upcoming sessions'
   links:
     models:
       account:

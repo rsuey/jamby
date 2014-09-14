@@ -1,5 +1,13 @@
-<div id='group_sessions'>
-  <%= render @group_sessions %>
+<div id="group_sessions">
+  <div id='live_sessions'>
+    <h1><%= t('text.models.group_session.titles.live') %></h1>
+    <%= render @live_sessions %>
+  </div>
+
+  <div id='upcoming_sessions'>
+    <h1><%= t('text.models.group_session.titles.upcoming') %></h1>
+    <%= render @upcoming_sessions %>
+  </div>
 </div>
 
 <%= link_to t('links.models.group_session.add'), new_group_session_path %>
