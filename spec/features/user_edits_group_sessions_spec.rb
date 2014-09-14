@@ -4,10 +4,13 @@ feature 'User edits group sessions' do
   scenario 'Editing a group session' do
     group_session = create(:group_session, title: 'Free session')
     page = GroupSessionPage.new(group_session)
-    page.visit
-    page.click_edit_link
-    page.fill_in_form('Title' => 'Paid session', 'Price' => 1)
-    page.submit_form
+
+    logged_in do
+      page.visit
+      page.click_edit_link
+      page.fill_in_form('Title' => 'Paid session', 'Price' => 1)
+      page.submit_form
+    end
 
     expect(current_path).to eq(page.after_successful_edit_path)
     within(page.session_selector) do

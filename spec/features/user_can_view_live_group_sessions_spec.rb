@@ -26,14 +26,12 @@ feature 'Users can view live group sessions' do
 
     booked.add_participant(user)
 
-    logged_in(user) do
-      page.visit
+    logged_in(user) { page.visit }
 
-      within('#booked_sessions') do
-        expect(page).to have_css('h1', text: page.booked_sessions_title)
-        expect(page).to have_content('Booked session')
-        expect(page).to_not have_content('Not booked')
-      end
+    within('#booked_sessions') do
+      expect(page).to have_css('h1', text: page.booked_sessions_title)
+      expect(page).to have_content('Booked session')
+      expect(page).to_not have_content('Not booked')
     end
   end
 

@@ -22,11 +22,11 @@ feature 'Users can sign in' do
     logged_in do
       visit root_path
       click_link page.signout_link_text
-
-      expect(current_path).to eq(page.after_successful_signout_path)
-      expect(page).to have_css('.alert-box.info',
-                               text: page.successful_signout_text)
-      expect(page).to have_link('Guest')
     end
+
+    expect(current_path).to eq(page.after_successful_signout_path)
+    expect(page).to have_css('.alert-box.info',
+                             text: page.successful_signout_text)
+    expect(page).to have_link('Guest')
   end
 end

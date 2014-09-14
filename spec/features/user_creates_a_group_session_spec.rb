@@ -34,9 +34,12 @@ feature 'User creates a group session' do
 
   scenario 'Creating an invalid group session' do
     page = NewGroupSessionPage.new
-    page.visit
-    page.fill_in_form({})
-    page.submit_form
+
+    logged_in do
+      page.visit
+      page.fill_in_form({})
+      page.submit_form
+    end
 
     expect(current_path).to eq(page.after_failed_create_path)
     within(page.error_field_css) do

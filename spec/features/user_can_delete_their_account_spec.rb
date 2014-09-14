@@ -9,12 +9,12 @@ feature 'Users can delete their accounts' do
       visit root_path
       click_link user.username
       click_link page.delete_account_link_text
-
-      expect(current_path).to eq(page.after_successful_delete_path)
-      expect(page).to have_css('.alert-box.info',
-                               text: page.successful_delete_text)
-      expect(page).to have_link('Guest')
     end
+
+    expect(current_path).to eq(page.after_successful_delete_path)
+    expect(page).to have_css('.alert-box.info',
+                             text: page.successful_delete_text)
+    expect(page).to have_link('Guest')
 
     page = SignInPage.new
     page.visit
