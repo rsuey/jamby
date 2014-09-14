@@ -28,9 +28,7 @@
       <% else %>
         <li class="<%= active_if_current(signout_path) %>">
            <%= link_to t('links.models.signin.destroy'),
-                        signout_path, method: :delete, data: {
-                          confirm: t('controllers.signins.destroy.confirm')
-                        } %>
+                        signout_path, method: :delete %>
         </li>
       <% end %>
     </ul>
