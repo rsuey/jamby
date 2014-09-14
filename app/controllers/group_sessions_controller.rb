@@ -1,4 +1,6 @@
 class GroupSessionsController < ApplicationController
+  before_filter :authenticate_user!, except: [:index, :show]
+
   def index
     @live_sessions = load_sessions('starts_at <= ?', Time.current)
     @booked_sessions = current_user.booked_sessions
