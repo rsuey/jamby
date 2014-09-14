@@ -10,6 +10,10 @@
 
   <section class="top-bar-section">
     <ul class="right">
+      <li class="<%= active_if_current(group_sessions_path) %>">
+        <%= link_to icon('users', t('links.models.group_session.list')),
+                    group_sessions_path %>
+      </li>
       <li class="<%= active_if_current(new_group_session_path) %>">
         <%= link_to icon('plus', t('links.models.group_session.add')),
                     new_group_session_path %>

@@ -19,7 +19,8 @@ en:
       account:
         destroy: 'Delete your account'
       group_session:
-        add: 'Host a live session'
+        list: 'Live sessions'
+        add: 'Host your own session'
         edit: 'Edit this session'
         delete: 'Cancel'
         book_now: 'Book now'
