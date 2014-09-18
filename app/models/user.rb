@@ -7,6 +7,6 @@ class User < ActiveRecord::Base
   end
 
   def name
-    username
+    email
   end
 end

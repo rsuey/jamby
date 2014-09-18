@@ -7,8 +7,18 @@
 
   <%= form_for @signup do |f| %>
     <div class='columns small-6 small-centered'>
-      <%= f.label :username %>
-      <%= f.text_field :username %>
+      <%= f.label :email %>
+      <%= f.email_field :email %>
+    </div>
+
+    <div class='columns small-6 small-centered'>
+      <%= f.label :first_name %>
+      <%= f.text_field :first_name %>
+    </div>
+
+    <div class='columns small-6 small-centered'>
+      <%= f.label :last_name %>
+      <%= f.text_field :last_name %>
     </div>
 
     <div class='columns small-6 small-centered'>

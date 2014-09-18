@@ -2,18 +2,20 @@ require 'rails_helper'
 
 feature 'Users can sign in' do
   scenario 'User enters valid credentials' do
-    create(:signup, username: 'coolguy', password: 'secret83')
+    create(:signup, first_name: 'Cool',
+                    email: 'coolguy@email.com',
+                    password: 'secret83')
     page = SignInPage.new
     visit root_path
     click_link page.signin_link_text
 
-    page.fill_in_form('Username' => 'coolguy', 'Password' => 'secret83')
+    page.fill_in_form('Email' => 'coolguy@email.com', 'Password' => 'secret83')
     page.submit_form
 
     expect(current_path).to eq(page.after_successful_signin_path)
     expect(page).to have_css('.alert-box.info',
                              text: page.successful_signin_text)
-    expect(page).to have_link('coolguy')
+    expect(page).to have_link('Cool')
   end
 
   scenario 'User logs out' do

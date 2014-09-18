@@ -1,5 +1,5 @@
 class Guest < User
-  def username
+  def first_name
     'Guest'
   end
 

@@ -19,7 +19,7 @@
                     new_group_session_path %>
       </li>
       <li class="<%= active_if_current(dashboard_account_path) %>">
-        <%= link_to icon('user', current_user.username),
+        <%= link_to icon('user', current_user.first_name),
                     dashboard_account_path %>
       </li>
       <% if current_user.is_guest? %>

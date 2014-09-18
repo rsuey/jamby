@@ -1,10 +1,10 @@
 module SigninHelper
-  def logged_in(signin = create(:signin))
+  def logged_in(user = create(:signup))
     page = LoginPage.new
     page.visit
-    page.fill_in_form('Username' => signin.username,
-                      'Password' => signin.password)
+    page.fill_in_form('Email' => user.email,
+                      'Password' => user.password)
     page.submit_form
-    yield(signin)
+    yield(user)
   end
 end

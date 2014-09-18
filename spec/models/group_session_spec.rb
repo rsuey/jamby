@@ -2,11 +2,11 @@ require 'rails_helper'
 
 describe GroupSession do
   describe '#host_name' do
-    it 'returns the username of the host' do
-      user = create(:user, username: 'coolhost')
+    it 'returns the email of the host' do
+      user = create(:user, email: 'coolhost@email.com')
       group_session = create(:group_session, host: user)
 
-      expect(group_session.host_name).to eq('coolhost')
+      expect(group_session.host_name).to eq('coolhost@email.com')
     end
   end
 

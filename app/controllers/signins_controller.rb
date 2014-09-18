@@ -22,7 +22,7 @@ class SigninsController < ApplicationController
   end
 
   def load_signin
-    @signin = signin_scope.find_by(username: signin_params[:username])
+    @signin = signin_scope.find_by(email: signin_params[:email])
   end
 
   def build_signin
@@ -40,7 +40,7 @@ class SigninsController < ApplicationController
 
   def signin_params
     if attributes = params[:signin]
-      attributes.permit(:username, :password)
+      attributes.permit(:email, :password)
     else
       {}
     end

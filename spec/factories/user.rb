@@ -1,14 +1,20 @@
 FactoryGirl.define do
   factory :user do
+    first_name 'Joe'
+    last_name 'User'
   end
 
   factory :signup do
-    username 'userguy1'
+    first_name 'Joe'
+    last_name 'User'
+    email 'userguy1@email.com'
     password 'secret83'
   end
 
   factory :signin do
-    username 'signinguy'
+    first_name 'Joe'
+    last_name 'User'
+    email 'userguy1@email.com'
     password 'secret83'
   end
 end
