@@ -32,9 +32,8 @@ class SigninsController < ApplicationController
 
   def save_signin
     if @signin.save
-      sign_in(@signin)
       flash[:info] = t('controllers.signins.create.successful')
-      redirect_to root_path
+      sign_in(@signin)
     end
   end
 

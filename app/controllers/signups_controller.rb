@@ -20,9 +20,8 @@ class SignupsController < ApplicationController
 
   def save_signup
     if @signup.save
-      session[:user_id] = @signup.id
       flash[:info] = t('controllers.signups.create.successful')
-      redirect_to root_path
+      sign_in(@signup)
     end
   end
 

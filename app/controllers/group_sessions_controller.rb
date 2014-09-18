@@ -1,4 +1,5 @@
 class GroupSessionsController < ApplicationController
+  before_filter :store_location, except: [:create, :update, :destroy]
   before_filter :authenticate_user!, except: [:index, :show]
 
   def index
