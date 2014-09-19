@@ -7,6 +7,9 @@ class GroupSession < ActiveRecord::Base
 
   delegate :name, to: :host, prefix: true, allow_nil: true
 
+  scope :upcoming, -> { where('starts_at > ?', Time.current) }
+  scope :live, -> { where('starts_at <= ?', Time.current) }
+
   def free?
     price.zero?
   end
