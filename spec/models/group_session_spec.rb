@@ -36,6 +36,34 @@ describe GroupSession do
     end
   end
 
+  describe 'can_be_booked_by?' do
+    context 'when the user is the host' do
+      it 'returns false' do
+        user = create(:user)
+        group_session = create(:group_session, host: user)
+        expect(group_session.can_be_booked_by?(user)).to eq(false)
+      end
+    end
+
+    context 'when the user is on the guest list' do
+      it 'returns false' do
+        user = create(:user)
+        group_session = create(:group_session)
+
+        group_session.add_participant(user)
+        expect(group_session.can_be_booked_by?(user)).to eq(false)
+      end
+    end
+
+    context 'when the user is not the host, not guest listed' do
+      it 'returns true' do
+        user = double(:user)
+        group_session = create(:group_session)
+        expect(group_session.can_be_booked_by?(user)).to eq(true)
+      end
+    end
+  end
+
   describe '#booked_by?' do
     context 'when the participant has not booked the session' do
       it 'returns false' do

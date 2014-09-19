@@ -14,6 +14,10 @@ class GroupSession < ActiveRecord::Base
     price.zero?
   end
 
+  def can_be_booked_by?(user)
+    host != user && !booked_by?(user)
+  end
+
   def booked_by?(user)
     guest_list.include?(user)
   end
