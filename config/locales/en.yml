@@ -45,10 +45,14 @@ en:
         confirm: 'Are you sure you want to delete your account?'
     application:
       unauthenticated: 'You must be logged in to do that!'
+      unauthorized: "You don't have permission to perform that action"
     group_sessions:
       book:
         successful: 'You are now booked for this session!'
+      create:
+        successful: 'Good luck, have a great session!'
       destroy:
+        successful: 'Your group session has been canceled. Any guests will be refunded.'
         confirm: 'Are you sure you want to cancel this session?'
     signups:
       create:

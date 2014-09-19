@@ -13,7 +13,7 @@ describe GroupSessionsController do
     end
 
     it 'stores location for show' do
-      allow(controller).to receive(:load_session)
+      create(:group_session)
       get :show, id: 1
       expect(session[:previous_url]).to eq(group_session_path(1))
     end
@@ -26,6 +26,38 @@ describe GroupSessionsController do
     it 'stores location for book' do
       put :book, id: 1
       expect(session[:previous_url]).to eq(book_group_session_path(1))
+    end
+
+    it 'authorizes edits' do
+      owner = create(:user)
+      intruder = create(:user)
+      group_session = create(:group_session, host: owner)
+
+      allow(controller).to receive(:current_user).and_return(owner)
+      get :edit, id: group_session.id
+      expect(response).to be_successful
+
+      allow(controller).to receive(:current_user).and_return(intruder)
+      get :edit, id: group_session.id
+      expect(response).to redirect_to(root_path)
+      expect(flash[:alert]).to eq(I18n.t('controllers.application.unauthorized'))
+    end
+
+    it 'authorizes destroys' do
+      owner = create(:user)
+      intruder = create(:user)
+      group_session = create(:group_session, host: owner)
+
+      allow(controller).to receive(:current_user).and_return(owner)
+      delete :destroy, id: group_session.id
+      expect(response).to redirect_to(root_path)
+      expect(flash[:info]).to eq(I18n.t('controllers.group_sessions.destroy.successful'))
+
+      group_session = create(:group_session, host: owner)
+      allow(controller).to receive(:current_user).and_return(intruder)
+      delete :destroy, id: group_session.id
+      expect(response).to redirect_to(root_path)
+      expect(flash[:alert]).to eq(I18n.t('controllers.application.unauthorized'))
     end
   end
 

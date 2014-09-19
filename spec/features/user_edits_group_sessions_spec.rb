@@ -2,10 +2,11 @@ require 'rails_helper'
 
 feature 'User edits group sessions' do
   scenario 'Editing a group session' do
-    group_session = create(:group_session, title: 'Free session')
+    user = create(:signup)
+    group_session = create(:group_session, host: user, title: 'Free session')
     page = GroupSessionPage.new(group_session)
 
-    logged_in do
+    logged_in(user) do
       page.visit
       page.click_edit_link
       page.fill_in_form('Title' => 'Paid session', 'Price' => 1)
