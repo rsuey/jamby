@@ -15,6 +15,9 @@ Rails.application.routes.draw do
   end
 
   resources :payment_methods, except: :index
+  resources :payments, only: :create do
+    get :confirm, on: :member
+  end
 
   root 'group_sessions#index'
 end

@@ -1,5 +1,6 @@
 class GroupSession < ActiveRecord::Base
   belongs_to :host, class_name: 'User'
+  has_many :payments
   has_many :bookings
   has_many :participants, through: :bookings, source: :user
 
@@ -9,6 +10,14 @@ class GroupSession < ActiveRecord::Base
 
   scope :upcoming, -> { where('starts_at > ?', Time.current) }
   scope :live, -> { where('starts_at <= ?', Time.current) }
+
+  def price_in_pennies
+    price * 100
+  end
+
+  def paid?(user)
+    free? or payments.collect(&:user).include?(user)
+  end
 
   def free?
     price.zero?

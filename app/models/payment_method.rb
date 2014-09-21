@@ -7,6 +7,10 @@ class PaymentMethod < ActiveRecord::Base
 
   after_destroy :delete_customer
 
+  def display_name
+    [brand, last4].join(' *')
+  end
+
   private
   def delete_customer
     Customer.delete(remote_id)

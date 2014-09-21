@@ -14,9 +14,13 @@ class GroupSessionsController < ApplicationController
 
   def book
     @group_session = group_session_scope.find(params[:id])
-    @group_session.add_participant(current_user)
-    flash[:info] = t('controllers.group_sessions.book.successful')
-    redirect_to :back
+    if @group_session.paid?(current_user)
+      @group_session.add_participant(current_user)
+      flash[:info] = t('controllers.group_sessions.book.successful')
+      redirect_to :back
+    else
+      redirect_to confirm_payment_path(@group_session)
+    end
   end
 
   def new

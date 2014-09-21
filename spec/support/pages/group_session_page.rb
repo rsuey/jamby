@@ -11,6 +11,10 @@ class GroupSessionPage < PageObject
     t('forms.models.group_session.edit')
   end
 
+  def confirm_payment_button_text
+    t('forms.models.payment.create')
+  end
+
   def session_booked_text
     t('text.models.group_session.booked')
   end
@@ -23,8 +27,8 @@ class GroupSessionPage < PageObject
     click_link t('links.models.group_session.edit')
   end
 
-  def click_book_link
-    click_link t('links.models.group_session.book_now')
+  def book_link_text
+    t('links.models.group_session.book_now')
   end
 
   def confirm_delete

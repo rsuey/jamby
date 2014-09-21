@@ -12,6 +12,9 @@ en:
           live: 'Live sessions'
           booked: 'Your sessions'
           upcoming: 'Upcoming sessions'
+      payment:
+        titles:
+          new: 'Confirm payment'
       payment_method:
         titles:
           new: 'Add a payment method'
@@ -47,6 +50,8 @@ en:
       group_session:
         create: 'Create live session'
         edit: 'Save'
+      payment:
+        create: 'Confirm payment'
       payment_method:
         create: 'Save payment method'
         update: 'Save changes'

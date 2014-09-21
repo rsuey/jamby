@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140921162711) do
+ActiveRecord::Schema.define(version: 20140921211717) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,10 +49,27 @@ ActiveRecord::Schema.define(version: 20140921162711) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "name_on_card"
+    t.string   "brand"
   end
 
   add_index "payment_methods", ["remote_id"], name: "index_payment_methods_on_remote_id", unique: true, using: :btree
   add_index "payment_methods", ["user_id"], name: "index_payment_methods_on_user_id", using: :btree
+
+  create_table "payments", force: true do |t|
+    t.integer  "amount"
+    t.string   "currency"
+    t.integer  "user_id"
+    t.integer  "group_session_id"
+    t.string   "remote_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "payment_method_id"
+  end
+
+  add_index "payments", ["group_session_id"], name: "index_payments_on_group_session_id", using: :btree
+  add_index "payments", ["payment_method_id"], name: "index_payments_on_payment_method_id", using: :btree
+  add_index "payments", ["remote_id"], name: "index_payments_on_remote_id", using: :btree
+  add_index "payments", ["user_id"], name: "index_payments_on_user_id", using: :btree
 
   create_table "users", force: true do |t|
     t.datetime "created_at"
