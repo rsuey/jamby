@@ -70,6 +70,8 @@ en:
     payment_methods:
       create:
         successful: 'Your payment method has been saved'
+      update:
+        successful: 'Your payment method has been updated'
     signups:
       create:
         successful: 'Thank you for signing up!'

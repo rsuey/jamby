@@ -23,6 +23,7 @@ class PaymentMethodsController < ApplicationController
   def update
     @payment_method = current_user.payment_methods.find(params[:id])
     if @payment_method.update_attributes(payment_method_params)
+      flash[:info] = t('controllers.payment_methods.update.successful')
       redirect_to dashboard_account_path
     else
       render :edit
