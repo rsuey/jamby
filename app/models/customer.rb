@@ -14,24 +14,20 @@ class Customer
   def self.update(payment_method)
     begin
       customer = Stripe::Customer.retrieve(payment_method.remote_id)
-      build_card(customer, payment_method)
+      customer.card = build_card(payment_method)
       customer.save
       new(customer)
     rescue Stripe::CardError => e
-      raise Customer::CardError.new(e.message, e.http_status, e.http_body)
+      raise_customer_card_error(e)
     end
   end
 
   def self.create(payment_method, user)
     begin
-      new(Stripe::Customer.create(card: { name: payment_method.name_on_card,
-                                          number: payment_method.number,
-                                          cvc: payment_method.cvc,
-                                          exp_month: payment_method.exp_month,
-                                          exp_year: payment_method.exp_year },
+      new(Stripe::Customer.create(card: build_card(payment_method),
                                   description: user.email))
     rescue Stripe::CardError => e
-      raise Customer::CardError.new(e.message, e.http_status, e.http_body)
+      raise_customer_card_error(e)
     end
   end
 
@@ -41,13 +37,16 @@ class Customer
   end
 
   private
-  def self.build_card(customer, payment_method)
-    attributes = {}
-    attributes[:number] = payment_method.number unless payment_method.number.blank?
-    attributes[:exp_month] = payment_method.exp_month
-    attributes[:exp_year] = payment_method.exp_year
-    attributes[:cvc] = payment_method.cvc unless payment_method.cvc.blank?
-    customer.card = attributes
+  def self.raise_customer_card_error(error)
+    raise Customer::CardError.new(error.message, error.http_status, error.http_body)
+  end
+
+  def self.build_card(payment_method)
+    { name: payment_method.name_on_card,
+      number: payment_method.number,
+      exp_month: payment_method.exp_month,
+      exp_year: payment_method.exp_year,
+      cvc: payment_method.cvc }
   end
 
   class CardError < Stripe::CardError; end
