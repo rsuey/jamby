@@ -1,0 +1,6 @@
+<%= div_for payment_method, class: 'columns small-12' do %>
+  <p>
+    *<%= payment_method.last4 %>
+    Exp. <%= payment_method.exp_month %>/<%= payment_method.exp_year %>
+  </p>
+<% end %>

@@ -1,4 +1,16 @@
-<%= link_to t('links.models.account.destroy'),
-            account_path(current_user),
-            method: :delete,
-            data: { confirm: t('controllers.accounts.destroy.confirm') } %>
+<div class='row'>
+  <%= render current_user.payment_methods %>
+
+  <div class='columns small-12'>
+    <%= link_to t('links.models.payment_method.new'), new_payment_method_path %>
+  </div>
+</div>
+
+<div class='row'>
+  <div class='columns small-12'>
+    <%= link_to t('links.models.account.destroy'),
+                account_path(current_user),
+                method: :delete,
+                data: { confirm: t('controllers.accounts.destroy.confirm') } %>
+  </div>
+</div>

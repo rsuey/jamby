@@ -1,0 +1,29 @@
+<div class='row'>
+  <div class='columns small-6 small-centered'>
+    <h3><%= t('text.models.payment_method.titles.new') %></h3>
+  </div>
+
+  <%= render 'shared/errors', record: @payment_method %>
+
+  <%= form_for @payment_method do |f| %>
+    <div class='columns small-6 small-centered'>
+      <%= f.label :name_on_card %>
+      <%= f.text_field :name_on_card %>
+    </div>
+
+    <div class='columns small-6 small-centered'>
+      <%= f.label :number %>
+      <%= f.number_field :number %>
+    </div>
+
+    <div class='columns small-6 small-centered'>
+      <%= f.number_field :exp_month, placeholder: 'mm', class: 'inline' %>/
+      <%= f.number_field :exp_year, placeholder: 'yy', class: 'inline' %>
+      <%= f.number_field :cvc, placeholder: 'CVC', class: 'inline' %>
+    </div>
+
+    <div class='columns small-6 small-centered'>
+      <%= f.submit t('forms.models.payment_method.create'), class: 'button' %>
+    </div>
+  <% end %>
+</div>

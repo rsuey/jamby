@@ -10,6 +10,9 @@ en:
           live: 'Live sessions'
           booked: 'Your sessions'
           upcoming: 'Upcoming sessions'
+      payment_method:
+        titles:
+          new: 'Add a payment method'
       signup:
         new: 'Sign up'
       signin:
@@ -24,6 +27,8 @@ en:
         edit: 'Edit this session'
         delete: 'cancel this session'
         book_now: 'Book now'
+      payment_method:
+        new: 'Add a payment method'
       signup:
         new: 'Sign up'
       signin:
@@ -34,6 +39,8 @@ en:
       group_session:
         create: 'Create live session'
         edit: 'Save'
+      payment_method:
+        create: 'Save payment method'
       signup:
         create: 'Sign up'
       signin:
@@ -54,6 +61,9 @@ en:
       destroy:
         successful: 'Your group session has been canceled. Any guests will be refunded.'
         confirm: 'Are you sure you want to cancel this session?'
+    payment_methods:
+      create:
+        successful: 'Your payment method has been saved'
     signups:
       create:
         successful: 'Thank you for signing up!'
