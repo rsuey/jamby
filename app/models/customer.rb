@@ -24,8 +24,9 @@ class Customer
 
   def self.create(payment_method, user)
     begin
-      new(Stripe::Customer.create(card: build_card(payment_method),
-                                  description: user.email))
+      customer = Stripe::Customer.create(card: build_card(payment_method),
+                                         description: user.email)
+      new(customer)
     rescue Stripe::CardError => e
       raise_customer_card_error(e)
     end
@@ -38,7 +39,9 @@ class Customer
 
   private
   def self.raise_customer_card_error(error)
-    raise Customer::CardError.new(error.message, error.http_status, error.http_body)
+    raise Customer::CardError.new(error.message,
+                                  error.http_status,
+                                  error.http_body)
   end
 
   def self.build_card(payment_method)
