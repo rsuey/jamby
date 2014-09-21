@@ -8,7 +8,11 @@ class Customer
   end
 
   def last_four_of_card
-    @customer.cards.data[0].last4
+    card.last4
+  end
+
+  def card_brand
+    card.brand
   end
 
   def self.update(payment_method)
@@ -50,6 +54,10 @@ class Customer
       exp_month: payment_method.exp_month,
       exp_year: payment_method.exp_year,
       cvc: payment_method.cvc }
+  end
+
+  def card
+    @card ||= @customer.cards.data[0]
   end
 
   class CardError < Stripe::CardError; end

@@ -19,7 +19,7 @@ feature 'User adds a payment method' do
     end
 
     expect(current_path).to eq(page.after_successful_add_path)
-    expect(page).to have_content('*1111')
+    expect(page).to have_content('Visa *1111')
     expect(page).to have_content('Exp. 8/16')
     expect(user.payment_methods).to_not be_empty
   end

@@ -22,6 +22,7 @@ class PaymentMethod < ActiveRecord::Base
     begin
       self.remote_id ||= customer.id
       self.last4 = customer.last_four_of_card
+      self.brand = customer.card_brand
     rescue Customer::CardError => error
       errors.add(:base, error.message)
     end
