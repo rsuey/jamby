@@ -2,5 +2,7 @@
   <p>
     *<%= payment_method.last4 %>
     Exp. <%= payment_method.exp_month %>/<%= payment_method.exp_year %>
+    <%= link_to t('links.models.payment_method.edit'),
+                edit_payment_method_path(payment_method) %>
   </p>
 <% end %>

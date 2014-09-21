@@ -13,6 +13,10 @@ en:
       payment_method:
         titles:
           new: 'Add a payment method'
+          edit: 'Edit payment method'
+        edit:
+          number: 'Please re-enter the card number'
+          cvc: 'Please re-enter the CVC'
       signup:
         new: 'Sign up'
       signin:
@@ -29,6 +33,7 @@ en:
         book_now: 'Book now'
       payment_method:
         new: 'Add a payment method'
+        edit: 'Edit'
       signup:
         new: 'Sign up'
       signin:
@@ -41,6 +46,7 @@ en:
         edit: 'Save'
       payment_method:
         create: 'Save payment method'
+        update: 'Save changes'
       signup:
         create: 'Sign up'
       signin:

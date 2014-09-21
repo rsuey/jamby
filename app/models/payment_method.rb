@@ -7,8 +7,10 @@ class PaymentMethod < ActiveRecord::Base
 
   private
   def valid_card_information
+    errors.add(:cvc, :blank) if cvc.blank?
+
     begin
-      self.remote_id = customer.id
+      self.remote_id ||= customer.id
       self.last4 = customer.last_four_of_card
     rescue Customer::CardError => error
       errors.add(:base, error.message)
@@ -16,6 +18,10 @@ class PaymentMethod < ActiveRecord::Base
   end
 
   def customer
-    @customer ||= Customer.create(self, user)
+    if persisted?
+      @customer ||= Customer.update(self)
+    else
+      @customer ||= Customer.create(self, user)
+    end
   end
 end
