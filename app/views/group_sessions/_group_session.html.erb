@@ -40,7 +40,7 @@
 
     <span class='group_session_meta_price'>
       <% if group_session.free? %>
-        Free
+        <%= t('text.models.group_session.price.free') %>
       <% else %>
         <%= number_to_currency(group_session.price) %>
       <% end %>

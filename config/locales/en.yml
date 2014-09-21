@@ -5,6 +5,8 @@ en:
     models:
       group_session:
         booked: 'Booked!'
+        price:
+          free: 'Free'
         titles:
           new: 'Host a live session'
           live: 'Live sessions'
