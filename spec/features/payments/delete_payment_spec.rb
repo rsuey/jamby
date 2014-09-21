@@ -14,7 +14,7 @@ feature 'User deletes payment method' do
     logged_in(user) do
       visit dashboard_account_path
 
-      VCR.use_cassette('delete a payment method', record: :all) do
+      VCR.use_cassette('delete a payment method') do
         within('.payment_method') do
           click_link page.delete_link_text
         end
