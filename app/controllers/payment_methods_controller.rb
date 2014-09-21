@@ -33,6 +33,7 @@ class PaymentMethodsController < ApplicationController
   def destroy
     payment_method = current_user.payment_methods.find(params[:id])
     payment_method.destroy
+    flash[:info] = t('controllers.payment_methods.destroy.successful')
     redirect_to dashboard_account_path
   end
 

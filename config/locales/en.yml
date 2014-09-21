@@ -74,6 +74,7 @@ en:
       update:
         successful: 'Your payment method has been updated'
       destroy:
+        successful: 'Your payment method has been deleted'
         confirm: 'Are you sure you want to delete your payment method?'
     signups:
       create:
