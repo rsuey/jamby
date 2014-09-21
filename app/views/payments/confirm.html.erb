@@ -3,6 +3,16 @@
     <h3><%= t('text.models.payment.titles.new') %></h3>
   </div>
 
+  <div class='columns small-6 small-centered'>
+    <h4><%= @group_session.title %></h4>
+    <h5><%= @group_session.starts_at.strftime('%A, %B %e, %Y at %I:%M%P') %></h5>
+    <p><%= @group_session.description %></p>
+    <p>
+      <%= t('text.models.payment.you_will_be_charged') %>
+      <%= number_to_currency(@group_session.price) %>
+    </p>
+  </div>
+
   <%= render 'shared/errors', record: @payment %>
 
   <%= form_for @payment do |f| %>

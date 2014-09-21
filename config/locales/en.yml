@@ -15,6 +15,7 @@ en:
       payment:
         titles:
           new: 'Confirm payment'
+        you_will_be_charged: 'Your card will be charged:'
       payment_method:
         titles:
           new: 'Add a payment method'
