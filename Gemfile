@@ -33,6 +33,7 @@ group :development, :test do
 end
 
 group :test do
+  gem 'simplecov', '~> 0.9.1', require: false
   gem 'vcr', '~> 2.9.3'
   gem 'webmock', '~> 1.18.0'
   gem 'timecop', '~> 0.7.1'
