@@ -8,7 +8,7 @@ class PaymentMethod < ActiveRecord::Base
   after_destroy :delete_customer
 
   def display_name
-    [brand, last4].join(' *')
+    "#{brand} *#{last4} Exp. #{exp_month}/#{exp_year}"
   end
 
   private
