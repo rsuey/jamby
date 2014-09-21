@@ -41,4 +41,30 @@ feature 'User books a group session' do
       end
     end
   end
+
+  scenario 'User books a paid group session with new payment information' do
+    VCR.use_cassette('book a paid session with new payment method') do
+      group_session = create(:group_session, price: 1)
+      page = GroupSessionPage.new(group_session)
+
+      logged_in do |user|
+        page.visit
+        click_link page.book_link_text
+
+        page.fill_in_form('Name on card' => 'Joe Sak',
+                          'Number' => 4242424242424242,
+                          'mm' => '08',
+                          'yy' => Time.current.year + 1,
+                          'CVC' => 123)
+        click_button page.confirm_payment_button_text
+      end
+
+      expect(current_path).to eq(page.after_successful_book_path)
+      expect(page).to have_css('.alert-box.info',
+                               text: page.successful_booking_text)
+      within(page.session_selector) do
+        expect(page).to have_content(page.session_booked_text)
+      end
+    end
+  end
 end

@@ -1,0 +1,24 @@
+<div class='columns small-6 small-centered'>
+  <%= f.label :name_on_card %>
+  <%= f.text_field :name_on_card %>
+</div>
+
+<div class='columns small-6 small-centered'>
+  <%= f.label :number %>
+  <% if @payment_method.persisted? %>
+    <em><%= t('text.models.payment_method.edit.number') %></em>
+  <% end %>
+  <%= f.number_field :number %>
+</div>
+
+<div class='columns small-6 small-centered'>
+  <%= f.number_field :exp_month, placeholder: 'mm', class: 'inline' %>/
+  <%= f.number_field :exp_year, placeholder: 'yy', class: 'inline' %>
+</div>
+
+<div class='columns small-6 small-centered'>
+  <% if @payment_method.persisted? %>
+    <em><%= t('text.models.payment_method.edit.cvc') %></em>
+  <% end %>
+  <%= f.number_field :cvc, placeholder: 'CVC', class: 'inline' %>
+</div>

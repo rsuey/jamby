@@ -22,6 +22,13 @@
                                                   :id, :display_name %>
     </div>
 
+    <%= fields_for :payment_method do |pm| %>
+      <div class='columns small-6 small-centered'>
+        <h4><%= t('text.models.payment_method.titles.new') %></h4>
+      </div>
+      <%= render 'payment_methods/fields', f: pm %>
+    <% end %>
+
     <div class='columns small-6 small-centered'>
       <%= f.hidden_field :group_session_id, value: @payment.group_session_id %>
       <%= f.submit t('forms.models.payment.create'), class: 'button' %>
