@@ -1338,8 +1338,13 @@ $sub-nav-active-cursor: default;
 
 @import 'foundation';
 
+select, input[type=number] {
+  &.inline {
+    width: auto;
+    display: inline;
+  }
+}
+
 select.inline {
-  width: auto;
-  display: inline;
   padding-right: 7%;
 }
