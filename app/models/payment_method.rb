@@ -1,5 +1,5 @@
 class PaymentMethod < ActiveRecord::Base
-  attr_accessor :name_on_card, :number, :cvc
+  attr_accessor :number, :cvc
 
   belongs_to :user
 

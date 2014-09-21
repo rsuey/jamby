@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140921043635) do
+ActiveRecord::Schema.define(version: 20140921162711) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,13 +41,14 @@ ActiveRecord::Schema.define(version: 20140921043635) do
   add_index "group_sessions_users", ["user_id"], name: "index_group_sessions_users_on_user_id", using: :btree
 
   create_table "payment_methods", force: true do |t|
-    t.integer  "last4",      null: false
-    t.integer  "exp_month",  null: false
-    t.integer  "exp_year",   null: false
-    t.string   "remote_id",  null: false
-    t.integer  "user_id",    null: false
+    t.integer  "last4",        null: false
+    t.integer  "exp_month",    null: false
+    t.integer  "exp_year",     null: false
+    t.string   "remote_id",    null: false
+    t.integer  "user_id",      null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "name_on_card"
   end
 
   add_index "payment_methods", ["remote_id"], name: "index_payment_methods_on_remote_id", unique: true, using: :btree
