@@ -1,5 +1,5 @@
 class PaymentMethodsController < ApplicationController
-  before_filter :store_location, except: :create
+  before_filter :store_location, except: [:create, :update, :destroy]
   before_filter :authenticate_user!
 
   def new
@@ -28,6 +28,12 @@ class PaymentMethodsController < ApplicationController
     else
       render :edit
     end
+  end
+
+  def destroy
+    payment_method = current_user.payment_methods.find(params[:id])
+    payment_method.destroy
+    redirect_to dashboard_account_path
   end
 
   private

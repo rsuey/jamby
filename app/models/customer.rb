@@ -35,6 +35,11 @@ class Customer
     end
   end
 
+  def self.delete(remote_id)
+    customer = Stripe::Customer.retrieve(remote_id)
+    customer.delete
+  end
+
   private
   def self.build_card(customer, payment_method)
     attributes = {}

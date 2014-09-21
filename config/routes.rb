@@ -14,7 +14,7 @@ Rails.application.routes.draw do
     get :dashboard
   end
 
-  resources :payment_methods, only: [:new, :create, :edit, :update]
+  resources :payment_methods, except: :index
 
   root 'group_sessions#index'
 end

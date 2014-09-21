@@ -5,7 +5,13 @@ class PaymentMethod < ActiveRecord::Base
 
   validate :valid_card_information
 
+  after_destroy :delete_customer
+
   private
+  def delete_customer
+    Customer.delete(remote_id)
+  end
+
   def valid_card_information
     errors.add(:cvc, :blank) if cvc.blank?
 

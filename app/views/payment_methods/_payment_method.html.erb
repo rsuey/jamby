@@ -3,6 +3,11 @@
     *<%= payment_method.last4 %>
     Exp. <%= payment_method.exp_month %>/<%= payment_method.exp_year %>
     <%= link_to t('links.models.payment_method.edit'),
-                edit_payment_method_path(payment_method) %>
+                edit_payment_method_path(payment_method) %>&nbsp;|
+    <%= link_to t('links.models.payment_method.delete'),
+                payment_method_path(payment_method),
+                method: :delete, data: {
+                  confirm: t('controllers.payment_methods.destroy.confirm')
+                } %>
   </p>
 <% end %>

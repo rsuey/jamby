@@ -1,6 +1,18 @@
 require 'rails_helper'
 
 describe PaymentMethod do
+  describe '#destroy' do
+    it 'destroys the customer' do
+      VCR.use_cassette('create a payment method') do
+        payment_method = create(:payment_method)
+        allow(Customer).to receive(:delete)
+
+        payment_method.destroy
+        expect(Customer).to have_received(:delete).with(payment_method.remote_id)
+      end
+    end
+  end
+
   describe '#save' do
     context 'when the card number is invalid' do
       let(:payment_method) { build(:payment_method, number: '123abc') }
