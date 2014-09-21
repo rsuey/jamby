@@ -22,7 +22,7 @@ feature 'User creates a group session' do
 
     expect(current_path).to eq(page.after_successful_create_path)
     within(page.session_list_selector) do
-      expect(page).to have_css(page.host_name_selector, text: user.email)
+      expect(page).to have_css(page.host_name_selector, text: user.name)
       expect(page).to have_css(page.title_selector, text: 'Free session')
       expect(page).to have_css(page.description_selector,
                                text: 'This group session is free!')
