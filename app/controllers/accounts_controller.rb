@@ -13,6 +13,7 @@ class AccountsController < ApplicationController
     @account = current_account
 
     if @account.update_attributes(account_params)
+      flash[:info] = t('controllers.accounts.update.successful')
       redirect_to dashboard_account_path
     else
       render :edit
