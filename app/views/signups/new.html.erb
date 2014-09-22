@@ -6,22 +6,11 @@
   <%= render 'shared/errors', record: @signup %>
 
   <%= form_for @signup do |f| %>
-    <div class='columns small-6 small-centered'>
-      <%= f.label :email %>
-      <%= f.email_field :email %>
-    </div>
+    <%= render 'accounts/email_field', f: f %>
 
     <%= render 'accounts/name_fields', f: f %>
 
-    <div class='columns small-6 small-centered'>
-      <%= f.label :password %>
-      <%= f.password_field :password %>
-    </div>
-
-    <div class='columns small-6 small-centered'>
-      <%= f.label :password_confirmation %>
-      <%= f.password_field :password_confirmation %>
-    </div>
+    <%= render 'accounts/password_fields', f: f %>
 
     <div class='columns small-6 small-centered'>
       <%= f.submit t('forms.models.signup.create'), class: 'button' %>

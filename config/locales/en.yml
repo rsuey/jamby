@@ -3,6 +3,9 @@ en:
     title: 'Jamby'
   text:
     models:
+      account:
+        password:
+          change: 'Change your password'
       group_session:
         booked: 'Booked!'
         price:
@@ -101,6 +104,10 @@ en:
     errors:
       could_not_be_saved: "Sorry, this %{model} could not be saved:"
       models:
+        account:
+          attributes:
+            current_password:
+              incorrect: 'Your current password was incorrect'
         group_session:
           attributes:
             title:

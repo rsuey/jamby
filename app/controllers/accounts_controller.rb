@@ -11,6 +11,7 @@ class AccountsController < ApplicationController
 
   def update
     @account = current_account
+
     if @account.update_attributes(account_params)
       redirect_to dashboard_account_path
     else
@@ -27,6 +28,7 @@ class AccountsController < ApplicationController
 
   private
   def account_params
-    params.require(:account).permit(:first_name, :last_name)
+    params.require(:account).permit(:email, :first_name, :last_name, :password,
+                                    :current_password, :password_confirmation)
   end
 end

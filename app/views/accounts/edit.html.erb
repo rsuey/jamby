@@ -8,7 +8,19 @@
   <%= form_for @account do |f| %>
     <%= render 'name_fields', f: f %>
 
-    <div class='columns small-12 small-centered'>
+    <%= render 'email_field', f: f %>
+
+    <fieldset class='columns small-6 small-centered'>
+      <legend><%= t('text.models.account.password.change') %></legend>
+      <div class='columns small-6 small-centered'>
+        <%= f.label :current_password %>
+        <%= f.password_field :current_password %>
+      </div>
+
+      <%= render 'password_fields', f: f %>
+    </fieldset>
+
+    <div class='columns small-6 small-centered'>
       <%= f.submit t('forms.models.account.update'), class: 'button' %>
     </div>
   <% end %>
