@@ -4,6 +4,8 @@ en:
   text:
     models:
       account:
+        titles:
+          edit: 'Edit your profile'
         password:
           change: 'Change your password'
       group_session:
