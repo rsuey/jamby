@@ -1,7 +1,7 @@
 class PaymentMethod < ActiveRecord::Base
   attr_accessor :number, :cvc
 
-  belongs_to :user
+  belongs_to :account
 
   validate :valid_card_information
 
@@ -32,7 +32,7 @@ class PaymentMethod < ActiveRecord::Base
     if persisted?
       @customer ||= Customer.update(self)
     else
-      @customer ||= Customer.create(self, user)
+      @customer ||= Customer.create(self, account)
     end
   end
 end

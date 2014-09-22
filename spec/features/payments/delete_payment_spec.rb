@@ -4,11 +4,11 @@ feature 'User deletes payment method' do
   scenario 'User deletes payment method' do
     allow(Customer).to receive(:delete)
 
-    user = create(:signup)
+    user = create(:account)
     page = DeletePaymentMethodPage.new
 
     VCR.use_cassette('create a payment method') do
-      create(:payment_method, user: user)
+      create(:payment_method, account: user)
     end
 
     logged_in(user) do

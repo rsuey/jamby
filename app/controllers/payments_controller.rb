@@ -2,9 +2,10 @@ class PaymentsController < ApplicationController
   before_filter :authenticate_user!
 
   def confirm
+    @account = current_account
     @group_session = GroupSession.find(params[:id])
     @payment_method = PaymentMethod.new
-    @payment = Payment.new(group_session: @group_session, user: current_user)
+    @payment = Payment.new(group_session: @group_session, account: @account)
   end
 
   def create
@@ -12,7 +13,7 @@ class PaymentsController < ApplicationController
     set_payment_method
     @payment = Payment.new(payment_method: @payment_method,
                            group_session: @group_session,
-                           user: current_user)
+                           account: current_account)
     if @payment.save
       @group_session.add_participant(current_user)
       flash[:info] = t('controllers.group_sessions.book.successful')
@@ -25,11 +26,11 @@ class PaymentsController < ApplicationController
   private
   def set_payment_method
     if payment_method_params.values.all?(&:empty?)
-      @payment_method = current_user.payment_methods
-                                    .find(payment_params[:payment_method_id])
+      @payment_method = current_account.payment_methods
+                                       .find(payment_params[:payment_method_id])
     else
-      @payment_method = current_user.payment_methods
-                                    .create(payment_method_params)
+      @payment_method = current_account.payment_methods
+                                       .create(payment_method_params)
     end
   end
 

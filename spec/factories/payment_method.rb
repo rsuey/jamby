@@ -6,6 +6,6 @@ FactoryGirl.define do
     exp_month '01'
     exp_year Time.current.year + 1
     cvc 123
-    user
+    account
   end
 end

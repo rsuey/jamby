@@ -2,11 +2,11 @@ require 'rails_helper'
 
 feature 'User edits payment methods' do
   scenario 'User edits a payment method' do
-    user = create(:signup)
+    user = create(:account)
     page = EditPaymentMethodPage.new
 
     VCR.use_cassette('create a payment method') do
-      create(:payment_method, user: user)
+      create(:payment_method, account: user)
     end
 
     logged_in(user) do

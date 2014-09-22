@@ -2,7 +2,7 @@ require 'rails_helper'
 
 feature 'User adds a payment method' do
   scenario 'User adds a valid credit card' do
-    user = create(:signup)
+    user = create(:account)
     page = AddPaymentMethodPage.new
 
     logged_in(user) do

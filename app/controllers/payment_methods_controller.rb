@@ -7,7 +7,7 @@ class PaymentMethodsController < ApplicationController
   end
 
   def create
-    @payment_method = current_user.payment_methods.new(payment_method_params)
+    @payment_method = current_account.payment_methods.new(payment_method_params)
     if @payment_method.save
       flash[:info] = t('controllers.payment_methods.create.successful')
       redirect_to dashboard_account_path
@@ -17,11 +17,11 @@ class PaymentMethodsController < ApplicationController
   end
 
   def edit
-    @payment_method = current_user.payment_methods.find(params[:id])
+    @payment_method = current_account.payment_methods.find(params[:id])
   end
 
   def update
-    @payment_method = current_user.payment_methods.find(params[:id])
+    @payment_method = current_account.payment_methods.find(params[:id])
     if @payment_method.update_attributes(payment_method_params)
       flash[:info] = t('controllers.payment_methods.update.successful')
       redirect_to dashboard_account_path
@@ -31,7 +31,7 @@ class PaymentMethodsController < ApplicationController
   end
 
   def destroy
-    payment_method = current_user.payment_methods.find(params[:id])
+    payment_method = current_account.payment_methods.find(params[:id])
     payment_method.destroy
     flash[:info] = t('controllers.payment_methods.destroy.successful')
     redirect_to dashboard_account_path
