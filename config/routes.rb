@@ -10,8 +10,9 @@ Rails.application.routes.draw do
   resources :signups, only: :create
   resources :signins, only: :create
 
-  resource :account, only: :destroy do
+  resource :account, only: [:update, :destroy] do
     get :dashboard
+    get :edit
   end
 
   resources :payment_methods, except: :index

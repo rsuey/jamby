@@ -15,7 +15,11 @@ class ApplicationController < ActionController::Base
   end
 
   def current_user
-    @current_user ||= User.find_by(id: session[:user_id]) || Guest.new
+    @current_user ||= find_or_guest(User)
+  end
+
+  def current_account
+    @current_account ||= find_or_guest(Account)
   end
 
   def sign_in(signin)
@@ -30,5 +34,9 @@ class ApplicationController < ActionController::Base
 
   def store_location
     session[:previous_url] = request.fullpath
+  end
+
+  def find_or_guest(klass)
+    klass.find_by(id: session[:user_id]) || Guest.new
   end
 end

@@ -11,15 +11,7 @@
       <%= f.email_field :email %>
     </div>
 
-    <div class='columns small-6 small-centered'>
-      <%= f.label :first_name %>
-      <%= f.text_field :first_name %>
-    </div>
-
-    <div class='columns small-6 small-centered'>
-      <%= f.label :last_name %>
-      <%= f.text_field :last_name %>
-    </div>
+    <%= render 'accounts/name_fields', f: f %>
 
     <div class='columns small-6 small-centered'>
       <%= f.label :password %>

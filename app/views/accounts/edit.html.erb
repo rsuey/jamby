@@ -1,0 +1,15 @@
+<div class='row'>
+  <div class='columns small-6 small-centered'>
+    <h3><%= t('text.models.account.edit') %></h3>
+  </div>
+
+  <%= render 'shared/errors', record: @account %>
+
+  <%= form_for @account do |f| %>
+    <%= render 'name_fields', f: f %>
+
+    <div class='columns small-12 small-centered'>
+      <%= f.submit t('forms.models.account.update'), class: 'button' %>
+    </div>
+  <% end %>
+</div>

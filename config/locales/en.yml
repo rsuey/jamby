@@ -30,6 +30,7 @@ en:
   links:
     models:
       account:
+        edit: 'Edit your profile'
         destroy: 'Delete your account'
       group_session:
         list: 'Live sessions'
@@ -48,6 +49,8 @@ en:
         destroy: 'Log out'
   forms:
     models:
+      account:
+        update: 'Save changes'
       group_session:
         create: 'Create live session'
         edit: 'Save'
