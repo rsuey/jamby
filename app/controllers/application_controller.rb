@@ -1,8 +1,7 @@
 class ApplicationController < ActionController::Base
   rehearse_with 'jamby', 'joesak2k14'
 
-  helper_method :authenticate_user!, :current_user, :sign_in, :sign_out,
-    :store_location
+  helper_method :current_user
 
   protect_from_forgery with: :exception
 
