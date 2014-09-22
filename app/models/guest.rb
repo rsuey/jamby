@@ -3,6 +3,10 @@ class Guest < User
     'Guest'
   end
 
+  def payment_methods
+    []
+  end
+
   def is_guest?
     true
   end

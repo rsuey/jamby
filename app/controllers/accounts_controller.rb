@@ -1,5 +1,6 @@
 class AccountsController < ApplicationController
   before_filter :store_location, except: :destroy
+  before_filter :authenticate_user!
 
   def dashboard
     @account = current_account
