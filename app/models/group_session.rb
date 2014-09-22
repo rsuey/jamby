@@ -15,6 +15,10 @@ class GroupSession < ActiveRecord::Base
     price * 100
   end
 
+  def ready_to_start?
+    starts_at <= 15.minutes.from_now
+  end
+
   def paid?(user)
     free? or payments.collect(&:user).include?(user)
   end

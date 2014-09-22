@@ -4,7 +4,7 @@ FactoryGirl.define do
     last_name 'User'
   end
 
-  factory :signup do
+  factory :signup, aliases: [:host] do
     first_name 'Joe'
     last_name 'User'
     email 'userguy1@email.com'
