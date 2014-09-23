@@ -4,13 +4,13 @@ require 'rspec/rails'
 require 'factory_girl_rails'
 require 'capybara/rspec'
 require 'vcr'
+require 'zonebie/rspec'
 
 require './spec/support/pages/page_object'
 
 Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
 ActiveRecord::Migration.maintain_test_schema!
 Capybara.javascript_driver = :webkit
-Zonebie.set_random_timezone
 
 RSpec.configure do |config|
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
