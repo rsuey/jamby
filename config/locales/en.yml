@@ -4,6 +4,9 @@ en:
   text:
     models:
       account:
+        email: 'Email'
+        name: 'Name'
+        time_zone: 'Time zone'
         titles:
           edit: 'Edit your profile'
         password:
@@ -56,6 +59,7 @@ en:
     models:
       account:
         update: 'Save changes'
+        time_zone: 'Time zone'
       group_session:
         create: 'Create live session'
         edit: 'Save'

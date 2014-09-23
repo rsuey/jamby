@@ -10,6 +10,11 @@
 
     <%= render 'email_field', f: f %>
 
+    <div class='columns small-6 small-centered'>
+      <%= f.label :time_zone %>
+      <%= f.time_zone_select :time_zone, ActiveSupport::TimeZone.us_zones %>
+    </div>
+
     <fieldset class='columns small-6 small-centered'>
       <legend><%= t('text.models.account.password.change') %></legend>
       <div class='columns small-6 small-centered'>

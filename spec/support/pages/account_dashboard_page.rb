@@ -7,6 +7,10 @@ class AccountDashboardPage < PageObject
     t('forms.models.account.update')
   end
 
+  def time_zone_select_label
+    t('forms.models.account.time_zone')
+  end
+
   def edit_profile_link_text
     t('links.models.account.edit')
   end
