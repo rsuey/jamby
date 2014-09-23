@@ -11,6 +11,10 @@ class GroupSessionPage < PageObject
     t('forms.models.group_session.edit')
   end
 
+  def existing_payment_method_label
+    t('forms.models.payment.existing_payment_method')
+  end
+
   def confirm_payment_button_text
     t('forms.models.payment.create')
   end

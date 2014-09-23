@@ -9,12 +9,18 @@ en:
         time_zone: 'Time zone'
         titles:
           edit: 'Edit your profile'
+          delete: 'Delete your account'
+          payment_methods: 'Your payment methods'
+          profile: 'Your profile'
         password:
           change: 'Change your password'
       group_session:
         booked: 'Booked!'
+        description: 'Description'
+        hosted_by: 'Hosted by'
         price:
           free: 'Free'
+        starts_at: 'Starting at'
         titles:
           new: 'Host a live session'
           live: 'Live sessions'
@@ -22,11 +28,12 @@ en:
           upcoming: 'Upcoming sessions'
       payment:
         titles:
-          new: 'Confirm payment'
+          new: 'Confirm your payment to book this session'
         you_will_be_charged: 'Your card will be charged:'
       payment_method:
         titles:
           new: 'Add a payment method'
+          or_new: '-or- add a new payment method'
           edit: 'Edit payment method'
         edit:
           number: 'Please re-enter the card number'
@@ -65,6 +72,7 @@ en:
         edit: 'Save'
       payment:
         create: 'Confirm payment'
+        existing_payment_method: 'Choose from your existing payment methods:'
       payment_method:
         create: 'Save payment method'
         update: 'Save changes'

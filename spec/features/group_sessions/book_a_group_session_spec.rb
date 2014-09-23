@@ -30,8 +30,10 @@ feature 'User books a group session' do
         page.visit
         click_link page.book_link_text
 
-        select 'Visa *1111', from: 'Payment method'
-        click_button page.confirm_payment_button_text
+        select 'Visa *1111', from: page.existing_payment_method_label
+        within('#existing-payment-method') do
+          click_button page.confirm_payment_button_text
+        end
       end
 
       expect(current_path).to eq(page.after_successful_book_path)
@@ -58,7 +60,10 @@ feature 'User books a group session' do
                           'mm' => '08',
                           'yy' => Time.current.year + 1,
                           'CVC' => 123)
-        click_button page.confirm_payment_button_text
+
+        within('#new-payment-method') do
+          click_button page.confirm_payment_button_text
+        end
       end
 
       expect(current_path).to eq(page.after_successful_book_path)

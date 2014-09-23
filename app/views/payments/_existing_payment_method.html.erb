@@ -1,0 +1,7 @@
+<div class='columns small-6 small-centered'>
+  <%= f.label :payment_method_id,
+              t('forms.models.payment.existing_payment_method') %>
+  <%= f.collection_select :payment_method_id, payment_methods,
+                                              :id, :display_name,
+                                              include_blank: true %>
+</div>

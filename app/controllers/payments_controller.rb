@@ -2,7 +2,7 @@ class PaymentsController < ApplicationController
   before_filter :authenticate_user!
 
   def confirm
-    @account = current_account
+    @payment_methods = current_account.payment_methods
     @group_session = GroupSession.find(params[:id])
     @payment_method = PaymentMethod.new
     @payment = Payment.new(group_session: @group_session, account: @account)

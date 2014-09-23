@@ -1,0 +1,7 @@
+<div class='columns small-6 small-centered'>
+  <p>
+    <%= t('text.models.payment.you_will_be_charged') %>
+    <%= number_to_currency(group_session.price) %>
+  </p>
+  <%= f.submit t('forms.models.payment.create'), class: 'button' %>
+</div>

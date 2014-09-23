@@ -1,0 +1,6 @@
+<%= fields_for :payment_method do |pm| %>
+  <div class='columns small-6 small-centered'>
+    <h4><%= t('text.models.payment_method.titles.or_new') %></h4>
+  </div>
+  <%= render 'payment_methods/fields', f: pm %>
+<% end %>
