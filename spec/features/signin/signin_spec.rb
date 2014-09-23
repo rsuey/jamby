@@ -9,7 +9,8 @@ feature 'Users can sign in' do
     visit root_path
     click_link page.signin_link_text
 
-    page.fill_in_form('Email' => 'coolguy@email.com', 'Password' => 'secret83')
+    page.fill_in_form('Email' => 'coolguy@email.com',
+                      'Password' => 'secret83')
     page.submit_form
 
     expect(current_path).to eq(page.after_successful_signin_path)

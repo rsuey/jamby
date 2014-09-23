@@ -22,12 +22,13 @@ class ApplicationController < ActionController::Base
   end
 
   def sign_in(signin)
-    session[:user_id] = signin.id
+    GenerateAuthToken.apply(signin)
+    session[:auth_token] = signin.auth_token
     redirect_to session[:previous_url] || root_path
   end
 
   def sign_out
-    session[:user_id] = nil
+    session[:auth_token] = nil
     @current_user = nil
   end
 
@@ -36,6 +37,8 @@ class ApplicationController < ActionController::Base
   end
 
   def find_or_guest(klass)
-    klass.find_by(id: session[:user_id]) || Guest.new
+    session[:auth_token] &&
+      klass.find_by(auth_token: session[:auth_token]) ||
+        Guest.new
   end
 end
