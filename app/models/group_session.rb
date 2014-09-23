@@ -19,8 +19,8 @@ class GroupSession < ActiveRecord::Base
     starts_at <= 15.minutes.from_now
   end
 
-  def paid?(user)
-    free? or payments.collect(&:user).include?(user)
+  def paid?(account)
+    free? or payments.collect(&:account).include?(account)
   end
 
   def free?

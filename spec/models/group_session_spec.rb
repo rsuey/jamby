@@ -1,6 +1,33 @@
 require 'rails_helper'
 
 describe GroupSession do
+  describe '#paid?' do
+    context 'when it is free' do
+      it 'returns true' do
+        group_session = create(:group_session, price: 0)
+        expect(group_session).to be_paid(double(:user))
+      end
+    end
+
+    context 'when it is not free' do
+      context 'and the user does not have a payment' do
+        it 'returns false' do
+          group_session = create(:group_session, price: 1)
+          expect(group_session).to_not be_paid(double(:user))
+        end
+      end
+
+      context 'and the user has a payment' do
+        it 'returns true' do
+          user = create(:account)
+          group_session = create(:group_session, price: 1)
+          create(:payment, group_session: group_session, account: user)
+          expect(group_session).to be_paid(user)
+        end
+      end
+    end
+  end
+
   describe '#host_name' do
     it 'returns the name of the host' do
       user = create(:user, first_name: 'Foo', last_name: 'Bar')
