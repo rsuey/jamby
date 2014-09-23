@@ -1,6 +1,6 @@
 module SigninHelper
-  def logged_in(user = create(:signup))
-    page = LoginPage.new
+  def logged_in(user = create(:signin))
+    page = SignInPage.new
     page.visit
     page.fill_in_form('Email' => user.email,
                       'Password' => user.password)
