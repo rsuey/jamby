@@ -19,6 +19,10 @@ class SignInPage < PageObject
     root_path
   end
 
+  def remember_me_text
+    t('forms.models.signin.remember_me')
+  end
+
   def invalid_credentials_text
     t('controllers.signins.create.failure')
   end

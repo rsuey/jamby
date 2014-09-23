@@ -68,6 +68,7 @@ en:
         create: 'Sign up'
       signin:
         create: 'Sign in'
+        remember_me: 'Remember me'
   controllers:
     accounts:
       update:

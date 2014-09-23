@@ -15,6 +15,11 @@
     </div>
 
     <div class='columns small-6 small-centered'>
+      <%= check_box_tag :remember_me %>
+      <%= label_tag :remember_me %>
+    </div>
+
+    <div class='columns small-6 small-centered'>
       <%= f.submit t('forms.models.signin.create'), class: 'button' %>
       or <%= link_to t('links.models.signup.new'), signup_path, class: 'aux' %>
     </div>
