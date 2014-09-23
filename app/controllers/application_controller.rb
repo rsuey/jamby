@@ -1,6 +1,8 @@
 class ApplicationController < ActionController::Base
   rehearse_with 'jamby', 'joesak2k14'
 
+  around_filter :user_time_zone, if: :current_user
+
   helper_method :current_user
 
   protect_from_forgery with: :exception
@@ -44,5 +46,9 @@ class ApplicationController < ActionController::Base
     cookies[:auth_token] &&
       klass.find_by(auth_token: cookies[:auth_token]) ||
         Guest.new
+  end
+
+  def user_time_zone(&block)
+    Time.use_zone(current_user.time_zone, &block)
   end
 end
