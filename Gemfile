@@ -33,6 +33,7 @@ group :development, :test do
 end
 
 group :test do
+  gem 'zonebie', '~> 0.5.1'
   gem 'show_me_the_cookies', '~> 2.5.0'
   gem 'simplecov', '~> 0.9.1', require: false
   gem 'vcr', '~> 2.9.3'
