@@ -32,10 +32,6 @@ class GroupSession < ActiveRecord::Base
   end
 
   def booked_by?(user)
-    guest_list.include?(user)
-  end
-
-  def guest_list
-    participants
+    participants.include?(user)
   end
 end
