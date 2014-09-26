@@ -28,7 +28,7 @@ class GroupSession < ActiveRecord::Base
   end
 
   def can_be_booked_by?(user)
-    host != user && !booked_by?(user)
+    host != user and not booked_by?(user)
   end
 
   def booked_by?(user)
