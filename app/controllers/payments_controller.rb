@@ -2,22 +2,19 @@ class PaymentsController < ApplicationController
   before_filter :authenticate_user!
 
   def confirm
-    @payment_methods = current_account.payment_methods
     @group_session = GroupSession.find(params[:id])
+    @payment_methods = current_account.payment_methods
     @payment_method = PaymentMethod.new
-    @payment = Payment.new(group_session: @group_session, account: @account)
+    @payment = @group_session.payments.build
   end
 
   def create
-    @group_session = GroupSession.find(payment_params[:group_session_id])
-    @payment_method = PaymentMethodFactory.find_or_create(
-      payment_method_params,
-      payment_params[:payment_method_id],
-      current_account
-    )
-    @payment = Payment.new(payment_method: @payment_method,
-                           group_session: @group_session,
-                           account: current_account)
+    @group_session = GroupSession.find(group_session_id)
+    @payment_method = PaymentMethodFactory.find_or_create(payment_method_params,
+                                                          existing_payment_method_id,
+                                                          current_account)
+    @payment = @group_session.payments.build(payment_method: @payment_method,
+                                             account: current_account)
     if @payment.save
       Booking.create(@group_session, current_user)
       flash[:info] = t('controllers.group_sessions.book.successful')
@@ -33,7 +30,15 @@ class PaymentsController < ApplicationController
   end
 
   def payment_method_params
-    params.require(:payment_method).permit(:name_on_card, :number, :exp_month,
-                                           :exp_year, :cvc)
+    params[:payment_method].permit(:name_on_card, :number, :exp_month,
+                                   :exp_year, :cvc)
+  end
+
+  def existing_payment_method_id
+    payment_params[:payment_method_id]
+  end
+
+  def group_session_id
+    payment_params[:group_session_id]
   end
 end
