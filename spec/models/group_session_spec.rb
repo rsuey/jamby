@@ -37,32 +37,6 @@ describe GroupSession do
     end
   end
 
-  describe '#add_participant' do
-    it 'adds a participant to the guest list' do
-      group_session = create(:group_session)
-      user = create(:user)
-
-      group_session.add_participant(user)
-      expect(group_session.guest_list).to include(user)
-    end
-
-    it 'does not add duplicates to the guest list' do
-      group_session = create(:group_session)
-      user = create(:user)
-
-      2.times { group_session.add_participant(user) }
-      expect(group_session.guest_list).to eq([user])
-    end
-
-    it 'persists the relationship' do
-      group_session = create(:group_session)
-      user = create(:user)
-
-      group_session.add_participant(user)
-      expect(Booking.all.map(&:user_id)).to include(user.id)
-    end
-  end
-
   describe 'can_be_booked_by?' do
     context 'when the user is the host' do
       it 'returns false' do
@@ -77,7 +51,7 @@ describe GroupSession do
         user = create(:user)
         group_session = create(:group_session)
 
-        group_session.add_participant(user)
+        Booking.create(group_session, user)
         expect(group_session.can_be_booked_by?(user)).to eq(false)
       end
     end
@@ -104,7 +78,7 @@ describe GroupSession do
       it 'returns true' do
         group_session = create(:group_session)
         user = create(:user)
-        group_session.add_participant(user)
+        Booking.create(group_session, user)
         expect(group_session).to be_booked_by(user)
       end
     end

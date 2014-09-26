@@ -6,7 +6,7 @@ describe User do
       user = create(:user)
       group_session = create(:group_session)
 
-      group_session.add_participant(user)
+      Booking.create(group_session, user)
 
       expect(user.booked_sessions).to include(group_session)
     end

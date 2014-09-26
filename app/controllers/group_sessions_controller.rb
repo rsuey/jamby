@@ -15,7 +15,7 @@ class GroupSessionsController < ApplicationController
   def book
     @group_session = group_session_scope.find(params[:id])
     if @group_session.paid?(current_account)
-      @group_session.add_participant(current_user)
+      Booking.create(@group_session, current_user)
       flash[:info] = t('controllers.group_sessions.book.successful')
       redirect_to :back
     else

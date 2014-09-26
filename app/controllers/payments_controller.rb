@@ -15,7 +15,7 @@ class PaymentsController < ApplicationController
                            group_session: @group_session,
                            account: current_account)
     if @payment.save
-      @group_session.add_participant(current_user)
+      Booking.create(@group_session, current_user)
       flash[:info] = t('controllers.group_sessions.book.successful')
       redirect_to group_session_path(@group_session)
     else

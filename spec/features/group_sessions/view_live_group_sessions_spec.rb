@@ -24,7 +24,7 @@ feature 'Users can view live group sessions' do
     booked = create(:group_session, title: 'Booked session')
     create(:group_session, title: 'Not booked')
 
-    booked.add_participant(user)
+    Booking.create(booked, user)
 
     logged_in(user) { page.visit }
 
