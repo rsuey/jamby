@@ -10,7 +10,12 @@ require './spec/support/pages/page_object'
 
 Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
 ActiveRecord::Migration.maintain_test_schema!
-Capybara.javascript_driver = :webkit
+
+if ENV['SELENIUM']
+  Capybara.default_driver = :selenium
+else
+  Capybara.javascript_driver = :webkit
+end
 
 RSpec.configure do |config|
   config.fixture_path = "#{::Rails.root}/spec/fixtures"

@@ -9,6 +9,8 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'permanent_records', '~> 3.1.6'
 gem 'stripe', '~> 1.15.0'
 
+gem 'pusher', '~> 0.14.1'
+
 gem 'friendly_id', '~> 5.0.4'
 gem 'draper', '~> 1.3.1'
 
@@ -33,6 +35,7 @@ group :development, :test do
 end
 
 group :test do
+  gem 'selenium-webdriver', '~> 2.43.0'
   gem 'zonebie', '~> 0.5.1'
   gem 'show_me_the_cookies', '~> 2.5.0'
   gem 'simplecov', '~> 0.9.1', require: false

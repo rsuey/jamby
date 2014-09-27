@@ -20,5 +20,7 @@ Rails.application.routes.draw do
     get :confirm, on: :member
   end
 
+  post 'messenger/auth'
+
   root 'group_sessions#index'
 end

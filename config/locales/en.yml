@@ -18,6 +18,7 @@ en:
         booked: 'Booked!'
         description: 'Description'
         hosted_by: 'Hosted by'
+        join_live_session_now: 'Join the live session now!'
         price:
           free: 'Free'
         starts_at: 'Starting at'

@@ -1,4 +1,5 @@
 <%= render 'group_session', group_session: @group_session %>
+<div id='join_session'></div>
 
 <% if @group_session.host == current_user %>
   <% if @group_session.ready_to_start? %>
@@ -28,3 +29,18 @@
     </div>
   </div>
 <% end %>
+
+<script>
+var pusher = new Pusher("<%= ENV['PUSHER_KEY'] %>",
+                        { authEndpoint: '/messenger/auth' }),
+      channelId = '<%= Messenger.channel_id(@group_session) %>';
+      channel = pusher.subscribe(channelId);
+
+  channel.bind('session_is_live', function(data) {
+    alert(data);
+    var $link = $('<a></a>')
+            .text("<%= t('text.models.group_session.join_live_session_now') %>")
+            .attr('href', data.url);
+    $('#join_session').html($link);
+  });
+</script>

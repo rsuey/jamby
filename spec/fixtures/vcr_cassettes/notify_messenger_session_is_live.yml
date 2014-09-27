@@ -1,0 +1,663 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: http://api.pusherapp.com/apps/90928/events?auth_key=ffb717c331cbfe9d8153&auth_signature=95eb33dbadcfce39112825f667b12de72f1a3afb97ec511b08c883134a321b9b&auth_timestamp=1411848828&auth_version=1.0&body_md5=68ce25e74804bd7732d3eb0d4406f664
+    body:
+      encoding: UTF-8
+      string: '{"name":"session_is_live","channels":["private-1"],"data":"{\"url\":\"http://url\"}"}'
+    headers:
+      User-Agent:
+      - HTTPClient/1.0 (2.4.0, ruby 2.1.2 (2014-05-08))
+      Accept:
+      - "*/*"
+      Date:
+      - Sat, 27 Sep 2014 20:13:48 GMT
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - text/html;charset=utf-8
+      Server:
+      - thin 1.6.1 codename Death Proof
+      Content-Length:
+      - '2'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: "{}"
+    http_version: 
+  recorded_at: Sat, 27 Sep 2014 20:13:49 GMT
+- request:
+    method: post
+    uri: http://api.pusherapp.com/apps/90928/events?auth_key=ffb717c331cbfe9d8153&auth_signature=d61e18e98437ae00ea0433a79568159e11356444a80d881a6bcef4faecced92d&auth_timestamp=1411848909&auth_version=1.0&body_md5=68ce25e74804bd7732d3eb0d4406f664
+    body:
+      encoding: UTF-8
+      string: '{"name":"session_is_live","channels":["private-1"],"data":"{\"url\":\"http://url\"}"}'
+    headers:
+      User-Agent:
+      - HTTPClient/1.0 (2.4.0, ruby 2.1.2 (2014-05-08))
+      Accept:
+      - "*/*"
+      Date:
+      - Sat, 27 Sep 2014 20:15:09 GMT
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - text/html;charset=utf-8
+      Server:
+      - thin 1.6.1 codename Death Proof
+      Content-Length:
+      - '2'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: "{}"
+    http_version: 
+  recorded_at: Sat, 27 Sep 2014 20:15:09 GMT
+- request:
+    method: post
+    uri: http://api.pusherapp.com/apps/90928/events?auth_key=ffb717c331cbfe9d8153&auth_signature=87711ac19c2c03b11298afabd6c7bf262b7583cab041d08613edb8c837a77a76&auth_timestamp=1411848954&auth_version=1.0&body_md5=68ce25e74804bd7732d3eb0d4406f664
+    body:
+      encoding: UTF-8
+      string: '{"name":"session_is_live","channels":["private-1"],"data":"{\"url\":\"http://url\"}"}'
+    headers:
+      User-Agent:
+      - HTTPClient/1.0 (2.4.0, ruby 2.1.2 (2014-05-08))
+      Accept:
+      - "*/*"
+      Date:
+      - Sat, 27 Sep 2014 20:15:54 GMT
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - text/html;charset=utf-8
+      Server:
+      - thin 1.6.1 codename Death Proof
+      Content-Length:
+      - '2'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: "{}"
+    http_version: 
+  recorded_at: Sat, 27 Sep 2014 20:15:54 GMT
+- request:
+    method: post
+    uri: http://api.pusherapp.com/apps/90928/events?auth_key=ffb717c331cbfe9d8153&auth_signature=d2d9c7e5ff3d7a5a56245311e8e478202364426366c3f14338062fcd7342ec82&auth_timestamp=1411848987&auth_version=1.0&body_md5=68ce25e74804bd7732d3eb0d4406f664
+    body:
+      encoding: UTF-8
+      string: '{"name":"session_is_live","channels":["private-1"],"data":"{\"url\":\"http://url\"}"}'
+    headers:
+      User-Agent:
+      - HTTPClient/1.0 (2.4.0, ruby 2.1.2 (2014-05-08))
+      Accept:
+      - "*/*"
+      Date:
+      - Sat, 27 Sep 2014 20:16:27 GMT
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - text/html;charset=utf-8
+      Server:
+      - thin 1.6.1 codename Death Proof
+      Content-Length:
+      - '2'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: "{}"
+    http_version: 
+  recorded_at: Sat, 27 Sep 2014 20:16:27 GMT
+- request:
+    method: post
+    uri: http://api.pusherapp.com/apps/90928/events?auth_key=ffb717c331cbfe9d8153&auth_signature=3c308279259302bd3c300074623905d5d3676bd8dddba625ff2983328d08a8ad&auth_timestamp=1411849673&auth_version=1.0&body_md5=68ce25e74804bd7732d3eb0d4406f664
+    body:
+      encoding: UTF-8
+      string: '{"name":"session_is_live","channels":["private-1"],"data":"{\"url\":\"http://url\"}"}'
+    headers:
+      User-Agent:
+      - HTTPClient/1.0 (2.4.0, ruby 2.1.2 (2014-05-08))
+      Accept:
+      - "*/*"
+      Date:
+      - Sat, 27 Sep 2014 20:27:53 GMT
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - text/html;charset=utf-8
+      Server:
+      - thin 1.6.1 codename Death Proof
+      Content-Length:
+      - '2'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: "{}"
+    http_version: 
+  recorded_at: Sat, 27 Sep 2014 20:27:53 GMT
+- request:
+    method: post
+    uri: http://api.pusherapp.com/apps/90928/events?auth_key=ffb717c331cbfe9d8153&auth_signature=cbdb361b1bd12bf1a1a2bfadea45dc8cc6896486f627f13260dc39b07a28f85b&auth_timestamp=1411849745&auth_version=1.0&body_md5=68ce25e74804bd7732d3eb0d4406f664
+    body:
+      encoding: UTF-8
+      string: '{"name":"session_is_live","channels":["private-1"],"data":"{\"url\":\"http://url\"}"}'
+    headers:
+      User-Agent:
+      - HTTPClient/1.0 (2.4.0, ruby 2.1.2 (2014-05-08))
+      Accept:
+      - "*/*"
+      Date:
+      - Sat, 27 Sep 2014 20:29:05 GMT
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - text/html;charset=utf-8
+      Server:
+      - thin 1.6.1 codename Death Proof
+      Content-Length:
+      - '2'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: "{}"
+    http_version: 
+  recorded_at: Sat, 27 Sep 2014 20:29:06 GMT
+- request:
+    method: post
+    uri: http://api.pusherapp.com/apps/90928/events?auth_key=ffb717c331cbfe9d8153&auth_signature=078d1aa44a88283d5a915f1f49bb609ffe13844095d8ddf94f9299ae9ad4fd6b&auth_timestamp=1411849821&auth_version=1.0&body_md5=68ce25e74804bd7732d3eb0d4406f664
+    body:
+      encoding: UTF-8
+      string: '{"name":"session_is_live","channels":["private-1"],"data":"{\"url\":\"http://url\"}"}'
+    headers:
+      User-Agent:
+      - HTTPClient/1.0 (2.4.0, ruby 2.1.2 (2014-05-08))
+      Accept:
+      - "*/*"
+      Date:
+      - Sat, 27 Sep 2014 20:30:21 GMT
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - text/html;charset=utf-8
+      Server:
+      - thin 1.6.1 codename Death Proof
+      Content-Length:
+      - '2'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: "{}"
+    http_version: 
+  recorded_at: Sat, 27 Sep 2014 20:30:21 GMT
+- request:
+    method: post
+    uri: http://api.pusherapp.com/apps/90928/events?auth_key=ffb717c331cbfe9d8153&auth_signature=e1025d022f1efd69b11fdb30255048559175919c56f13c5031b6b54274b2febb&auth_timestamp=1411849845&auth_version=1.0&body_md5=68ce25e74804bd7732d3eb0d4406f664
+    body:
+      encoding: UTF-8
+      string: '{"name":"session_is_live","channels":["private-1"],"data":"{\"url\":\"http://url\"}"}'
+    headers:
+      User-Agent:
+      - HTTPClient/1.0 (2.4.0, ruby 2.1.2 (2014-05-08))
+      Accept:
+      - "*/*"
+      Date:
+      - Sat, 27 Sep 2014 20:30:45 GMT
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - text/html;charset=utf-8
+      Server:
+      - thin 1.6.1 codename Death Proof
+      Content-Length:
+      - '2'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: "{}"
+    http_version: 
+  recorded_at: Sat, 27 Sep 2014 20:30:46 GMT
+- request:
+    method: post
+    uri: http://api.pusherapp.com/apps/90928/events?auth_key=ffb717c331cbfe9d8153&auth_signature=d82197d9690e342e49847462c20a1a60fad131605c30a7d22901304a016c7581&auth_timestamp=1411849979&auth_version=1.0&body_md5=68ce25e74804bd7732d3eb0d4406f664
+    body:
+      encoding: UTF-8
+      string: '{"name":"session_is_live","channels":["private-1"],"data":"{\"url\":\"http://url\"}"}'
+    headers:
+      User-Agent:
+      - HTTPClient/1.0 (2.4.0, ruby 2.1.2 (2014-05-08))
+      Accept:
+      - "*/*"
+      Date:
+      - Sat, 27 Sep 2014 20:32:59 GMT
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - text/html;charset=utf-8
+      Server:
+      - thin 1.6.1 codename Death Proof
+      Content-Length:
+      - '2'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: "{}"
+    http_version: 
+  recorded_at: Sat, 27 Sep 2014 20:32:59 GMT
+- request:
+    method: post
+    uri: http://api.pusherapp.com/apps/90928/events?auth_key=ffb717c331cbfe9d8153&auth_signature=910c149b6ed68c630ebe120476ef3772df64983f17b5278961bf7fed4924130a&auth_timestamp=1411850000&auth_version=1.0&body_md5=68ce25e74804bd7732d3eb0d4406f664
+    body:
+      encoding: UTF-8
+      string: '{"name":"session_is_live","channels":["private-1"],"data":"{\"url\":\"http://url\"}"}'
+    headers:
+      User-Agent:
+      - HTTPClient/1.0 (2.4.0, ruby 2.1.2 (2014-05-08))
+      Accept:
+      - "*/*"
+      Date:
+      - Sat, 27 Sep 2014 20:33:20 GMT
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - text/html;charset=utf-8
+      Server:
+      - thin 1.6.1 codename Death Proof
+      Content-Length:
+      - '2'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: "{}"
+    http_version: 
+  recorded_at: Sat, 27 Sep 2014 20:33:20 GMT
+- request:
+    method: post
+    uri: http://api.pusherapp.com/apps/90928/events?auth_key=ffb717c331cbfe9d8153&auth_signature=a0f983a535ad92467009b1320e75cd392d9554767168ef7befc11e05b72b1a64&auth_timestamp=1411850245&auth_version=1.0&body_md5=68ce25e74804bd7732d3eb0d4406f664
+    body:
+      encoding: UTF-8
+      string: '{"name":"session_is_live","channels":["private-1"],"data":"{\"url\":\"http://url\"}"}'
+    headers:
+      User-Agent:
+      - HTTPClient/1.0 (2.4.0, ruby 2.1.2 (2014-05-08))
+      Accept:
+      - "*/*"
+      Date:
+      - Sat, 27 Sep 2014 20:37:25 GMT
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - text/html;charset=utf-8
+      Server:
+      - thin 1.6.1 codename Death Proof
+      Content-Length:
+      - '2'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: "{}"
+    http_version: 
+  recorded_at: Sat, 27 Sep 2014 20:37:26 GMT
+- request:
+    method: post
+    uri: http://api.pusherapp.com/apps/90928/events?auth_key=ffb717c331cbfe9d8153&auth_signature=abea88ef9a71be8e90d8bc0a059b9d9900d38d23ef6dcaea4264f9642af36943&auth_timestamp=1411850264&auth_version=1.0&body_md5=68ce25e74804bd7732d3eb0d4406f664
+    body:
+      encoding: UTF-8
+      string: '{"name":"session_is_live","channels":["private-1"],"data":"{\"url\":\"http://url\"}"}'
+    headers:
+      User-Agent:
+      - HTTPClient/1.0 (2.4.0, ruby 2.1.2 (2014-05-08))
+      Accept:
+      - "*/*"
+      Date:
+      - Sat, 27 Sep 2014 20:37:44 GMT
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - text/html;charset=utf-8
+      Server:
+      - thin 1.6.1 codename Death Proof
+      Content-Length:
+      - '2'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: "{}"
+    http_version: 
+  recorded_at: Sat, 27 Sep 2014 20:37:44 GMT
+- request:
+    method: post
+    uri: http://api.pusherapp.com/apps/90928/events?auth_key=ffb717c331cbfe9d8153&auth_signature=60b14cf204cef7ce630f973982efe698a8649811893b019129cc8dabf0d103ed&auth_timestamp=1411850325&auth_version=1.0&body_md5=68ce25e74804bd7732d3eb0d4406f664
+    body:
+      encoding: UTF-8
+      string: '{"name":"session_is_live","channels":["private-1"],"data":"{\"url\":\"http://url\"}"}'
+    headers:
+      User-Agent:
+      - HTTPClient/1.0 (2.4.0, ruby 2.1.2 (2014-05-08))
+      Accept:
+      - "*/*"
+      Date:
+      - Sat, 27 Sep 2014 20:38:45 GMT
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - text/html;charset=utf-8
+      Server:
+      - thin 1.6.1 codename Death Proof
+      Content-Length:
+      - '2'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: "{}"
+    http_version: 
+  recorded_at: Sat, 27 Sep 2014 20:38:45 GMT
+- request:
+    method: post
+    uri: http://api.pusherapp.com/apps/90928/events?auth_key=ffb717c331cbfe9d8153&auth_signature=2bae4ea6dbe8c2c1ca8d50a0a49fb1961e4e36c873e42ac437fe2c1f2ea5be73&auth_timestamp=1411850406&auth_version=1.0&body_md5=68ce25e74804bd7732d3eb0d4406f664
+    body:
+      encoding: UTF-8
+      string: '{"name":"session_is_live","channels":["private-1"],"data":"{\"url\":\"http://url\"}"}'
+    headers:
+      User-Agent:
+      - HTTPClient/1.0 (2.4.0, ruby 2.1.2 (2014-05-08))
+      Accept:
+      - "*/*"
+      Date:
+      - Sat, 27 Sep 2014 20:40:06 GMT
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - text/html;charset=utf-8
+      Server:
+      - thin 1.6.1 codename Death Proof
+      Content-Length:
+      - '2'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: "{}"
+    http_version: 
+  recorded_at: Sat, 27 Sep 2014 20:40:06 GMT
+- request:
+    method: post
+    uri: http://api.pusherapp.com/apps/90928/events?auth_key=ffb717c331cbfe9d8153&auth_signature=f519fdad7cd9f72b6ee1f40a11abe00eb86877608f5ba1250a174c825cf24e7e&auth_timestamp=1411850429&auth_version=1.0&body_md5=68ce25e74804bd7732d3eb0d4406f664
+    body:
+      encoding: UTF-8
+      string: '{"name":"session_is_live","channels":["private-1"],"data":"{\"url\":\"http://url\"}"}'
+    headers:
+      User-Agent:
+      - HTTPClient/1.0 (2.4.0, ruby 2.1.2 (2014-05-08))
+      Accept:
+      - "*/*"
+      Date:
+      - Sat, 27 Sep 2014 20:40:29 GMT
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - text/html;charset=utf-8
+      Server:
+      - thin 1.6.1 codename Death Proof
+      Content-Length:
+      - '2'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: "{}"
+    http_version: 
+  recorded_at: Sat, 27 Sep 2014 20:40:30 GMT
+- request:
+    method: post
+    uri: http://api.pusherapp.com/apps/90928/events?auth_key=ffb717c331cbfe9d8153&auth_signature=c26da3f61b93ca1b5049bc0221277bafcb372c7bf386673c9b2837f6293fd680&auth_timestamp=1411850438&auth_version=1.0&body_md5=68ce25e74804bd7732d3eb0d4406f664
+    body:
+      encoding: UTF-8
+      string: '{"name":"session_is_live","channels":["private-1"],"data":"{\"url\":\"http://url\"}"}'
+    headers:
+      User-Agent:
+      - HTTPClient/1.0 (2.4.0, ruby 2.1.2 (2014-05-08))
+      Accept:
+      - "*/*"
+      Date:
+      - Sat, 27 Sep 2014 20:40:38 GMT
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - text/html;charset=utf-8
+      Server:
+      - thin 1.6.1 codename Death Proof
+      Content-Length:
+      - '2'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: "{}"
+    http_version: 
+  recorded_at: Sat, 27 Sep 2014 20:40:38 GMT
+- request:
+    method: post
+    uri: http://api.pusherapp.com/apps/90928/events?auth_key=ffb717c331cbfe9d8153&auth_signature=db66eafffb0ab998dc655aed8d524fb7684fa7ff62feefa97a773d4b5a49f079&auth_timestamp=1411850491&auth_version=1.0&body_md5=68ce25e74804bd7732d3eb0d4406f664
+    body:
+      encoding: UTF-8
+      string: '{"name":"session_is_live","channels":["private-1"],"data":"{\"url\":\"http://url\"}"}'
+    headers:
+      User-Agent:
+      - HTTPClient/1.0 (2.4.0, ruby 2.1.2 (2014-05-08))
+      Accept:
+      - "*/*"
+      Date:
+      - Sat, 27 Sep 2014 20:41:31 GMT
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - text/html;charset=utf-8
+      Server:
+      - thin 1.6.1 codename Death Proof
+      Content-Length:
+      - '2'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: "{}"
+    http_version: 
+  recorded_at: Sat, 27 Sep 2014 20:41:32 GMT
+- request:
+    method: post
+    uri: http://api.pusherapp.com/apps/90928/events?auth_key=ffb717c331cbfe9d8153&auth_signature=c9a167230c05ac6a3c0f1f14f48d60379c04e5c32ff0f5d6e012b4acd724fecf&auth_timestamp=1411851169&auth_version=1.0&body_md5=68ce25e74804bd7732d3eb0d4406f664
+    body:
+      encoding: UTF-8
+      string: '{"name":"session_is_live","channels":["private-1"],"data":"{\"url\":\"http://url\"}"}'
+    headers:
+      User-Agent:
+      - HTTPClient/1.0 (2.4.0, ruby 2.1.2 (2014-05-08))
+      Accept:
+      - "*/*"
+      Date:
+      - Sat, 27 Sep 2014 20:52:49 GMT
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - text/html;charset=utf-8
+      Server:
+      - thin 1.6.1 codename Death Proof
+      Content-Length:
+      - '2'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: "{}"
+    http_version: 
+  recorded_at: Sat, 27 Sep 2014 20:52:49 GMT
+- request:
+    method: post
+    uri: http://api.pusherapp.com/apps/90928/events?auth_key=ffb717c331cbfe9d8153&auth_signature=b701f69d06b19dfa3a5985a6d5ca9e287e865fa9620fd843d6cbffd7cce7f14f&auth_timestamp=1411851299&auth_version=1.0&body_md5=68ce25e74804bd7732d3eb0d4406f664
+    body:
+      encoding: UTF-8
+      string: '{"name":"session_is_live","channels":["private-1"],"data":"{\"url\":\"http://url\"}"}'
+    headers:
+      User-Agent:
+      - HTTPClient/1.0 (2.4.0, ruby 2.1.2 (2014-05-08))
+      Accept:
+      - "*/*"
+      Date:
+      - Sat, 27 Sep 2014 20:54:59 GMT
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - text/html;charset=utf-8
+      Server:
+      - thin 1.6.1 codename Death Proof
+      Content-Length:
+      - '2'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: "{}"
+    http_version: 
+  recorded_at: Sat, 27 Sep 2014 20:54:59 GMT
+- request:
+    method: post
+    uri: http://api.pusherapp.com/apps/90928/events?auth_key=ffb717c331cbfe9d8153&auth_signature=3061c104917999e7343fe068f1b4c0e37b056709add3082d138658afc2b4f29a&auth_timestamp=1411851581&auth_version=1.0&body_md5=68ce25e74804bd7732d3eb0d4406f664
+    body:
+      encoding: UTF-8
+      string: '{"name":"session_is_live","channels":["private-1"],"data":"{\"url\":\"http://url\"}"}'
+    headers:
+      User-Agent:
+      - HTTPClient/1.0 (2.4.0, ruby 2.1.2 (2014-05-08))
+      Accept:
+      - "*/*"
+      Date:
+      - Sat, 27 Sep 2014 20:59:41 GMT
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - text/html;charset=utf-8
+      Server:
+      - thin 1.6.1 codename Death Proof
+      Content-Length:
+      - '2'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: "{}"
+    http_version: 
+  recorded_at: Sat, 27 Sep 2014 20:59:41 GMT
+recorded_with: VCR 2.9.3
