@@ -188,14 +188,10 @@ function registerWithJamby() {
   var hangoutUrl = gapi.hangout.getHangoutUrl(),
       youtubeId = gapi.hangout.onair.getYouTubeLiveId(),
       sessionId = gapi.hangout.getStartData();
-  $.ajax({
+  $.ajax("/group_sessions/" + sessionId + "/ready.json", {
     type: 'POST',
-    url: "group_sessions/" + sessionId + "/ready.json",
     dataType: "json",
-    data: {
-      "hangoutUrl": hangoutUrl,
-      "youtubeId": youtubeId
-    }
+    data: "hangoutUrl=" + hangoutUrl + "&youtubeId=" + youtubeId
   }).done(function(data, status, xhr) {
     $msgP = $('<p></p>').html(data.msg);
     $urlP = $('<p></p>')
