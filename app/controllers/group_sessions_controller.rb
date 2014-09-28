@@ -1,6 +1,8 @@
 class GroupSessionsController < ApplicationController
-  before_filter :store_location, except: [:create, :update, :destroy]
-  before_filter :authenticate_user!, except: [:index, :show]
+  protect_from_forgery except: :ready
+
+  before_filter :store_location, except: [:create, :update, :destroy, :ready]
+  before_filter :authenticate_user!, except: [:index, :show, :ready]
 
   def index
     @live_sessions = group_session_scope.live
