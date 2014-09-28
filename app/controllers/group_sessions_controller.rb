@@ -1,7 +1,9 @@
 class GroupSessionsController < ApplicationController
+  skip_before_filter :require_http_basic_auth, only: :ready
   protect_from_forgery except: :ready
 
-  before_filter :store_location, except: [:create, :update, :destroy, :ready]
+  before_filter :store_location, except: [:create, :update,
+                                          :destroy, :ready]
   before_filter :authenticate_user!, except: [:index, :show, :ready]
 
   def index

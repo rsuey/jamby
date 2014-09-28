@@ -6,5 +6,5 @@ Rehearsal.configure do |config|
   # config.banner_envs = [:staging]
   #
   # Enable/disable the rehearsal
-  config.enabled = false
+  # config.enabled = false
 end
