@@ -18,8 +18,6 @@ en:
         booked: 'Booked!'
         description: 'Description'
         hosted_by: 'Hosted by'
-        join_live_session_now: 'Join the live session now!'
-        watch_on_air_now: 'Watch live on Youtube'
         price:
           free: 'Free'
         starts_at: 'Starting at'
@@ -50,11 +48,13 @@ en:
         edit: 'Edit your profile'
         destroy: 'Delete your account'
       group_session:
-        list: 'Live sessions'
         add: 'Host your own session'
+        book_now: 'Book now'
         edit: 'Edit this session'
         delete: 'cancel this session'
-        book_now: 'Book now'
+        join_live_session_now: 'Join the live session now!'
+        list: 'Live sessions'
+        watch_on_air_now: 'Watch live on Youtube'
       payment_method:
         new: 'Add a payment method'
         edit: 'Edit'

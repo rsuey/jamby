@@ -11,6 +11,14 @@ class GroupSession < ActiveRecord::Base
   scope :upcoming, -> { where('starts_at > ?', Time.current) }
   scope :live, -> { where('starts_at <= ?', Time.current) }
 
+  def live_details_ready?
+    live_url.present? && broadcast_id.present?
+  end
+
+  def broadcast_url
+    "http://youtube.com/watch?v=#{broadcast_id}"
+  end
+
   def price_in_pennies
     price * 100
   end

@@ -8,11 +8,11 @@ class GroupSessionPage < PageObject
   end
 
   def join_group_session_link_text
-    t('text.models.group_session.join_live_session_now')
+    t('links.models.group_session.join_live_session_now')
   end
 
   def watch_on_air_link_text
-    t('text.models.group_session.watch_on_air_now')
+    t('links.models.group_session.watch_on_air_now')
   end
 
   def form_button

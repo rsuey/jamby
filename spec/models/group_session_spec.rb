@@ -1,6 +1,26 @@
 require 'rails_helper'
 
 describe GroupSession do
+  describe '#broadcast_url' do
+    it 'returns the broadcast_id with youtube' do
+      group_session = create(:group_session, broadcast_id: 'fooBar')
+      expect(group_session.broadcast_url).to eq('http://youtube.com/watch?v=fooBar')
+    end
+  end
+
+  describe '#live_details_ready?' do
+    it 'returns true when live_url and broadcast_id are present' do
+      group_session = create(:group_session, live_url: 'present',
+                                             broadcast_id: 'here')
+      expect(group_session).to be_live_details_ready
+    end
+
+    it 'returns false when live_url and broadcast_id are not present' do
+      group_session = create(:group_session)
+      expect(group_session).to_not be_live_details_ready
+    end
+  end
+
   describe '#paid?' do
     context 'when it is free' do
       it 'returns true' do

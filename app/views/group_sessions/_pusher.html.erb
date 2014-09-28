@@ -18,13 +18,12 @@
         channel = pusher.subscribe('<%= Messenger.channel_id(@group_session) %>');
 
     channel.bind('session_is_live', function(data) {
-      console.log(data);
       var $link = $('<a></a>')
-              .text("<%= t('text.models.group_session.join_live_session_now') %>")
+              .text("<%= t('links.models.group_session.join_live_session_now') %>")
               .attr('href', data.url),
           $youtubeLink = $('<a></a>')
-                   .text("<%= t('text.models.group_session.watch_on_air_now') %>")
-                   .attr('href', "http:/youtube.com/watch?v=" + data.youtubeId);
+                   .text("<%= t('links.models.group_session.watch_on_air_now') %>")
+                   .attr('href', "http://youtube.com/watch?v=" + data.youtubeId);
 
       if (data.url !== undefined) {
         $('#join_session').html($link);
