@@ -14,6 +14,16 @@ describe GroupSessionsController do
                                  { url: 'http://google.com/foo/bar',
                                    youtubeId: '123abcXYnfg' })
     end
+
+    it 'saves the details to the group session' do
+      group_session = create(:group_session)
+
+      post :ready, id: group_session.id, hangoutUrl: 'http://foo/bar',
+                                         youtubeId: '123abcdefg'
+
+      expect(group_session.reload.live_url).to eq('http://foo/bar')
+      expect(group_session.broadcast_id).to eq('123abcdefg')
+    end
   end
 
   describe 'before filter' do

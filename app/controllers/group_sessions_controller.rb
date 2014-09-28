@@ -61,7 +61,8 @@ class GroupSessionsController < ApplicationController
     Messenger.notify(group_session, 'session_is_live',
                                     { url: params[:hangoutUrl],
                                       youtubeId: params[:youtubeId] })
-
+    group_session.update_attributes(live_url: params[:hangoutUrl],
+                                    broadcast_id: params[:youtubeId])
     render nothing: true
   end
 
