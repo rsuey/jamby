@@ -54,6 +54,12 @@ class GroupSessionsController < ApplicationController
     end
   end
 
+  def ready
+    render json: { id: params[:id],
+                   hangoutUrl: params[:hangoutUrl],
+                   youtubeId: params[:youtubeId] }
+  end
+
   def destroy
     @group_session = group_session_scope.find(params[:id])
     if @group_session.host == current_user

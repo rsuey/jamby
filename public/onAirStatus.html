@@ -189,7 +189,8 @@ function registerWithJamby() {
       youtubeId = gapi.hangout.onair.getYouTubeLiveId(),
       sessionId = gapi.hangout.getStartData();
   $.ajax({
-    url: "group_sessions/" + sessionId + "/register.json",
+    type: 'POST',
+    url: "group_sessions/" + sessionId + "/ready.json",
     dataType: "json",
     data: {
       "hangoutUrl": hangoutUrl,

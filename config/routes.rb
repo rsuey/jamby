@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   resources :group_sessions do
     get :book, on: :member
+    post :ready, on: :member
   end
 
   get 'signin' => 'signins#new'
