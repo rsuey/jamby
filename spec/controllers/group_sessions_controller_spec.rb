@@ -1,6 +1,21 @@
 require 'rails_helper'
 
 describe GroupSessionsController do
+  describe 'POST #ready' do
+    it 'notifies messenger for the group session' do
+      group_session = create(:group_session, id: 3)
+
+      allow(Messenger).to receive(:notify)
+      post :ready, id: 3, hangoutUrl: 'http://google.com/foo/bar',
+                          youtubeId: '123abcXYnfg'
+
+      expect(Messenger).to have_received(:notify)
+                           .with(group_session, 'session_is_live',
+                                 { url: 'http://google.com/foo/bar',
+                                   youtubeId: '123abcXYnfg' })
+    end
+  end
+
   describe 'before filter' do
     it 'stores location for index' do
       get :index

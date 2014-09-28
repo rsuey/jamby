@@ -57,9 +57,12 @@ class GroupSessionsController < ApplicationController
   end
 
   def ready
-    render json: { id: params[:id],
-                   hangoutUrl: params[:hangoutUrl],
-                   youtubeId: params[:youtubeId] }
+    group_session = GroupSession.find(params[:id])
+    Messenger.notify(group_session, 'session_is_live',
+                                    { url: params[:hangoutUrl],
+                                      youtubeId: params[:youtubeId] })
+
+    render nothing: true
   end
 
   def destroy

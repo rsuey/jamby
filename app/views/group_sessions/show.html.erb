@@ -1,7 +1,12 @@
 <%= render 'group_session', group_session: @group_session %>
 
-<div id='join_session'></div>
-<div id='watch_live'></div>
+<div class='row'>
+  <div id='join_session' class='columns small-6 small-centered'></div>
+</div>
+
+<div class='row'>
+  <div id='watch_live' class='columns small-6 small-centered'></div>
+</div>
 
 <% if @group_session.host == current_user %>
   <%= render 'start_hangout_button', group_session: @group_session %>
