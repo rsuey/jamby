@@ -11,6 +11,10 @@ class GroupSessionPage < PageObject
     t('text.models.group_session.join_live_session_now')
   end
 
+  def watch_on_air_link_text
+    t('text.models.group_session.watch_on_air_now')
+  end
+
   def form_button
     t('forms.models.group_session.edit')
   end

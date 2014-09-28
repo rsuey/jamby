@@ -27,6 +27,7 @@ module Jamby
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
     config.filter_parameters += [:card, :payment_method, :remote_id,
-                                 :authenticity_token, :auth_token]
+                                 :authenticity_token, :auth_token, :socket_id,
+                                 :channel_name]
   end
 end

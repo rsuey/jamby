@@ -5,6 +5,7 @@ require 'factory_girl_rails'
 require 'capybara/rspec'
 require 'vcr'
 require 'zonebie/rspec'
+require 'pusher-fake/support/rspec'
 
 require './spec/support/pages/page_object'
 

@@ -1,0 +1,38 @@
+<script>
+  $(function() {
+    <% pusher_options = { authEndpoint: '/messenger/auth' } %>
+
+    <% unless Rails.env.production? %>
+      Pusher.log = function(message) {
+        if (window.console && window.console.log) {
+          window.console.log(message);
+        }
+      };
+    <% end %>
+
+    var pusher = <% if defined?(PusherFake) %>
+                   <%= PusherFake.javascript(pusher_options).html_safe %>
+                 <% else %>
+                   new Pusher("<%= ENV['PUSHER_KEY'] %>", <%= pusher_options.to_json.html_safe %>)
+                 <% end %>,
+        channel = pusher.subscribe('<%= Messenger.channel_id(@group_session) %>');
+
+    channel.bind('session_is_live', function(data) {
+      console.log(data);
+      var $link = $('<a></a>')
+              .text("<%= t('text.models.group_session.join_live_session_now') %>")
+              .attr('href', data.url),
+          $youtubeLink = $('<a></a>')
+                   .text("<%= t('text.models.group_session.watch_on_air_now') %>")
+                   .attr('href', "http:/youtube.com/watch?v=" + data.youtubeId);
+
+      if (data.url !== undefined) {
+        $('#join_session').html($link);
+      }
+
+      if (data.youtubeId !== undefined) {
+        $('#watch_live').html($youtubeLink);
+      }
+    });
+  });
+</script>

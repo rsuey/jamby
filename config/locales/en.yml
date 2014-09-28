@@ -19,6 +19,7 @@ en:
         description: 'Description'
         hosted_by: 'Hosted by'
         join_live_session_now: 'Join the live session now!'
+        watch_on_air_now: 'Watch live on Youtube'
         price:
           free: 'Free'
         starts_at: 'Starting at'

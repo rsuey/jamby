@@ -35,6 +35,7 @@ group :development, :test do
 end
 
 group :test do
+  gem 'pusher-fake', '~> 1.2.0'
   gem 'selenium-webdriver', '~> 2.43.0'
   gem 'zonebie', '~> 0.5.1'
   gem 'show_me_the_cookies', '~> 2.5.0'
