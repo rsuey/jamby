@@ -22,6 +22,7 @@ gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails', '~> 3.1.2'
 gem 'turbolinks', '~> 2.3.0'
 gem 'jbuilder', '~> 2.0'
+gem 'rails_autolink', '~> 1.1.6'
 gem 'rehearsal', github: 'joemsak/rehearsal'
 
 gem 'sdoc', '~> 0.4.0', group: :doc
