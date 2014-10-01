@@ -50,6 +50,7 @@ en:
       group_session:
         add: 'Host your own session'
         book_now: 'Book now'
+        cancel_booking: 'Cancel my booking'
         edit: 'Edit this session'
         delete: 'cancel this session'
         join_live_session_now: 'Join the live session now!'
@@ -99,6 +100,9 @@ en:
         cannot_book: 'You are already booked for this session, or you are not allowed to book it'
         please_confirm: 'Please confirm your payment for this session'
         successful: 'You are now booked for this session!'
+      cancel_booking:
+        confirm: 'Are you sure you want to cancel your spot in the session?'
+        successful: 'You canceled your booking. You will be refunded whatever you paid'
       create:
         successful: 'Good luck, have a great session!'
       destroy:

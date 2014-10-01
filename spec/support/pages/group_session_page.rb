@@ -7,6 +7,10 @@ class GroupSessionPage < PageObject
     group_session_path(@group_session)
   end
 
+  def cancel_booking_link_text
+    t('links.models.group_session.cancel_booking')
+  end
+
   def join_group_session_link_text
     t('links.models.group_session.join_live_session_now')
   end

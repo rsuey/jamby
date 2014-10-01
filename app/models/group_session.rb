@@ -1,6 +1,6 @@
 class GroupSession < ActiveRecord::Base
   belongs_to :host, class_name: 'User'
-  has_many :payments
+  has_many :payments, -> { not_deleted }
   has_many :bookings
   has_many :participants, through: :bookings, source: :user
 

@@ -45,6 +45,16 @@ describe GroupSession do
           expect(group_session).to be_paid(user)
         end
       end
+
+      context 'and the payment has been deleted' do
+        it 'returns false' do
+          user = create(:account)
+          group_session = create(:group_session, price: 1)
+          create(:payment, group_session: group_session, account: user)
+          Payment.last.destroy
+          expect(group_session).to_not be_paid(user)
+        end
+      end
     end
   end
 

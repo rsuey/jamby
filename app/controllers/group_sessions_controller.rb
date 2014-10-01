@@ -30,6 +30,16 @@ class GroupSessionsController < ApplicationController
     end
   end
 
+  def cancel_booking
+    @group_session = group_session_scope.find(params[:id])
+    Booking.destroy(@group_session, current_user)
+    if payment = @group_session.payments.find_by(account_id: current_account.id)
+      payment.destroy
+    end
+    flash[:info] = t('controllers.group_sessions.cancel_booking.successful')
+    redirect_to @group_session
+  end
+
   def new
     @group_session = group_session_scope.new
   end

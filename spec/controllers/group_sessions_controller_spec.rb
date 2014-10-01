@@ -1,6 +1,38 @@
 require 'rails_helper'
 
 describe GroupSessionsController do
+  describe 'GET #cancel_booking' do
+    it 'cancels the booking and redirects with the flash notice' do
+      user = create(:user)
+      group_session = create(:group_session)
+
+      allow(controller).to receive(:current_user).and_return(user)
+      Booking.create(group_session, user)
+
+      get :cancel_booking, id: group_session.id
+
+      expect(Booking.count).to eq(0)
+      expect(response).to redirect_to(group_session_path(group_session))
+      expect(flash[:info]).to eq(
+        I18n.t('controllers.group_sessions.cancel_booking.successful')
+      )
+    end
+
+    it 'cancels paid bookings' do
+      user = create(:account)
+      group_session = create(:group_session, price: 1)
+
+      allow(controller).to receive(:current_user).and_return(user)
+      allow(controller).to receive(:current_account).and_return(user)
+      Booking.create(group_session, user)
+      Payment.create!(group_session: group_session, account: user)
+
+      get :cancel_booking, id: group_session.id
+
+      expect(Payment.last.deleted_at).to_not be_nil
+    end
+  end
+
   describe 'POST #ready' do
     it 'notifies messenger for the group session' do
       group_session = create(:group_session, id: 3)

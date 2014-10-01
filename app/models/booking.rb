@@ -4,4 +4,8 @@ class Booking < GroupSessionsUser
       super(group_session: group_session, user: user)
     end
   end
+
+  def self.destroy(group_session, user)
+    find_by(group_session_id: group_session.id, user_id: user.id).destroy
+  end
 end
