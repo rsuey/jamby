@@ -49,7 +49,7 @@ describe GroupSessionsController do
     end
 
     it 'stores location for book' do
-      put :book, id: 1
+      get :book, id: 1
       expect(session[:previous_url]).to eq(book_group_session_path(1))
     end
 
@@ -86,15 +86,40 @@ describe GroupSessionsController do
     end
   end
 
-  describe '#PUT book' do
+  describe '#GET book' do
+    it 'redirects to confirm payment for priced sessions' do
+      user = create(:user)
+      group_session = create(:group_session, price: 1)
+
+      allow(controller).to receive(:current_user).and_return(user)
+      get :book, id: group_session.id
+
+      expect(response).to redirect_to(confirm_payment_path(group_session))
+    end
+
     it 'redirects the user back to their referer' do
       user = create(:user)
       allow(controller).to receive(:current_user).and_return(user)
       request.env['HTTP_REFERER'] = '/foo/bar'
       group_session = create(:group_session)
 
-      put :book, id: group_session.id
+      get :book, id: group_session.id
       expect(response).to redirect_to('/foo/bar')
+    end
+
+    it 'does not redirect back to signin/signup pages' do
+      group_session = create(:group_session)
+      user = create(:user)
+
+      allow(controller).to receive(:current_user).and_return(user)
+
+      request.env['HTTP_REFERER'] = signin_path
+      get :book, id: group_session.id
+      expect(response).to redirect_to(group_session_path(group_session))
+
+      request.env['HTTP_REFERER'] = signup_path
+      get :book, id: group_session.id
+      expect(response).to redirect_to(group_session_path(group_session))
     end
   end
 end

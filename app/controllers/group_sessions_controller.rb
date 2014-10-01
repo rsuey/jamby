@@ -2,8 +2,7 @@ class GroupSessionsController < ApplicationController
   skip_before_filter :require_http_basic_auth, only: :ready
   protect_from_forgery except: :ready
 
-  before_filter :store_location, except: [:create, :update,
-                                          :destroy, :ready]
+  before_filter :store_location, except: [:create, :update, :destroy, :ready]
   before_filter :authenticate_user!, except: [:index, :show, :ready]
 
   def index
@@ -21,9 +20,13 @@ class GroupSessionsController < ApplicationController
     if @group_session.paid?(current_account)
       Booking.create(@group_session, current_user)
       flash[:info] = t('controllers.group_sessions.book.successful')
-      redirect_to :back
-    else
+      redirect_to after_successful_booking_path
+    elsif @group_session.can_be_booked_by?(current_user)
+      flash[:info] = t('controllers.group_sessions.book.please_confirm')
       redirect_to confirm_payment_path(@group_session)
+    else
+      flash[:alert] = t('controllers.group_sessions.book.cannot_book')
+      redirect_to after_failed_booking_path
     end
   end
 
@@ -80,6 +83,22 @@ class GroupSessionsController < ApplicationController
   end
 
   private
+  def after_successful_booking_path
+    if previous_page_is_missing_or_signing_in_or_signing_up?
+      @group_session
+    else
+      :back
+    end
+  end
+
+  def after_failed_booking_path
+    after_successful_booking_path
+  end
+
+  def previous_page_is_missing_or_signing_in_or_signing_up?
+    [nil, '', signin_path, signup_path].include?(request.env['HTTP_REFERER'])
+  end
+
   def group_session_scope
     GroupSession.not_deleted.where(nil)
   end

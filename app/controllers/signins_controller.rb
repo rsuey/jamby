@@ -1,4 +1,7 @@
 class SigninsController < ApplicationController
+  before_filter :require_no_user!, except: :destroy
+  before_filter :authenticate_user!, only: :destroy
+
   def new
     build_signin
   end

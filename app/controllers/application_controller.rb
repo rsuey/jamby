@@ -15,6 +15,13 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def require_no_user!
+    unless current_user.is_guest?
+      flash[:info] = t('controllers.application.already_authenticated')
+      redirect_to root_path
+    end
+  end
+
   def current_user
     @current_user ||= find_or_guest(User)
   end

@@ -1,4 +1,6 @@
 class SignupsController < ApplicationController
+  before_filter :require_no_user!, except: :destroy
+
   def new
     load_signup
   end
