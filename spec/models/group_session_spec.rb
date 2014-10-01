@@ -1,10 +1,10 @@
 require 'rails_helper'
 
 describe GroupSession do
-  describe '#broadcast_url' do
-    it 'returns the broadcast_id with youtube' do
+  describe '#broadcast_embed' do
+    it 'returns the youtube embed path' do
       group_session = create(:group_session, broadcast_id: 'fooBar')
-      expect(group_session.broadcast_url).to eq('http://youtube.com/watch?v=fooBar')
+      expect(group_session.broadcast_embed).to eq('//youtube.com/embed/fooBar')
     end
   end
 

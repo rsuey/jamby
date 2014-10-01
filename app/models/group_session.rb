@@ -15,8 +15,8 @@ class GroupSession < ActiveRecord::Base
     live_url.present? && broadcast_id.present?
   end
 
-  def broadcast_url
-    "http://youtube.com/watch?v=#{broadcast_id}"
+  def broadcast_embed
+    "//youtube.com/embed/#{broadcast_id}"
   end
 
   def price_in_pennies

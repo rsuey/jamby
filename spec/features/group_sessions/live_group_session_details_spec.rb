@@ -12,8 +12,7 @@ feature 'View live hangouts details', :js do
 
     expect(page).to have_link(page.join_group_session_link_text,
                               href: 'http://foo/bar')
-    expect(page).to have_link(page.watch_on_air_link_text,
-                              href: 'http://youtube.com/watch?v=123abcdefg')
+    expect(page.find('iframe')['src']).to eq('//youtube.com/embed/123abcdefg')
   end
 
   scenario 'see the link to join on the page' do
@@ -43,7 +42,6 @@ feature 'View live hangouts details', :js do
 
     Messenger.notify(group_session, 'session_is_live', { youtubeId: 'fooBarBaz' })
 
-    expect(page).to have_link(page.watch_on_air_link_text,
-                              href: 'http://youtube.com/watch?v=fooBarBaz')
+    expect(page.find('iframe')['src']).to eq('//youtube.com/embed/123abcdefg')
   end
 end
