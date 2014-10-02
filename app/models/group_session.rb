@@ -45,6 +45,10 @@ class GroupSession < ActiveRecord::Base
     participants.include?(user)
   end
 
+  def completed?
+    ended_at.present?
+  end
+
   private
   def refund_price_difference
     difference = price_was - price
