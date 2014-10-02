@@ -8,4 +8,11 @@ describe Charge do
       expect(refund.id).to_not be_nil
     end
   end
+
+  it 'partially refunds charges' do
+    VCR.use_cassette('partially refund a stripe charge') do
+      refund = Charge.refund('ch_14idXK2L7z1ZOsnrZgigMzqt', amount: 50)
+      expect(refund.amount).to eq(50) # cents
+    end
+  end
 end

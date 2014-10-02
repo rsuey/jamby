@@ -11,6 +11,8 @@ class GroupSession < ActiveRecord::Base
   scope :upcoming, -> { where('starts_at > ?', Time.current) }
   scope :live, -> { where('starts_at <= ?', Time.current) }
 
+  after_save :refund_price_difference, if: :price_changed?
+
   def live_details_ready?
     live_url.present? && broadcast_id.present?
   end
@@ -41,5 +43,14 @@ class GroupSession < ActiveRecord::Base
 
   def booked_by?(user)
     participants.include?(user)
+  end
+
+  private
+  def refund_price_difference
+    difference = price_was - price
+    difference = (difference * 100).to_i # must be in cents
+    if difference > 0
+      payments.find_each { |p| p.refund(difference) }
+    end
   end
 end

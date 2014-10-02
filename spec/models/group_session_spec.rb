@@ -1,6 +1,14 @@
 require 'rails_helper'
 
 describe GroupSession do
+  it 'refunds users the difference when the price is lowered' do
+    group_session = create(:group_session, price: 2)
+    create(:payment, group_session: group_session)
+
+    expect_any_instance_of(Payment).to receive(:refund).with(100)
+    group_session.update_attributes(price: 1)
+  end
+
   describe '#broadcast_embed' do
     it 'returns the youtube embed path' do
       group_session = create(:group_session, broadcast_id: 'fooBar')

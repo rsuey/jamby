@@ -15,8 +15,8 @@ class Charge
     new(charge)
   end
 
-  def self.refund(charge_id)
+  def self.refund(charge_id, options = {})
     charge = Stripe::Charge.retrieve(charge_id)
-    charge.refunds.create
+    charge.refunds.create(options)
   end
 end
