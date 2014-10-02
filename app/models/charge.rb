@@ -14,4 +14,9 @@ class Charge
                                    description: "Charge for #{user.email} booking #{title}")
     new(charge)
   end
+
+  def self.refund(charge_id)
+    charge = Stripe::Charge.retrieve(charge_id)
+    charge.refunds.create
+  end
 end
