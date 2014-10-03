@@ -1,4 +1,6 @@
 class GroupSession < ActiveRecord::Base
+  extend FriendlyId
+
   belongs_to :host, class_name: 'User'
   has_many :payments, -> { not_deleted }
   has_many :bookings
@@ -11,7 +13,10 @@ class GroupSession < ActiveRecord::Base
   scope :upcoming, -> { where('starts_at > ?', Time.current) }
   scope :live, -> { where('starts_at <= ?', Time.current) }
 
+  before_save :generate_hashed_id
   after_save :refund_price_difference, if: :price_changed?
+
+  friendly_id :hashed_id, use: :finders
 
   def fully_booked?
     participants.size == 10
@@ -60,5 +65,12 @@ class GroupSession < ActiveRecord::Base
     if difference > 0
       payments.find_each { |p| p.refund(difference) }
     end
+  end
+
+  def generate_hashed_id
+    return true unless hashed_id.blank?
+    begin
+      self.hashed_id = SecureRandom.base64[0..6]
+    end while self.class.exists?(hashed_id: hashed_id)
   end
 end

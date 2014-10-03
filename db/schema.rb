@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141002030555) do
+ActiveRecord::Schema.define(version: 20141003020547) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,10 +28,12 @@ ActiveRecord::Schema.define(version: 20141002030555) do
     t.string   "live_url"
     t.string   "broadcast_id"
     t.datetime "ended_at"
+    t.string   "hashed_id"
   end
 
   add_index "group_sessions", ["deleted_at"], name: "index_group_sessions_on_deleted_at", using: :btree
   add_index "group_sessions", ["ended_at"], name: "index_group_sessions_on_ended_at", using: :btree
+  add_index "group_sessions", ["hashed_id"], name: "index_group_sessions_on_hashed_id", unique: true, using: :btree
   add_index "group_sessions", ["host_id"], name: "index_group_sessions_on_host_id", using: :btree
 
   create_table "group_sessions_users", force: true do |t|

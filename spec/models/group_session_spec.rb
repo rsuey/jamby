@@ -1,6 +1,12 @@
 require 'rails_helper'
 
 describe GroupSession do
+  it 'uses a hashed ID' do
+    group_session = create(:group_session)
+    expect(group_session.hashed_id).not_to be_nil
+    expect(GroupSession.find(group_session.hashed_id)).not_to be_nil
+  end
+
   it 'is not fully booked before 10 bookings' do
     group_session = create(:group_session)
     expect(group_session).not_to be_fully_booked
