@@ -15,4 +15,16 @@ describe Account do
     expect_any_instance_of(Payment).to receive(:destroy)
     user.destroy
   end
+
+  it 'cancels outstanding bookings on delete' do
+    user = create(:account)
+    upcoming_group_session = create(:group_session, price: 1)
+    ended_group_session = create(:group_session, price: 1, ended_at: Time.current)
+
+    Booking.create(upcoming_group_session, user)
+    Booking.create(ended_group_session, user)
+
+    expect_any_instance_of(Booking).to receive(:destroy)
+    user.destroy
+  end
 end

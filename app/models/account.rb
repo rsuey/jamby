@@ -6,9 +6,13 @@ class Account < Signup
 
   validate :authenticate_current_password, if: :changing_password?
 
-  after_destroy :destroy_outstanding_payments
+  after_destroy :cancel_outstanding_bookings, :destroy_outstanding_payments
 
   private
+  def cancel_outstanding_bookings
+    bookings.upcoming.find_each(&:destroy)
+  end
+
   def destroy_outstanding_payments
     payments.not_deleted.find_each do |payment|
       payment.destroy unless payment.group_session.completed?
