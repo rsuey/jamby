@@ -21,7 +21,7 @@ class Payment < ActiveRecord::Base
     return true if deleted? || !group_session.present?
     self.currency = 'usd'
     self.amount = group_session.price_in_pennies
-    charge = Charge.create(self, payment_method, account, group_session.title)
+    charge = Charge.create(group_session, account, self, payment_method)
     self.remote_id = charge.id
   end
 end

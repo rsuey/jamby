@@ -7,11 +7,13 @@ class Charge
     @charge.id
   end
 
-  def self.create(payment, payment_method, user, title)
-    charge = Stripe::Charge.create(amount: payment.amount,
-                                   currency: payment.currency,
-                                   customer: payment_method.remote_id,
-                                   description: "Charge for #{user.email} booking #{title}")
+  def self.create(group_session, user, payment, payment_method)
+    charge = Stripe::Charge.create(
+      amount: payment.amount,
+      currency: payment.currency,
+      customer: payment_method.remote_id,
+      description: "Group session: #{group_session.hashed_id} for #{user.name}"
+    )
     new(charge)
   end
 
