@@ -1,6 +1,19 @@
 require 'rails_helper'
 
 describe GroupSession do
+  it 'is not fully booked before 10 bookings' do
+    group_session = create(:group_session)
+    expect(group_session).not_to be_fully_booked
+    9.times { Booking.create(group_session, create(:user)) }
+    expect(group_session).not_to be_fully_booked
+  end
+
+  it 'is fullybooked at 10 bookings' do
+    group_session = create(:group_session)
+    10.times { Booking.create(group_session, create(:user)) }
+    expect(group_session).to be_fully_booked
+  end
+
   it 'refunds users the difference when the price is lowered' do
     group_session = create(:group_session, price: 2)
     create(:payment, group_session: group_session)

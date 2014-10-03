@@ -36,6 +36,10 @@
                   cancel_booking_group_session_path(group_session), data: {
                   confirm: t('controllers.group_sessions.cancel_booking.confirm')
                   } %>
+    <% elsif group_session.fully_booked? %>
+      <span class='button disabled'>
+        <%= t('text.models.group_session.fully_booked') %>
+      </span>
     <% elsif group_session.can_be_booked_by?(current_user) %>
       <%= link_to t('links.models.group_session.book_now'),
                   book_group_session_path(group_session),

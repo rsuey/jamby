@@ -13,6 +13,10 @@ class GroupSession < ActiveRecord::Base
 
   after_save :refund_price_difference, if: :price_changed?
 
+  def fully_booked?
+    participants.size == 10
+  end
+
   def live_details_ready?
     live_url.present? && broadcast_id.present?
   end

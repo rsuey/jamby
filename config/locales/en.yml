@@ -17,6 +17,7 @@ en:
       group_session:
         booked: 'Booked!'
         description: 'Description'
+        fully_booked: 'Fully booked, sorry!'
         hosted_by: 'Hosted by'
         price:
           free: 'Free'
