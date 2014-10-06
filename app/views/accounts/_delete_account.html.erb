@@ -1,0 +1,5 @@
+<div class='panel callout radius columns small-12'>
+  <h4><%= t('text.models.account.titles.delete') %></h4>
+  <p><%= link_to t('links.models.account.destroy'), @account, method: :delete,
+                 data: { confirm: t('controllers.accounts.destroy.confirm') } %></p>
+</div>
