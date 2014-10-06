@@ -6,10 +6,8 @@
   <%= render 'shared/errors', record: @signup %>
 
   <%= form_for @signup do |f| %>
-    <%= render 'accounts/email_field', f: f %>
-
     <%= render 'accounts/name_fields', f: f %>
-
+    <%= render 'accounts/email_field', f: f %>
     <%= render 'accounts/password_fields', f: f %>
 
     <div class='columns small-6 small-centered'>
