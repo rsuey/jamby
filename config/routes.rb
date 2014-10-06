@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :payout_accounts, only: [:new, :create, :edit, :destroy]
+
   resources :group_sessions do
     member do
       get :book

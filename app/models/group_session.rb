@@ -10,8 +10,11 @@ class GroupSession < ActiveRecord::Base
 
   delegate :name, to: :host, prefix: true, allow_nil: true
 
-  scope :upcoming, -> { where('starts_at > ?', Time.current) }
-  scope :live, -> { where('starts_at <= ?', Time.current) }
+  scope :upcoming, -> { not_completed.where('starts_at > ?', Time.current) }
+  scope :live, -> { not_completed.where('starts_at <= ?', Time.current) }
+  scope :not_completed, -> { where('ended_at IS NULL') }
+  scope :completed, -> { where('ended_at IS NOT NULL') }
+  scope :paid, -> { where('price > 0') }
 
   before_save :generate_hashed_id
   after_save :refund_price_difference, if: :price_changed?

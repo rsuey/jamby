@@ -16,15 +16,24 @@
 </div>
 
 <div class='row'>
-  <div class='panel radius columns small-12'>
+  <% if @account.manages_payout_accounts? %>
+    <div class='panel radius columns small-6'>
+      <h4><%= t('text.models.account.titles.payout_accounts') %></h4>
+
+      <%= render @account.payout_accounts %>
+
+      <p><%= link_to t('links.models.payout_account.new'),
+                     new_payout_account_path %></p>
+    </div>
+  <% end %>
+
+  <div class='panel radius columns small-6'>
     <h4><%= t('text.models.account.titles.payment_methods') %></h4>
 
     <%= render @account.payment_methods %>
 
-    <div class='columns small-12'>
-      <p><%= link_to t('links.models.payment_method.new'),
-                     new_payment_method_path %></p>
-    </div>
+    <p><%= link_to t('links.models.payment_method.new'),
+                   new_payment_method_path %></p>
   </div>
 </div>
 

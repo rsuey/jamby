@@ -1,0 +1,41 @@
+<div class='row'>
+  <div class='columns small-6 small-centered'>
+    <% if @payout_account.persisted? %>
+      <h3><%= t('text.models.payout_account.titles.edit') %></h3>
+    <% else %>
+      <h3><%= t('text.models.payout_account.titles.new') %></h3>
+    <% end %>
+  </div>
+
+  <%= render 'shared/errors', record: @payout_account %>
+
+  <%= form_for @payout_account do |f| %>
+    <div class='columns small-6 small-centered'>
+      <%= f.label :name, t('forms.models.payout_account.labels.name') %>
+      <%= f.text_field :name %>
+    </div>
+
+    <div class='columns small-6 small-centered'>
+      <%= f.label :country %>
+      <%= f.text_field :country %>
+    </div>
+
+    <div class='columns small-6 small-centered'>
+      <%= f.label :routing_number %>
+      <%= f.number_field :routing_number %>
+    </div>
+
+    <div class='columns small-6 small-centered'>
+      <%= f.label :account_number %>
+      <%= f.number_field :account_number %>
+    </div>
+
+    <div class='columns small-6 small-centered'>
+      <% if @payout_account.persisted? %>
+        <%= f.submit t('forms.models.payout_account.update'), class: 'button' %>
+      <% else %>
+        <%= f.submit t('forms.models.payout_account.create'), class: 'button' %>
+      <% end %>
+    </div>
+  <% end %>
+</div>

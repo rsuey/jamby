@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141003020547) do
+ActiveRecord::Schema.define(version: 20141006171132) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -79,6 +79,19 @@ ActiveRecord::Schema.define(version: 20141003020547) do
   add_index "payments", ["group_session_id"], name: "index_payments_on_group_session_id", using: :btree
   add_index "payments", ["payment_method_id"], name: "index_payments_on_payment_method_id", using: :btree
   add_index "payments", ["remote_id"], name: "index_payments_on_remote_id", using: :btree
+
+  create_table "payout_accounts", force: true do |t|
+    t.string   "name"
+    t.string   "bank_name"
+    t.integer  "last4"
+    t.string   "account_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "account_id"
+    t.string   "remote_id"
+  end
+
+  add_index "payout_accounts", ["account_id"], name: "index_payout_accounts_on_account_id", using: :btree
 
   create_table "users", force: true do |t|
     t.datetime "created_at"

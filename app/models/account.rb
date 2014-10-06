@@ -2,11 +2,16 @@ class Account < Signup
   attr_accessor :current_password
 
   has_many :payment_methods
+  has_many :payout_accounts
   has_many :payments
 
   validate :authenticate_current_password, if: :changing_password?
 
   after_destroy :cancel_outstanding_bookings, :destroy_outstanding_payments
+
+  def manages_payout_accounts?
+    group_sessions.paid.completed.any?
+  end
 
   private
   def cancel_outstanding_bookings

@@ -10,8 +10,9 @@ en:
         titles:
           edit: 'Edit your profile'
           delete: 'Delete your account'
-          payment_methods: 'Your payment methods'
-          profile: 'Your profile'
+          payout_accounts: 'Payout account'
+          payment_methods: 'Payment methods'
+          profile: 'Profile'
         password:
           change: 'Change your password'
       group_session:
@@ -27,6 +28,9 @@ en:
           live: 'Live sessions'
           booked: 'Your sessions'
           upcoming: 'Upcoming sessions'
+      payout_account:
+        titles:
+          new: 'Add a payout account'
       payment:
         titles:
           new: 'Confirm your payment to book this session'
@@ -61,6 +65,10 @@ en:
         new: 'Add a payment method'
         edit: 'Edit'
         delete: 'Delete'
+      payout_account:
+        new: 'Add a payout account'
+        edit: 'edit'
+        delete: 'delete'
       signup:
         new: 'Sign up'
       signin:
@@ -74,6 +82,10 @@ en:
       group_session:
         create: 'Create live session'
         edit: 'Save'
+      payout_account:
+        create: 'Save'
+        labels:
+          name: 'Your name'
       payment:
         create: 'Confirm payment'
         existing_payment_method: 'Choose from your existing payment methods:'
@@ -109,6 +121,11 @@ en:
       destroy:
         successful: 'Your group session has been canceled. Any guests will be refunded.'
         confirm: 'Are you sure you want to cancel this session?'
+    payout_accounts:
+      create:
+        successful: 'Your payout account has been saved'
+      destroy:
+        confirm: 'Are you sure you want to delete your payout account? It cannot be undone.'
     payment_methods:
       create:
         successful: 'Your payment method has been saved'
