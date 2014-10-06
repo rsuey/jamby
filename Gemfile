@@ -51,6 +51,7 @@ group :test do
   gem 'capybara-webkit', '~> 1.2.0'
   gem 'quiet_assets', '~> 1.0.3'
   gem 'factory_girl_rails', '~> 4.4.1'
+  gem 'spring-commands-rspec', '~> 1.0.2'
 end
 
 group :production, :staging do
