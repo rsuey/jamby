@@ -1,6 +1,14 @@
 require 'rails_helper'
 
 describe PaymentMethod do
+  it 'requires a name' do
+    payment_method = build(:payment_method, name_on_card: nil)
+    allow(payment_method).to receive(:valid_card_information) { true }
+
+    expect(payment_method).not_to be_valid
+    expect(payment_method.errors[:name_on_card][0]).to include('blank')
+  end
+
   describe '#destroy' do
     it 'destroys the customer' do
       VCR.use_cassette('create a payment method') do

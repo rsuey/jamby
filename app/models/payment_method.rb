@@ -3,6 +3,7 @@ class PaymentMethod < ActiveRecord::Base
 
   belongs_to :account
 
+  validates :name_on_card, presence: true
   validate :valid_card_information
 
   after_destroy :delete_customer
