@@ -1,6 +1,22 @@
 require 'rails_helper'
 
 feature 'User books a group session' do
+  scenario 'Booked sessions show their guest list' do
+    group_session = create(:group_session)
+    userA = create(:user, first_name: 'Bob')
+    userB = create(:user, first_name: 'Gary')
+
+    Booking.create(group_session, userA)
+    Booking.create(group_session, userB)
+
+    visit group_session_path(group_session)
+
+    within('#guest_list') do
+      expect(page).to have_content('Bob')
+      expect(page).to have_content('Gary')
+    end
+  end
+
   scenario 'User books a free group session' do
     group_session = create(:group_session)
     page = GroupSessionPage.new(group_session)

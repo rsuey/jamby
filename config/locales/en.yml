@@ -24,9 +24,10 @@ en:
           free: 'Free'
         starts_at: 'Starting at'
         titles:
-          new: 'Host a live session'
-          live: 'Live sessions'
           booked: 'Your sessions'
+          guest_list: 'Guest list'
+          live: 'Live sessions'
+          new: 'Host a live session'
           upcoming: 'Upcoming sessions'
       payout_account:
         titles:

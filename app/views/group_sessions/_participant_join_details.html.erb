@@ -1,0 +1,7 @@
+<% if @group_session.booked_by?(current_user) %>
+  <% if @group_session.live_details_ready? %>
+    <%= render 'live_details', group_session: @group_session %>
+  <% else %>
+    <%= render 'pusher' %>
+  <% end %>
+<% end %>

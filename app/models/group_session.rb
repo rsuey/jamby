@@ -21,6 +21,10 @@ class GroupSession < ActiveRecord::Base
 
   friendly_id :hashed_id, use: :finders
 
+  def guest_list
+    participants
+  end
+
   def fully_booked?
     participants.size == 10
   end
