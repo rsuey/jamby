@@ -29,6 +29,12 @@ en:
           live: 'Live sessions'
           new: 'Host a live session'
           upcoming: 'Upcoming sessions'
+      password:
+        titles:
+          new: 'Reset your password'
+      password_reset:
+        titles:
+          new: 'Forgot your password?'
       payout_account:
         titles:
           new: 'Add a payout account'
@@ -57,24 +63,25 @@ en:
         add: 'Host your own session'
         book_now: 'Book now'
         cancel_booking: 'Cancel my booking'
-        edit: 'Edit this session'
         delete: 'cancel this session'
+        edit: 'Edit this session'
         join_live_session_now: 'Join the live session now!'
         list: 'Live sessions'
         watch_on_air_now: 'Watch live on Youtube'
       payment_method:
-        new: 'Add a payment method'
         edit: 'Edit'
         delete: 'Delete'
+        new: 'Add a payment method'
       payout_account:
-        new: 'Add a payout account'
         edit: 'edit'
         delete: 'delete'
+        new: 'Add a payout account'
       signup:
         new: 'Sign up'
       signin:
-        new: 'Sign in'
         destroy: 'Log out'
+        forgot_password: 'Forgot password?'
+        new: 'Sign in'
   forms:
     models:
       account:
@@ -85,6 +92,8 @@ en:
         edit: 'Save'
       password:
         new: 'Save password'
+      password_reset:
+        new: 'Reset password'
       payout_account:
         create: 'Save'
         labels:
@@ -124,6 +133,9 @@ en:
       destroy:
         successful: 'Your group session has been canceled. Any guests will be refunded.'
         confirm: 'Are you sure you want to cancel this session?'
+    password_resets:
+      create:
+        successful: 'We sent you an email to help you reset your password'
     payout_accounts:
       create:
         successful: 'Your payout account has been saved'

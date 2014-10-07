@@ -20,6 +20,11 @@
     </div>
 
     <div class='columns small-6 small-centered'>
+      <p><%= link_to t('links.models.signin.forgot_password'),
+                     new_password_reset_path %></p>
+    </div>
+
+    <div class='columns small-6 small-centered'>
       <%= f.submit t('forms.models.signin.create'), class: 'button' %>
       or <%= link_to t('links.models.signup.new'), signup_path, class: 'aux' %>
     </div>
