@@ -31,6 +31,6 @@ class Account < Signup
   end
 
   def changing_password?
-    !password.blank? && !authenticate(password)
+    !password_reset_token.blank? && !password.blank? && !authenticate(password)
   end
 end

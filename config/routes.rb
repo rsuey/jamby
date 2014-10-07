@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  resources :payout_accounts, only: [:new, :create, :edit, :destroy]
-
   resources :group_sessions do
     member do
       get :book
@@ -16,11 +14,15 @@ Rails.application.routes.draw do
   resources :signups, only: :create
   resources :signins, only: :create
 
+  resources :password_resets, only: [:new, :create]
+  resources :passwords, only: [:new, :create]
+
   resource :account, only: [:update, :destroy] do
     get :dashboard
     get :edit
   end
 
+  resources :payout_accounts, except: :index
   resources :payment_methods, except: :index
   resources :payments, only: :create do
     get :confirm, on: :member

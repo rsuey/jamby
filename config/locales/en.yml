@@ -83,6 +83,8 @@ en:
       group_session:
         create: 'Create live session'
         edit: 'Save'
+      password:
+        new: 'Save password'
       payout_account:
         create: 'Save'
         labels:

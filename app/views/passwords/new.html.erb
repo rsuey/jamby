@@ -1,0 +1,17 @@
+<div class='row'>
+  <div class='columns small-6 small-centered'>
+    <h3><%= t('text.models.passowrd.titles.new') %></h3>
+  </div>
+
+  <%= render 'shared/errors', record: @password %>
+
+  <%= form_for @password do |f| %>
+    <%= render 'accounts/password_fields', f: f %>
+
+    <%= f.hidden_field :token, value: params[:token] %>
+
+    <div class='columns small-6 small-centered'>
+      <%= f.submit t('forms.models.password.new'), class: 'button' %>
+    </div>
+  <% end %>
+</div>
