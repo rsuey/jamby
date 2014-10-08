@@ -1,13 +1,25 @@
 require 'rails_helper'
 
 describe Booking do
-  it 'emails the host and the participant' do
+  it 'emails the host and the participant on create' do
     host = create(:user)
     user = create(:user)
     group_session = create(:group_session)
 
     expect {
       Booking.create(group_session, user)
+    }.to change { ActionMailer::Base.deliveries.count }.by(2)
+  end
+
+  it 'notifies the host and participant on destroy' do
+    host = create(:user)
+    user = create(:user)
+    group_session = create(:group_session)
+
+   Booking.create(group_session, user)
+
+    expect {
+      Booking.destroy(group_session, user)
     }.to change { ActionMailer::Base.deliveries.count }.by(2)
   end
 

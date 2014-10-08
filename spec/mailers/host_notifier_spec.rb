@@ -11,4 +11,15 @@ RSpec.describe HostNotifier do
       expect(mail.to).to include('host@example.com')
     end
   end
+
+  describe '.participant_canceled' do
+    it 'mails to the group session host' do
+      user = double(:user)
+      group_session = double(:group_session, host_email: 'host@example.com')
+
+      mail = HostNotifier.participant_canceled(group_session, user)
+
+      expect(mail.to).to include('host@example.com')
+    end
+  end
 end

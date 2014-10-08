@@ -11,12 +11,18 @@ class Booking < GroupSessionsUser
 
     def destroy(group_session, user)
       find_by(group_session_id: group_session.id, user_id: user.id).destroy
+      notify_destroy_by_email(group_session, user)
     end
 
     private
     def notify_create_by_email(group_session, user)
       HostNotifier.participant_joined(group_session, user).deliver
       ParticipantNotifier.group_session_booked(group_session, user).deliver
+    end
+
+    def notify_destroy_by_email(group_session, user)
+      HostNotifier.participant_canceled(group_session, user).deliver
+      ParticipantNotifier.booking_canceled(group_session, user).deliver
     end
   end
 end

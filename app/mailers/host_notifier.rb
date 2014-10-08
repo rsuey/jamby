@@ -5,4 +5,8 @@ class HostNotifier < ActionMailer::Base
   def participant_joined(group_session, user)
     mail to: group_session.host_email
   end
+
+  def participant_canceled(group_session, user)
+    mail to: group_session.host_email
+  end
 end
