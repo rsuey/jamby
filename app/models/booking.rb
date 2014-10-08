@@ -10,8 +10,10 @@ class Booking < GroupSessionsUser
     end
 
     def destroy(group_session, user)
-      find_by(group_session_id: group_session.id, user_id: user.id).destroy
-      notify_destroy_by_email(group_session, user)
+      if session = find_by(group_session_id: group_session.id, user_id: user.id)
+        session.destroy
+        notify_destroy_by_email(group_session, user)
+      end
     end
 
     private
