@@ -31,7 +31,7 @@ class ApplicationController < ActionController::Base
   end
 
   def sign_in(signin)
-    GenerateAuthToken.apply(signin)
+    GenerateToken.apply(signin, :auth_token)
     if params[:remember_me]
       cookies.permanent[:auth_token] = signin.auth_token
     else
