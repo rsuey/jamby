@@ -8,6 +8,7 @@ class PasswordResetsController < ApplicationController
   def create
     if account = Account.find_by(email: params[:password_reset][:email])
       GenerateToken.apply(account, :password_reset_token)
+      AccountMailer.password_reset(account).deliver
       flash[:info] = t('controllers.password_resets.create.successful')
       redirect_to root_path
     else
