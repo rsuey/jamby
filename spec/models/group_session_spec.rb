@@ -1,6 +1,12 @@
 require 'rails_helper'
 
 describe GroupSession do
+  it 'returns host email' do
+    user = create(:user, email: 'host@example.com')
+    group_session = create(:group_session, host: user)
+    expect(group_session.host_email).to eq('host@example.com')
+  end
+
   it 'uses a hashed ID' do
     group_session = create(:group_session)
     expect(group_session.hashed_id).not_to be_nil
