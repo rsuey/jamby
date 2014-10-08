@@ -16,15 +16,17 @@ class PayoutAccount < ActiveRecord::Base
   end
 
   def create_recipient
-    recipient = Stripe::Recipient.create(name: name,
-                                         type: account_type,
-                                         bank_account: {
-                                           country: country,
-                                           routing_number: routing_number,
-                                           account_number: account_number
-                                         })
     self.remote_id = recipient.id
-    self.last4 = recipient.active_account.last4
-    self.bank_name = recipient.active_account.bank_name
+    self.last4 = recipient.last4
+    self.bank_name = recipient.bank_name
+  end
+
+  def recipient
+    @recipient ||= Recipient.create(name: name, type: account_type,
+                                    bank_account: {
+                                      country: country,
+                                      routing_number: routing_number,
+                                      account_number: account_number
+                                    })
   end
 end
