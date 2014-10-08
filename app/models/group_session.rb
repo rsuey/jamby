@@ -71,7 +71,12 @@ class GroupSession < ActiveRecord::Base
     difference = (difference * 100).to_i # must be in cents
     if difference > 0
       payments.find_each { |p| p.refund(difference) }
+      notify_participants_of_price_reduction
     end
+  end
+
+  def notify_participants_of_price_reduction
+    participants.each { |p| ParticipantNotifier.price_reduced(self, p).deliver }
   end
 
   def generate_hashed_id

@@ -34,6 +34,17 @@ describe GroupSession do
     group_session.update_attributes(price: 1)
   end
 
+  it 'emails the participant when the price is lowered' do
+    user = create(:user)
+    group_session = create(:group_session, price: 2)
+
+    Booking.create(group_session, user)
+
+    expect {
+      group_session.reload.update_attributes(price: 1)
+    }.to change { ActionMailer::Base.deliveries.count }.by(1)
+  end
+
   describe '#broadcast_embed' do
     it 'returns the youtube embed path' do
       group_session = create(:group_session, broadcast_id: 'fooBar')

@@ -8,4 +8,8 @@ class ParticipantNotifier < ActionMailer::Base
   def booking_canceled(group_session, user)
     mail to: user.email
   end
+
+  def price_reduced(group_session, user)
+    mail to: user.email
+  end
 end
