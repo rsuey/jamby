@@ -1,4 +1,6 @@
 class PasswordsController < ApplicationController
+  before_filter :require_no_user!
+
   def new
     @password = Password.new
   end
