@@ -1,4 +1,6 @@
 class PayoutAccountsController < ApplicationController
+  before_filter :authenticate_user!
+
   def new
     @payout_account = PayoutAccount.new
   end
