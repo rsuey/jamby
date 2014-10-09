@@ -1,3 +1,4 @@
 <%= div_for user do %>
+  <div><%= image_tag user.avatar.url(:thumb) %></div>
   <%= user.name %>
 <% end %>

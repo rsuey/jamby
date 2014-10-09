@@ -8,7 +8,9 @@ feature 'Forgot password' do
     fill_in 'Email', with: user.email
     click_button I18n.t('forms.models.password_reset.new')
 
-    expect(ActionMailer::Base.deliveries.count).to eq(1)
+    mail = ActionMailer::Base.deliveries.last
+    expect(mail.to).to include(user.email)
+    expect(mail.subject).to eq('Password reset')
 
     visit new_password_path(token: user.reload.password_reset_token)
     fill_in 'Password', with: 'newSecret89'
