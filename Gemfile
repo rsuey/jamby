@@ -8,6 +8,7 @@ gem 'pg', '~> 0.17'
 gem 'bcrypt', '~> 3.1'
 gem 'permanent_records', '~> 3.1'
 gem 'stripe', '~> 1.15'
+gem 'aws-sdk', '~> 1.55'
 
 gem 'pusher', '~> 0.14'
 
