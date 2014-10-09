@@ -4,6 +4,17 @@ class User < ActiveRecord::Base
   has_many :bookings
   has_many :booked_sessions, through: :bookings, source: :group_session
 
+  has_attached_file :avatar, styles: {
+                               medium: "300x300>",
+                               thumb: "100x100>"
+                             },
+                             default_url: :gravatar_url
+  validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
+
+  def gravatar_url
+    Gravatar.new(email).image_url
+  end
+
   def is_guest?
     false
   end

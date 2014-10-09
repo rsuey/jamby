@@ -5,7 +5,13 @@
 
   <%= render 'shared/errors', record: @account %>
 
-  <%= form_for @account do |f| %>
+  <%= form_for @account, html: { multipart: true } do |f| %>
+    <div class='columns small-6 small-centered'>
+      <%= image_tag @account.avatar.url(:thumb) %>
+      <%= f.label :avatar %>
+      <%= f.file_field :avatar %>
+    </div>
+
     <%= render 'name_fields', f: f %>
 
     <%= render 'email_field', f: f %>
