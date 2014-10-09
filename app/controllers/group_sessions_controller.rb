@@ -110,7 +110,7 @@ class GroupSessionsController < ApplicationController
   end
 
   def group_session_scope
-    GroupSession.not_deleted.where(nil)
+    GroupSession.not_deleted.includes(:host, :participants).where(nil)
   end
 
   def group_session_params
