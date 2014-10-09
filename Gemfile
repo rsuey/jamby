@@ -40,7 +40,6 @@ group :test do
   gem 'selenium-webdriver', '~> 2.43.0'
   gem 'zonebie', '~> 0.5.1'
   gem 'show_me_the_cookies', '~> 2.5.0'
-  gem 'simplecov', '~> 0.9.1', require: false
   gem 'vcr', '~> 2.9.3'
   gem 'webmock', '~> 1.18.0'
   gem 'timecop', '~> 0.7.1'
