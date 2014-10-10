@@ -10,6 +10,7 @@ gem 'permanent_records', '~> 3.1'
 gem 'stripe', '~> 1.15'
 gem 'aws-sdk', '~> 1.55'
 
+gem 'sidekiq', '~> 3.2'
 gem 'pusher', '~> 0.14'
 
 gem "paperclip", "~> 4.2"
