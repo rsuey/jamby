@@ -34,31 +34,20 @@ describe GroupSessionsController do
   end
 
   describe 'PUT #ping' do
-    before do
-      signin = create(:signin)
-      GenerateToken.apply(signin, :auth_token)
-      cookies[:auth_token] = signin.auth_token
-    end
-
     it 'is a heartbeat for the live sessions' do
+      allow(GroupSession).to receive(:find).with('1') {
+        double(:group_session, completion_job_id: 'abc123')
+      }
       allow(CompleteGroupSessionWorker).to receive(:reschedule)
 
       Timecop.freeze(Time.current) do
         put :ping, id: 1
-
-        expect(CompleteGroupSessionWorker).to have_received(:reschedule)
-                                            .with(Time.current + 15.minutes, '1')
+        expect(CompleteGroupSessionWorker).to have_received(:reschedule).with('abc123')
       end
     end
   end
 
   describe 'POST #ready' do
-    before do
-      signin = create(:signin)
-      GenerateToken.apply(signin, :auth_token)
-      cookies[:auth_token] = signin.auth_token
-    end
-
     it 'notifies messenger for the group session' do
       group_session = create(:group_session, id: 3)
 
