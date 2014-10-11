@@ -23,7 +23,7 @@
       }
 
       function heartbeat(id) {
-        var url = '/group_sessions/' + id + '/ping';
+        var url = "/group_sessions/" + id + "/ping";
         $.ajax(url, { type: 'PUT' });
         setTimeout(heartbeat(id), 15 * 60);
       }
