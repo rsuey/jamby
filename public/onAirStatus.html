@@ -15,22 +15,22 @@
         $.ajax("/group_sessions/" + sessionId + "/ready.json", {
           type: 'POST',
           dataType: "json",
-          data: "hangoutUrl=" + hangoutUrl + "&youtubeId=" + youtubeId
-        }).done(function(data, status, xhr) { console.log('done'); heartbeat(sessionId); });
+          data: "hangoutUrl=" + hangoutUrl + "&youtubeId=" + youtubeId,
+          success: function() {
+            heartbeat(sessionId);
+          }
+        });
       }
 
       function heartbeat(id) {
         var url = '/group_sessions/' + id + '/ping';
-
-        $('body').append(url);
-        console.log('url', url);
         $.ajax(url, { type: 'PUT' });
-
         setTimeout(heartbeat(id), 15 * 60);
       }
 
-      gapi.hangout.onApiReady.add(function(eventObj) { registerWithJamby(); });
+      gapi.hangout.onApiReady.add(function() { registerWithJamby(); });
     </script>
+
     <h1>Thank you for hosting your session on Jamby!</h1>
     <h2>Press the little Jamby lightning bolt logo on the left, and remember to Start Broadcast!</h2>
   </body>
