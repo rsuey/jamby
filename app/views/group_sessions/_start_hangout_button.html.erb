@@ -1,7 +1,6 @@
 <% if group_session.ready_to_start? %>
   <div class='row'>
     <div class='columns small-12'>
-      <script src="https://apis.google.com/js/platform.js" async defer></script>
       <g:hangout render="createhangout"
                  topic='<%= group_session.title %>'
                  widget_size=175
