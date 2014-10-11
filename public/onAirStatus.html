@@ -17,6 +17,7 @@
           dataType: "json",
           data: "hangoutUrl=" + hangoutUrl + "&youtubeId=" + youtubeId,
           success: function() {
+            alert(sessionId);
             heartbeat(sessionId);
           }
         });
