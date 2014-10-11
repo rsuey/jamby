@@ -20,7 +20,7 @@ describe GroupSession do
     expect(group_session).not_to be_fully_booked
   end
 
-  it 'is fullybooked at 10 bookings' do
+  it 'is fully booked at 10 bookings' do
     group_session = create(:group_session)
     10.times { Booking.create(group_session, create(:user)) }
     expect(group_session).to be_fully_booked
