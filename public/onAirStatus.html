@@ -24,7 +24,8 @@
       function heartbeat(id) {
         var url = "/group_sessions/" + id + "/ping";
         $.ajax(url, { type: 'PUT' });
-        setTimeout(heartbeat(id), 15 * 60 * 1000); // 15 minutes in milliseconds
+        setTimeout(function() { heartbeat(id); }, 15 * 60 * 1000);
+                                                  // 15 minutes in milliseconds
       }
 
       gapi.hangout.onApiReady.add(function() {
