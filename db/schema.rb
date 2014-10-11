@@ -11,16 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141009042323) do
+ActiveRecord::Schema.define(version: 20141011173853) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "group_sessions", force: true do |t|
-    t.string   "title",                                              null: false
-    t.text     "description",                                        null: false
-    t.datetime "starts_at",                                          null: false
-    t.decimal  "price",        precision: 5, scale: 2, default: 0.0, null: false
+    t.string   "title",                                                   null: false
+    t.text     "description",                                             null: false
+    t.datetime "starts_at",                                               null: false
+    t.decimal  "price",             precision: 5, scale: 2, default: 0.0, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.datetime "deleted_at"
@@ -29,8 +29,10 @@ ActiveRecord::Schema.define(version: 20141009042323) do
     t.string   "broadcast_id"
     t.datetime "ended_at"
     t.string   "hashed_id"
+    t.string   "completion_job_id"
   end
 
+  add_index "group_sessions", ["completion_job_id"], name: "index_group_sessions_on_completion_job_id", using: :btree
   add_index "group_sessions", ["deleted_at"], name: "index_group_sessions_on_deleted_at", using: :btree
   add_index "group_sessions", ["ended_at"], name: "index_group_sessions_on_ended_at", using: :btree
   add_index "group_sessions", ["hashed_id"], name: "index_group_sessions_on_hashed_id", unique: true, using: :btree

@@ -4,7 +4,7 @@ class GroupSessionsController < ApplicationController
 
   before_filter :store_location, except: [:create, :update, :destroy,
                                           :ready, :ping]
-  before_filter :authenticate_user!, except: [:index, :show]
+  before_filter :authenticate_user!, except: [:index, :show, :ready, :ping]
 
   def index
     @live_sessions = group_session_scope.live
@@ -83,7 +83,8 @@ class GroupSessionsController < ApplicationController
   end
 
   def ping
-    CompleteGroupSessionWorker.reschedule(Time.current + 15.minutes, params[:id])
+    group_session = GroupSession.find(params[:id])
+    CompleteGroupSessionWorker.reschedule(group_session.completion_job_id)
     render nothing: true
   end
 

@@ -88,6 +88,7 @@ class GroupSession < ActiveRecord::Base
   end
 
   def schedule_completion_job
-    CompleteGroupSessionWorker.perform_at(starts_at + 1.hour, id)
+    jid = CompleteGroupSessionWorker.perform_at(starts_at + 1.hour, id)
+    update_attributes(completion_job_id: jid)
   end
 end
