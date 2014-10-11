@@ -1,219 +1,30 @@
-<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><script src="./onAirStatus_files/rpc.js"></script>
-<script src="./onAirStatus_files/hangout.js"></script>
-<script src="./onAirStatus_files/jquery.min.js"></script>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+    <script src="./onAirStatus_files/rpc.js"></script>
+    <script src="./onAirStatus_files/hangout.js"></script>
+    <script src="./onAirStatus_files/jquery.min.js"></script>
+  </head>
+  <body style="padding: 10px">
+    <script>
+      function registerWithJamby() {
+        var hangoutUrl = gapi.hangout.getHangoutUrl(),
+            youtubeId = gapi.hangout.onair.getYouTubeLiveId(),
+            sessionId = gapi.hangout.getStartData();
 
-<style type="text/css">
-<!--
-.button {
-  border-radius: 3px;
-  -moz-border-radius: 3px;
-  background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#ddd));
-  background: -moz-linear-gradient(top, #fff, #ddd);
-  border: 1px solid #bbb;
-}
+        $.ajax("/group_sessions/" + sessionId + "/ready.json", {
+          type: 'POST',
+          dataType: "json",
+          data: "hangoutUrl=" + hangoutUrl + "&youtubeId=" + youtubeId
+        }).done(function(data, status, xhr) { heartbeat(sessionId); });
+      }
 
-.button:active {
-background: -webkit-gradient(linear, left top, left bottom, from(#aaa), to(#333));
-background: -moz-linear-gradient(bottom, #ddd, #aaa); }
+      function heartbeat(id) {
+        $.ajax('/group_sessions/' + id + '/ping', { type: 'PUT' });
+        setTimeout(heartbeat(id), 15 * 60);
+      }
 
--->
-</style>
-</head><body style="padding: 10px">
-
-<h3>Jamby Hangouts Prototype</h3>
-
-<p>
-  Is On Air:
-  <b><span id="isOnAir">undefined</span></b><br>
-
-  Topic:
-  <b><span id="topic">undefined</span></b>
-</p>
-
-<div id="msg"></div>
-
-<div id="onAirStats" style="visibility:hidden;">
-  YouTube Live Id:
-  <b><span id="youTubeLiveId">undefined</span></b>
-  <br>
-
-  Is broadcaster:
-  <b><span id="isBroadcaster">undefined</span></b>
-  <br>
-
-  <p>
-    <input type="checkbox" visibility="hidden" id="showParticipants" onclick="toggleNewParticipantInBroadcast()">Automatically Broadcast New Participants
-    :
-    <b><span id="newParticipantsInBroadcast"></span></b>
-  </p>
-</div>
-
-<div id="participantsDiv"></div>
-
-<p id="notOnAir" style="visibility:hidden;">This Hangout is not on air.  Please run this sample in a <b>Hangout On Air</b> to see all its features.</p>
-
-<hr>
-
-<script>
-// Updates basic Hangout stats.
-function refreshHangoutStats() {
-  document.querySelector('#isOnAir').innerHTML =
-      gapi.hangout.onair.isOnAirHangout();
-  document.querySelector('#topic').innerHTML = gapi.hangout.getTopic();
-}
-
-// Updates stats specific to HOA.
-function refreshOnAirStats() {
-  if (!gapi.hangout.onair.isOnAirHangout()) {
-    document.querySelector('#notOnAir').style.visibility = 'visible';
-    document.querySelector('#showParticipants').style.visibility = 'hidden';
-    document.querySelector('#onAirStats').style.visibility = 'hidden';
-  } else {
-    document.querySelector('#showParticipants').style.visibility = 'visible';
-    document.querySelector('#notOnAir').style.visibility = 'hidden';
-    document.querySelector('#onAirStats').style.visibility = 'visible';
-    document.querySelector('#youTubeLiveId').innerHTML =
-        gapi.hangout.onair.getYouTubeLiveId();
-    document.querySelector('#newParticipantsInBroadcast').innerHTML =
-        gapi.hangout.onair.isNewParticipantInBroadcast();
-    document.querySelector('#isBroadcaster').innerHTML =
-        gapi.hangout.getLocalParticipant().isBroadcaster;
-  }
-}
-
-// Creates a list of participants and buttons to toggle
-// whether they appear in the broadcast or not.
-function refreshParticipants() {
-  if (!gapi.hangout.onair.isOnAirHangout()) {
-    console.log("is not OnAir Hangout");
-    return;
-  }
-
-  var participants = gapi.hangout.getParticipants();
-
-  var retVal = '<p>Participant in broadcast? </p><ul>';
-
-  for (var index in participants) {
-    var participant = participants[index];
-
-    retVal += '<li>' + participant.person.displayName +
-        '<input type="button" class="button"' +
-        'value="is in broadcast" ' +
-        'onClick="toggleParticipantInBroadcast(\'' +
-        participant.id + '\')">:  <span id="' +
-        participant.id + '">' +
-        participant.isInBroadcast +
-        '</span></li>';
-  }
-
-  retVal += '</ul>';
-
-  var div = document.getElementById('participantsDiv');
-
-  div.innerHTML = retVal;
-}
-
-// Moves a participant in or out of the broadcast.  Note
-// that we do not update the UI to indicate the participant
-// is in or out until we get the onParticipantsChanged event.
-function toggleParticipantInBroadcast(id) {
-  gapi.hangout.onair.setParticipantInBroadcast(
-      id,
-      !gapi.hangout.getParticipantById(id).isInBroadcast);
-  document.querySelector('#' + id).innerHTML = 'setting...';
-}
-
-// Toggles whether any new participant who joins this Hangout
-// On Air will immediately appear in the broadcast, or whether
-// they will join with video and audio muted.
-function toggleNewParticipantInBroadcast() {
-  gapi.hangout.onair.setNewParticipantInBroadcast(
-      !gapi.hangout.onair.isNewParticipantInBroadcast());
-}
-
-// Any change to isNewParticipantInBroadcast requires a
-// roundtrip to the server, so we need a listener for it.
-function onNewParticipantsInBroadcastChanged(eventObject) {
-  console.log('npib changed: ' + eventObject.value);
-  refreshOnAirStats();
-}
-
-// Kicks off app and attaches all listeners.
-function startApp() {
-  document.getElementById('showParticipants')
-      .style.visibility = 'visible';
-
-  gapi.hangout.onair.onYouTubeLiveIdReady.add(
-      function(eventObject) {
-        refreshOnAirStats();
-        refreshParticipants();
-      });
-
-  gapi.hangout.onParticipantsChanged.add(
-      function(eventObject) {
-        refreshParticipants();
-  });
-
-  gapi.hangout.onair.onBroadcastingChanged.add(
-      function(eventObject) {
-        refreshOnAirStats();
-      });
-
-  gapi.hangout.onair.onNewParticipantInBroadcastChanged.add(
-      function(eventObject) {
-        console.log('Event');
-        console.log(eventObject);
-        refreshOnAirStats();
-      });
-
-  gapi.hangout.onTopicChanged.add(
-      function(eventObject) {
-        console.log('Topic changed');
-        refreshHangoutStats();
-      });
-
-  gapi.hangout.onTopicChanged.add(
-      function(eventObject) {
-        console.log('Topic changed');
-        refreshHangoutStats();
-      });
-
-  // Makes values visible as soon as the API is ready.
-  refreshOnAirStats();
-  refreshHangoutStats();
-  refreshParticipants();
-}
-
-function registerWithJamby() {
-  var hangoutUrl = gapi.hangout.getHangoutUrl(),
-      youtubeId = gapi.hangout.onair.getYouTubeLiveId(),
-      sessionId = gapi.hangout.getStartData();
-  $.ajax("/group_sessions/" + sessionId + "/ready.json", {
-    type: 'POST',
-    dataType: "json",
-    data: "hangoutUrl=" + hangoutUrl + "&youtubeId=" + youtubeId
-  }).done(function(data, status, xhr) {
-    $msgP = $('<p></p>').html(data.msg);
-    $urlP = $('<p></p>')
-    $urlA = $('<a></a>').text(data.url).attr('href', data.url);
-    $urlP.html($urlA);
-    $div = $('<div></div>').html($msgP).append($urlP);
-    $('#msg').html($div);
-  });
-}
-
-function init() {
-  gapi.hangout.onApiReady.add(
-    function(eventObj) {
-      startApp();
-      registerWithJamby();
-    }
-  );
-}
-
-// Add API listener immediately.  If you need an
-// OAuth 2.0 access token, your startup will need to
-// be different.
-init();
-</script>
-</body></html>
+      gapi.hangout.onApiReady.add(function(eventObj) { registerWithJamby(); });
+    </script>
+  </body>
+</html>
