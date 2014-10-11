@@ -16,7 +16,7 @@
           type: 'POST',
           dataType: "json",
           data: "hangoutUrl=" + hangoutUrl + "&youtubeId=" + youtubeId
-        }).done(function(data, status, xhr) { heartbeat(sessionId); });
+        }).done(function(data, status, xhr) { console.log('done'); heartbeat(sessionId); });
       }
 
       function heartbeat(id) {
