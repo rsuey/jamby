@@ -1,9 +1,10 @@
 class GroupSessionsController < ApplicationController
-  skip_before_filter :require_http_basic_auth, only: :ready
-  protect_from_forgery except: :ready
+  skip_before_filter :require_http_basic_auth, only: [:ready, :ping]
+  protect_from_forgery except: [:ready, :ping]
 
-  before_filter :store_location, except: [:create, :update, :destroy, :ready]
-  before_filter :authenticate_user!, except: [:index, :show, :ready]
+  before_filter :store_location, except: [:create, :update, :destroy,
+                                          :ready, :ping]
+  before_filter :authenticate_user!, except: [:index, :show]
 
   def index
     @live_sessions = group_session_scope.live
@@ -78,6 +79,11 @@ class GroupSessionsController < ApplicationController
                                       youtubeId: params[:youtubeId] })
     group_session.update_attributes(live_url: params[:hangoutUrl],
                                     broadcast_id: params[:youtubeId])
+    render nothing: true
+  end
+
+  def ping
+    CompleteGroupSessionWorker.reschedule(Time.current + 15.minutes, params[:id])
     render nothing: true
   end
 

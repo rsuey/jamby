@@ -4,6 +4,7 @@ Rails.application.routes.draw do
       get :book
       get :cancel_booking
       post :ready
+      put :ping
     end
   end
 

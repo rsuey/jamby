@@ -18,6 +18,7 @@ class GroupSession < ActiveRecord::Base
 
   before_save :generate_hashed_id
   after_save :refund_price_difference, if: :price_changed?
+  after_create :schedule_completion_job
 
   friendly_id :hashed_id, use: :finders
 
@@ -84,5 +85,9 @@ class GroupSession < ActiveRecord::Base
     begin
       self.hashed_id = SecureRandom.base64[0..6]
     end while self.class.exists?(hashed_id: hashed_id)
+  end
+
+  def schedule_completion_job
+    CompleteGroupSessionWorker.perform_at(starts_at + 1.hour, id)
   end
 end
