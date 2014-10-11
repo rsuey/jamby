@@ -1,19 +1,17 @@
 <% if @group_session.ready_to_start? %>
   <div class='row'>
     <div class='columns small-12'>
-      <script src="https://apis.google.com/js/platform.js"></script>
+      <script src="https://apis.google.com/js/platform.js" async defer></script>
       <div id="startHangout"></div>
       <script>
-        $(function () {
-          gapi.hangout.render('startHangout', {
-            'render': 'createhangout',
-            'hangout_type': 'onair',
-            'initial_apps': [{ 'app_id' : '<%= ENV["HANGOUTS_APP_ID"] %>',
-                               'start_data' : '<%= group_session.id %>',
-                               'app_type' : 'ROOM_APP' }],
-            'widget_size': 175,
-            'topic': '<%= @group_session.title %>'
-          });
+        gapi.hangout.render('startHangout', {
+          'render': 'createhangout',
+          'hangout_type': 'onair',
+          'initial_apps': [{ 'app_id' : '<%= ENV["HANGOUTS_APP_ID"] %>',
+                             'start_data' : '<%= group_session.id %>',
+                             'app_type' : 'ROOM_APP' }],
+          'widget_size': 175,
+          'topic': '<%= @group_session.title %>'
         });
       </script>
     </div>
