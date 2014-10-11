@@ -1,4 +1,4 @@
 <%= div_for user do %>
-  <div><%= image_tag user.avatar.url(:thumb) %></div>
+  <div><%= image_tag user.avatar(:thumb) %></div>
   <%= user.name %>
 <% end %>
