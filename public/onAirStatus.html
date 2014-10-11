@@ -15,12 +15,10 @@
         $.ajax("/group_sessions/" + sessionId + "/ready.json", {
           type: 'POST',
           dataType: "json",
-          data: "hangoutUrl=" + hangoutUrl + "&youtubeId=" + youtubeId,
-          success: function() {
-            alert(sessionId);
-            heartbeat(sessionId);
-          }
+          data: "hangoutUrl=" + hangoutUrl + "&youtubeId=" + youtubeId
         });
+
+        heartbeat(sessionId);
       }
 
       function heartbeat(id) {
@@ -29,7 +27,9 @@
         setTimeout(heartbeat(id), 15 * 60);
       }
 
-      gapi.hangout.onApiReady.add(function() { registerWithJamby(); });
+      gapi.hangout.onApiReady.add(function() {
+        registerWithJamby();
+      });
     </script>
 
     <h1>Thank you for hosting your session on Jamby!</h1>
