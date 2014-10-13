@@ -1,6 +1,28 @@
 require 'rails_helper'
 
 describe GroupSession do
+  it 'knows its total ticket sales value' do
+    group_session = create(:group_session, price: 1)
+    10.times { Booking.create(group_session, create(:user)) }
+    expect(group_session.total_value).to eq(10)
+  end
+
+  it 'knows its host payout value' do
+    group_session = create(:group_session, price: 1)
+    10.times { Booking.create(group_session, create(:user)) }
+    expect(group_session.payout_value).to eq(8)
+  end
+
+  it 'has a payout value of 0 when it has been paid' do
+    group_session = create(:group_session, price: 1)
+    10.times { Booking.create(group_session, create(:user)) }
+
+    group_session.update_attributes(paid_out_at: Time.current)
+
+    expect(group_session).to be_paid_out
+    expect(group_session.payout_value).to eq(0)
+  end
+
   it 'returns host email' do
     user = create(:user, email: 'host@example.com')
     group_session = create(:group_session, host: user)

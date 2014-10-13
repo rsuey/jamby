@@ -22,6 +22,18 @@ class GroupSession < ActiveRecord::Base
 
   friendly_id :hashed_id, use: :finders
 
+  def payout_value
+    paid_out? ? 0 : total_value * 0.8
+  end
+
+  def paid_out?
+    paid_out_at.present?
+  end
+
+  def total_value
+    bookings.count * price
+  end
+
   def guest_list
     participants
   end

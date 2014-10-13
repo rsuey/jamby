@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141011173853) do
+ActiveRecord::Schema.define(version: 20141013232902) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,6 +30,7 @@ ActiveRecord::Schema.define(version: 20141011173853) do
     t.datetime "ended_at"
     t.string   "hashed_id"
     t.string   "completion_job_id"
+    t.datetime "paid_out_at"
   end
 
   add_index "group_sessions", ["completion_job_id"], name: "index_group_sessions_on_completion_job_id", using: :btree

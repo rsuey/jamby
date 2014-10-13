@@ -9,6 +9,10 @@ class Account < Signup
 
   after_destroy :cancel_outstanding_bookings, :destroy_outstanding_payments
 
+  def total_payout_due
+    group_sessions.inject(0) { |sum, g| g.payout_value + sum }
+  end
+
   def manages_payout_accounts?
     group_sessions.paid.completed.any?
   end

@@ -1,6 +1,17 @@
 require 'rails_helper'
 
 describe Account do
+  it 'knows its total payout value' do
+    account = create(:account)
+    group_session = create(:group_session, host: account, price: 1)
+    group_session2 = create(:group_session, host: account, price: 1)
+
+    10.times { Booking.create(group_session, create(:user)) }
+    8.times { Booking.create(group_session2, create(:user)) }
+
+    expect(account.total_payout_due).to eq(14.4)
+  end
+
   it 'has payout accounts' do
     user = create(:account)
     expect(user).to respond_to(:payout_accounts)
