@@ -11,6 +11,7 @@ en:
           edit: 'Edit your profile'
           delete: 'Delete your account'
           payout_accounts: 'Payout account'
+          payout_amount: 'Payout due'
           payment_methods: 'Payment methods'
           profile: 'Profile'
         password:

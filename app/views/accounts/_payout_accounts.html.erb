@@ -1,5 +1,7 @@
 <% if @account.manages_payout_accounts? %>
   <div class='panel radius columns left push-2 small-3'>
+    <h4><%= t('text.models.account.titles.payout_amount') %></h4>
+    <%= number_to_currency(@account.total_payout_due) %>
     <h4><%= t('text.models.account.titles.payout_accounts') %></h4>
     <%= render @account.payout_accounts %>
     <% unless @account.payout_accounts.any? %>
