@@ -25,7 +25,7 @@ en:
         starts_at: 'Starting at'
         titles:
           booked: 'Your sessions'
-          guest_list: 'Guest list'
+          guest_list: 'Attending'
           live: 'Live sessions'
           new: 'Host a live session'
           upcoming: 'Upcoming sessions'

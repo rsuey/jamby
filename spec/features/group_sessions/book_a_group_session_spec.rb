@@ -12,8 +12,8 @@ feature 'User books a group session' do
     visit group_session_path(group_session)
 
     within('#guest_list') do
-      expect(page).to have_content('Bob')
-      expect(page).to have_content('Gary')
+      expect(page).to have_xpath("//img[@title='Bob User']")
+      expect(page).to have_xpath("//img[@title='Gary User']")
     end
   end
 
