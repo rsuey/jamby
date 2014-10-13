@@ -2,8 +2,7 @@ class CompleteGroupSessionWorker
   include Sidekiq::Worker
 
   def perform(id)
-    group_session = GroupSession.find(id)
-    group_session.update_attributes(ended_at: Time.current)
+    GroupSession.find(id).complete!
   end
 
   def self.reschedule(jid)

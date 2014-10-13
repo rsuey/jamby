@@ -10,7 +10,14 @@ describe GroupSession do
   it 'knows its host payout value' do
     group_session = create(:group_session, price: 1)
     10.times { Booking.create(group_session, create(:user)) }
+    group_session.complete!
     expect(group_session.payout_value).to eq(8)
+  end
+
+  it 'has a payout value of 0 when it is not completed' do
+    group_session = create(:group_session, price: 1)
+    10.times { Booking.create(group_session, create(:user)) }
+    expect(group_session.payout_value).to eq(0)
   end
 
   it 'has a payout value of 0 when it has been paid' do

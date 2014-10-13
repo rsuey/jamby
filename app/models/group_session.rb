@@ -1,4 +1,6 @@
 class GroupSession < ActiveRecord::Base
+  HOST_PAYOUT_RATE = 0.8
+
   extend FriendlyId
 
   belongs_to :host, class_name: 'User'
@@ -23,7 +25,11 @@ class GroupSession < ActiveRecord::Base
   friendly_id :hashed_id, use: :finders
 
   def payout_value
-    paid_out? ? 0 : total_value * 0.8
+    if paid_out? or not completed?
+      0
+    else
+      total_value * HOST_PAYOUT_RATE
+    end
   end
 
   def paid_out?
@@ -76,6 +82,10 @@ class GroupSession < ActiveRecord::Base
 
   def completed?
     ended_at.present?
+  end
+
+  def complete!
+    update_attributes(ended_at: Time.current)
   end
 
   private
