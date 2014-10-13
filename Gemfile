@@ -61,4 +61,5 @@ end
 group :production, :staging do
   gem 'rails_12factor', '~> 0.0'
   gem 'unicorn', '~> 4.3'
+  gem 'newrelic_rpm', '~> 3.9'
 end
