@@ -38,6 +38,7 @@ end
 
 group :development, :test do
   gem 'dotenv-rails', '~> 0.11'
+  gem 'pry-rails', '~> 0.3'
 end
 
 group :test do
@@ -48,7 +49,6 @@ group :test do
   gem 'vcr', '~> 2.9'
   gem 'webmock', '~> 1.18'
   gem 'timecop', '~> 0.7'
-  gem 'pry-rails', '~> 0.3'
   gem 'rspec-rails', '~> 3.0'
   gem 'database_cleaner', '~> 1.3'
   gem 'launchy', '~> 2.4'
