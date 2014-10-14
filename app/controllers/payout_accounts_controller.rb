@@ -6,7 +6,7 @@ class PayoutAccountsController < ApplicationController
   end
 
   def create
-    @payout_account = current_account.payout_accounts.new(payout_account_params)
+    @payout_account = current_account.build_payout_account(payout_account_params)
     if @payout_account.save
       flash[:info] = t('controllers.payout_accounts.create.successful')
       redirect_to dashboard_account_path

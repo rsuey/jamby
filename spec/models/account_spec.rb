@@ -14,11 +14,6 @@ describe Account do
     expect(account.total_payout_due).to eq(4)
   end
 
-  it 'has payout accounts' do
-    user = create(:account)
-    expect(user).to respond_to(:payout_accounts)
-  end
-
   it 'manages payout accounts when there are completed paid sessions' do
     user = create(:account)
     create(:group_session, price: 1, ended_at: Time.current, host: user)

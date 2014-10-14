@@ -1,10 +1,14 @@
 <% if @account.manages_payout_accounts? %>
   <div class='panel radius columns left push-2 small-3'>
     <h4><%= t('text.models.account.titles.payout_amount') %></h4>
+
     <%= number_to_currency(@account.total_payout_due) %>
+
     <h4><%= t('text.models.account.titles.payout_accounts') %></h4>
-    <%= render @account.payout_accounts %>
-    <% unless @account.payout_accounts.any? %>
+
+    <% if @account.payout_account.present? %>
+      <%= render @account.payout_account %>
+    <% else %>
       <p><%= link_to t('links.models.payout_account.new'), new_payout_account_path %></p>
     <% end %>
   </div>

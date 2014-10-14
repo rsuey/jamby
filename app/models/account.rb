@@ -2,8 +2,8 @@ class Account < Signup
   attr_accessor :current_password
 
   has_many :payment_methods
-  has_many :payout_accounts
   has_many :payments
+  has_one :payout_account
 
   validate :authenticate_current_password, if: :changing_password?
 
