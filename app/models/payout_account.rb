@@ -13,7 +13,8 @@ class PayoutAccount < ActiveRecord::Base
   end
 
   def transfer(amount)
-    Recipient.transfer(remote_id, amount * 100)
+    amount_in_pennies = (amount * 100).to_i
+    Recipient.transfer(remote_id, amount_in_pennies)
   end
 
   private
