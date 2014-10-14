@@ -38,7 +38,7 @@ class GroupSessionsController < ApplicationController
       payment.destroy
     end
     flash[:info] = t('controllers.group_sessions.cancel_booking.successful')
-    redirect_to @group_session
+    redirect_to after_successful_booking_path
   end
 
   def new
