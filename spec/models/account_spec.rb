@@ -49,25 +49,25 @@ describe Account do
   it 'manages payout accounts when there are completed paid sessions' do
     user = create(:account)
     create(:group_session, price: 1, ended_at: Time.current, host: user)
-    expect(user).to be_manages_payout_accounts
+    expect(user).to be_manages_payout_account
   end
 
   it 'does not manage payout accounts when their paid sessions are not completed' do
     user = create(:account)
     create(:group_session, price: 1, host: user)
-    expect(user).not_to be_manages_payout_accounts
+    expect(user).not_to be_manages_payout_account
   end
 
   it 'does not manage payout accounts when their paid dessions were deleted' do
     user = create(:account)
     create(:group_session, price: 1, deleted_at: Time.current, host: user)
-    expect(user).not_to be_manages_payout_accounts
+    expect(user).not_to be_manages_payout_account
   end
 
   it 'does not manage payout accounts when their sessions are not paid' do
     user = create(:account)
     create(:group_session, price: 0, ended_at: Time.current, host: user)
-    expect(user).not_to be_manages_payout_accounts
+    expect(user).not_to be_manages_payout_account
   end
 
   it 'refunds outstanding payments on delete' do

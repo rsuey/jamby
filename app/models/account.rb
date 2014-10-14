@@ -18,7 +18,7 @@ class Account < Signup
     group_sessions.inject(0) { |sum, g| g.payout_value + sum }
   end
 
-  def manages_payout_accounts?
+  def manages_payout_account?
     group_sessions.paid.completed.any?
   end
 
