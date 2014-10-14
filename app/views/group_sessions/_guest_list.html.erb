@@ -1,8 +1,8 @@
 <div id='guest_list' class='row'>
   <div class='columns small-8 small-centered'>
-    <h4><%= t('text.models.group_session.titles.guest_list') %></h4>
+    <h5><%= t('text.models.group_session.titles.guest_list') %></h5>
     <% group_session.guest_list.each do |guest| %>
-      <span class='guest_list_avatar th radius'>
+      <span class='guest_list_avatar th'>
         <%= image_tag guest.avatar(:tiny), alt: guest.name,
                                            title: guest.name,
                                            width: 50 %>
