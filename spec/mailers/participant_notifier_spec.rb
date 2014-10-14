@@ -3,7 +3,8 @@ require 'rails_helper'
 RSpec.describe ParticipantNotifier do
   describe '.group_session_booked' do
     it 'emails the participant' do
-      user = double(:user, email: 'user@example.com')
+      user = double(:user, time_zone: 'Eastern Time (US & Canada)',
+                           email: 'user@example.com')
       group_session = double(:group_session, title: 'price reduction',
                                              starts_at: Time.current + 1.hour)
 
