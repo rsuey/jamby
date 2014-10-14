@@ -31,6 +31,7 @@ en:
           live: 'Live now'
           new: 'Host a live session'
           upcoming: 'Coming up'
+        with: 'with'
       password:
         titles:
           new: 'Reset your password'

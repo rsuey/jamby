@@ -13,7 +13,14 @@
     </span>
   </time>
 
-  <span class='group_session_info_description'>
-    <%= auto_link group_session.description %>
-  </span>
+  <small class='group_session_host_name'>
+    <%= t('text.models.group_session.with') %>
+    <%= group_session.host_name %>
+  </small>
+
+  <% unless request.fullpath == group_session_path(group_session)%>
+    <span class='group_session_info_description'>
+      <%= truncate(group_session.description, length: 125) %>
+    </span>
+  <% end %>
 </header>

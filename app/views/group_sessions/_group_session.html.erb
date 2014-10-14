@@ -1,11 +1,19 @@
-<% type ||= '' %>
+<%
+  type ||= ''
+  css_classes = if request.fullpath == group_session_path(group_session)
+                  ''
+                else
+                  'panel radius'
+                end
+%>
 
 <div class='row'>
-  <div class='columns small-8 small-centered sessions_list panel radius'>
+  <div class='columns small-8 small-centered sessions_list <%= css_classes %>'>
     <% unless type.blank? %>
       <%= content_tag :span, t("text.models.group_session.titles.#{type}"),
                              class: label_classes(type) %>
     <% end %>
+
     <article id='<%= dom_id(group_session) %>' class='group_session row'>
       <%= render 'host_info', group_session: group_session %>
       <%= render 'title_description', group_session: group_session %>

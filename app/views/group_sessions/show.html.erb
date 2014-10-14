@@ -1,6 +1,5 @@
 <%= render 'group_session', group_session: @group_session %>
+<%= render 'full_description', group_session: @group_session %>
 <%= render 'host_start_details', group_session: @group_session %>
 <%= render 'participant_join_details', group_session: @group_session %>
-<% if @group_session.guest_list.any? %>
-  <%= render 'guest_list', group_session: @group_session %>
-<% end %>
+<%= render 'guest_list', group_session: @group_session %>

@@ -8,7 +8,14 @@
 }
 
 .group_session_host_name {
-  font-size: 0.7em;
+  display: block;
+  font-size: 0.8em;
+}
+
+#guest_list {
+  h5 {
+    margin-top: 1em;
+  }
 }
 
 .guest_list_avatar {
@@ -17,7 +24,13 @@
 
 h1.group_session_info_title {
   font-size: $h3-font-size;
-  margin-bottom: 0;
+  margin: 0;
+  line-height: 1;
+}
+
+.group_session_info_description {
+  display: block;
+  padding-top: 0.5em;
 }
 
 .sessions_list {
@@ -55,4 +68,8 @@ h1.group_session_info_title {
   textarea {
     height: 150px;
   }
+}
+
+#hangout_button, #group_session_admin, #watch_live {
+  margin-top: 1em;
 }

@@ -1,5 +1,5 @@
 <% if group_session.ready_to_start? %>
-  <div class='row'>
+  <div id='hangout_button' class='row'>
     <div class='columns small-12'>
       <g:hangout render="createhangout"
                  topic='<%= group_session.title %>'
