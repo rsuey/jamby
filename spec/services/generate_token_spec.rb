@@ -11,7 +11,7 @@ describe GenerateToken do
       allow(client).to receive(:save)
 
       allow(client).to receive(:auth_token=)
-      allow(SecureRandom).to receive(:urlsafe_base64) { '123abc' }
+      allow(SecureRandom).to receive(:uuid) { '123abc' }
 
       GenerateToken.apply(client, :auth_token)
       expect(client).to have_received(:auth_token=).with('123abc')
@@ -25,7 +25,7 @@ describe GenerateToken do
       allow(client).to receive(:save)
 
       allow(client).to receive(:auth_token=)
-      allow(SecureRandom).to receive(:urlsafe_base64).and_return('123abc', '456def')
+      allow(SecureRandom).to receive(:uuid).and_return('123abc', '456def')
 
       GenerateToken.apply(client, :auth_token)
       expect(client).to have_received(:auth_token=).with('456def')
