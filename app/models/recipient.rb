@@ -18,4 +18,10 @@ class Recipient
   def self.create(attributes)
     new(Stripe::Recipient.create(attributes))
   end
+
+  def self.transfer(remote_id, amount)
+    Stripe::Transfer.create(amount: amount,
+                            currency: 'usd',
+                            recipient: remote_id)
+  end
 end

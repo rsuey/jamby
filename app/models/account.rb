@@ -9,6 +9,11 @@ class Account < Signup
 
   after_destroy :cancel_outstanding_bookings, :destroy_outstanding_payments
 
+  def transfer_payouts_due!
+    payout_account.transfer(total_payout_due)
+    group_sessions.completed.unpaid_out.find_each(&:payout!)
+  end
+
   def total_payout_due
     group_sessions.inject(0) { |sum, g| g.payout_value + sum }
   end

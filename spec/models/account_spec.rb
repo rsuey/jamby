@@ -1,11 +1,43 @@
 require 'rails_helper'
 
 describe Account do
+  describe '#transfer_payouts_due!' do
+    it 'transfers payouts due to its payout account' do
+      account = create(:account)
+      group_session = create(:group_session, host: account,
+                                             price: 1, ended_at: Time.current)
+      Booking.create(group_session, create(:user))
+
+      allow(account.payout_account).to receive(:transfer)
+      account.transfer_payouts_due!
+      expect(account.payout_account).to have_received(:transfer).with(0.8)
+    end
+
+    it 'marks the group sessions as paid out' do
+      account = create(:account)
+      group_session = create(:group_session, host: account,
+                                             price: 1, ended_at: Time.current)
+      unended_group_session = create(:group_session, host: account, price: 1)
+
+      Booking.create(group_session, create(:user))
+      Booking.create(unended_group_session, create(:user))
+
+      allow(account.payout_account).to receive(:transfer)
+      account.transfer_payouts_due!
+
+      expect(group_session.reload).to be_paid_out
+      expect(unended_group_session.reload).not_to be_paid_out
+    end
+  end
+
   it 'knows its total payout value' do
     account = create(:account)
-    group_session = create(:group_session, host: account, price: 1, ended_at: Time.current)
-    group_session2 = create(:group_session, host: account, price: 1, ended_at: Time.current)
-    uncompleted_group_session = create(:group_session, host: account, price: 100)
+    group_session = create(:group_session, host: account,
+                                           price: 1, ended_at: Time.current)
+    group_session2 = create(:group_session, host: account,
+                                            price: 1, ended_at: Time.current)
+    uncompleted_group_session = create(:group_session, host: account,
+                                                       price: 100)
 
     3.times { Booking.create(group_session, create(:user)) }
     2.times { Booking.create(group_session2, create(:user)) }

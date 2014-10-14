@@ -1,6 +1,16 @@
 require 'rails_helper'
 
 describe PayoutAccount do
+  describe '#transfer' do
+    it 'sends a transfer to the remote recipient' do
+      payout_account = build(:payout_account, remote_id: 'abc123')
+
+      allow(Recipient).to receive(:transfer)
+      payout_account.transfer(50)
+      expect(Recipient).to have_received(:transfer).with('abc123', 5000)
+    end
+  end
+
   it 'requires a name and banking information' do
     payout_account = PayoutAccount.new
 

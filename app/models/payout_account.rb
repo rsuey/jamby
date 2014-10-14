@@ -1,6 +1,8 @@
 class PayoutAccount < ActiveRecord::Base
   attr_accessor :country, :routing_number, :account_number
 
+  belongs_to :account
+
   validates :name, :country, :routing_number, :account_number, presence: true
 
   after_initialize :default_account_type_to_individual
@@ -8,6 +10,10 @@ class PayoutAccount < ActiveRecord::Base
 
   def display_name
     [bank_name, last4].join(' xxxxx')
+  end
+
+  def transfer(amount)
+    Recipient.transfer(remote_id, amount * 100)
   end
 
   private

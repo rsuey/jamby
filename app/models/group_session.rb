@@ -17,12 +17,17 @@ class GroupSession < ActiveRecord::Base
   scope :not_completed, -> { where('ended_at IS NULL') }
   scope :completed, -> { where('ended_at IS NOT NULL') }
   scope :paid, -> { where('price > 0') }
+  scope :unpaid_out, -> { where('paid_out_at IS NULL') }
 
   before_save :generate_hashed_id
   after_save :refund_price_difference, if: :price_changed?
   after_create :schedule_completion_job
 
   friendly_id :hashed_id, use: :finders
+
+  def payout!
+    update_attributes(paid_out_at: Time.current)
+  end
 
   def payout_value
     if paid_out? or not completed?
