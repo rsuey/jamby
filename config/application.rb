@@ -28,6 +28,6 @@ module Jamby
     # config.i18n.default_locale = :de
     config.filter_parameters += [:card, :payment_method, :remote_id,
                                  :authenticity_token, :auth_token, :socket_id,
-                                 :channel_name]
+                                 :channel_name, :routing_number, :account_number]
   end
 end
