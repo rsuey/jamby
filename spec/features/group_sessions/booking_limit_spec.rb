@@ -9,6 +9,6 @@ feature 'Reaching the booking limit' do
 
     logged_in(user) { visit group_session_path(group_session) }
 
-    expect(page).to have_css('.button.disabled', text: I18n.t('text.models.group_session.fully_booked'))
+    expect(page).to have_content(I18n.t('text.models.group_session.fully_booked'))
   end
 end

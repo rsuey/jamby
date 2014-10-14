@@ -1,61 +1,15 @@
-<article id='<%= dom_id(group_session) %>' class='group_session row'>
-  <aside class='group_session_host columns small-2'>
-    <span class='group_session_host_image th radius'>
-      <%= image_tag group_session.host_avatar %>
-    </span>
-    <span class='group_session_host_name'>
-      <%= group_session.host_name %>
-    </span>
-  </aside>
+<% type ||= '' %>
 
-  <header class='group_session_info columns small-8'>
-    <h1 class='group_session_info_title'>
-      <% if request.fullpath == group_session_path(group_session) %>
-        <%= group_session.title %>
-      <% else %>
-        <%= link_to group_session.title, group_session_path(group_session) %>
-      <% end %>
-    </h1>
-
-    <span class='group_session_info_description'>
-      <%= auto_link group_session.description %>
-    </span>
-  </header>
-
-  <aside class='group_session_meta columns small-2'>
-    <time datetime='<%= group_session.starts_at %>'>
-      <span class='group_session_meta_date'>
-        <%= group_session.starts_at.strftime('%A, %b %e') %>
-      </span>
-      <span class='group_session_meta_time'>
-        <%= group_session.starts_at.strftime('%l:%M%P') %>
-      </span>
-    </time>
-
-    <% if group_session.booked_by?(current_user) %>
-      <span class='button disabled'>
-        <%= t('text.models.group_session.booked') %>
-      </span>
-      <%= link_to t('links.models.group_session.cancel_booking'),
-                  cancel_booking_group_session_path(group_session), data: {
-                  confirm: t('controllers.group_sessions.cancel_booking.confirm')
-                  } %>
-    <% elsif group_session.fully_booked? %>
-      <span class='button disabled'>
-        <%= t('text.models.group_session.fully_booked') %>
-      </span>
-    <% elsif group_session.can_be_booked_by?(current_user) %>
-      <%= link_to t('links.models.group_session.book_now'),
-                  book_group_session_path(group_session),
-                  class: 'button' %>
+<div class='row'>
+  <div class='columns small-8 small-centered sessions_list panel radius'>
+    <% unless type.blank? %>
+      <%= content_tag :span, t("text.models.group_session.titles.#{type}"),
+                             class: label_classes(type) %>
     <% end %>
-
-    <span class='group_session_meta_price'>
-      <% if group_session.free? %>
-        <%= t('text.models.group_session.price.free') %>
-      <% else %>
-        <%= number_to_currency(group_session.price) %>
-      <% end %>
-    </span>
-  </aside>
-</article>
+    <article id='<%= dom_id(group_session) %>' class='group_session row'>
+      <%= render 'host_info', group_session: group_session %>
+      <%= render 'title_description', group_session: group_session %>
+      <%= render 'price_book', group_session: group_session %>
+    </article>
+  </div>
+</div>

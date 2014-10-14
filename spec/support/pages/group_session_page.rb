@@ -72,11 +72,11 @@ class GroupSessionPage < PageObject
   end
 
   def date_selector
-    '.group_session_meta time .group_session_meta_date'
+    '.group_session_meta_date'
   end
 
   def time_selector
-    '.group_session_meta time .group_session_meta_time'
+    date_selector
   end
 
   def title_selector
@@ -88,6 +88,6 @@ class GroupSessionPage < PageObject
   end
 
   def price_selector
-    '.group_session_meta_price'
+    '.group_session_meta .button'
   end
 end

@@ -7,4 +7,8 @@ module SigninHelper
     page.submit_form
     yield(user)
   end
+
+  def sign_out
+    page.click_link 'Log out'
+  end
 end

@@ -14,6 +14,9 @@ feature 'User edits group sessions' do
     end
 
     expect(current_path).to eq(page.after_successful_edit_path)
+
+    sign_out
+
     within(page.session_selector) do
       expect(page).to have_css(page.title_selector, text: 'Paid session')
       expect(page).to have_css(page.price_selector, text: '$1.00')

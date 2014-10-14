@@ -10,3 +10,45 @@
 .guest_list_avatar {
   width: 50px;
 }
+
+h1.group_session_info_title {
+  font-size: $h3-font-size;
+  margin-bottom: 0;
+}
+
+.sessions_list {
+  position: relative;
+  padding-top: 1.5em;
+
+  > .label {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+}
+
+.group_session {
+  .button {
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    small {
+      display: block;
+    }
+  }
+  .label {
+    display: block;
+  }
+}
+
+.group_session_info {
+  time {
+    display: block;
+    font-weight: bold;
+  }
+}
+
+.new_group_session, .edit_group_session {
+  textarea {
+    height: 150px;
+  }
+}

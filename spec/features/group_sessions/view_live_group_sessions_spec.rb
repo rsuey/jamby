@@ -45,7 +45,7 @@ feature 'Users can view live group sessions' do
       page.visit
 
       within('#upcoming_sessions') do
-        expect(page).to have_css('h1', text: page.upcoming_sessions_title)
+        expect(page).to have_css('.label', text: page.upcoming_sessions_title)
         expect(page).to have_content('Upcoming session')
         expect(page).to_not have_content('Live now')
       end

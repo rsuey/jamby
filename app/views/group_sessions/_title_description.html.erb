@@ -1,0 +1,19 @@
+<header class='group_session_info columns small-6'>
+  <h1 class='group_session_info_title'>
+    <% if request.fullpath == group_session_path(group_session) %>
+      <%= group_session.title %>
+    <% else %>
+      <%= link_to group_session.title, group_session_path(group_session) %>
+    <% end %>
+  </h1>
+
+  <time datetime='<%= group_session.starts_at %>'>
+    <span class='group_session_meta_date'>
+      <%= group_session.starts_at.strftime('%A, %b %e %l:%M%P') %>
+    </span>
+  </time>
+
+  <span class='group_session_info_description'>
+    <%= auto_link group_session.description %>
+  </span>
+</header>

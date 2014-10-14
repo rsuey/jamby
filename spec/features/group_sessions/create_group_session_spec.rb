@@ -28,7 +28,6 @@ feature 'User creates a group session' do
                                text: 'This group session is free!')
       expect(page).to have_css(page.date_selector, text: "#{dayname}, Jan 31")
       expect(page).to have_css(page.time_selector, text: '5:00pm')
-      expect(page).to have_css(page.price_selector, text: 'Free')
     end
   end
 

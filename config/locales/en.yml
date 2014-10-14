@@ -17,19 +17,20 @@ en:
         password:
           change: 'Change your password'
       group_session:
-        booked: 'Booked!'
+        booked: "You're booked!"
         description: 'Description'
         fully_booked: 'Fully booked, sorry!'
         hosted_by: 'Hosted by'
+        hosting: "You're the host!"
         price:
           free: 'Free'
         starts_at: 'Starting at'
         titles:
-          booked: 'Your sessions'
+          booked: 'Booked'
           guest_list: 'Attending'
-          live: 'Live sessions'
+          live: 'Live now'
           new: 'Host a live session'
-          upcoming: 'Upcoming sessions'
+          upcoming: 'Coming up'
       password:
         titles:
           new: 'Reset your password'
@@ -63,7 +64,7 @@ en:
       group_session:
         add: 'Host your own session'
         book_now: 'Book now'
-        cancel_booking: 'Cancel my booking'
+        cancel_booking: 'cancel'
         delete: 'cancel this session'
         edit: 'Edit this session'
         join_live_session_now: 'Join the live session now!'

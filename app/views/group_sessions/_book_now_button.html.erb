@@ -1,0 +1,8 @@
+<%= link_to book_group_session_path(group_session), class: 'button radius' do %>
+  <% if group_session.free? %>
+    <%= t('text.models.group_session.price.free') %>
+  <% else %>
+    <%= number_to_currency(group_session.price) %>
+  <% end %>
+  <small><%= t('links.models.group_session.book_now') %></small>
+<% end %>
