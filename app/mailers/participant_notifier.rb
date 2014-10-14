@@ -17,8 +17,8 @@ class ParticipantNotifier < ActionMailer::Base
 
   def price_reduced(group_session, user, price_was)
     @group_session_title = group_session.title
-    @price = "$#{group_session.price.round(2)}"
-    @difference = "$#{price_was.round(2) - group_session.price.round(2)}"
+    @price = "$#{sprintf("%.2f", group_session.price)}"
+    @difference = "$#{sprintf("%.2f", price_was - group_session.price)}"
     mail to: user.email
   end
 
