@@ -1,5 +1,5 @@
 class HostNotifier < ActionMailer::Base
-  default from: "from@example.com"
+  default from: "support@jamby.co"
 
   # en.host_notifier.participant_joined.subject
   def participant_joined(group_session, user)
