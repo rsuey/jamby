@@ -104,7 +104,9 @@ class GroupSession < ActiveRecord::Base
   end
 
   def notify_participants_of_price_reduction
-    participants.each { |p| ParticipantNotifier.price_reduced(self, p).deliver }
+    participants.each do |participant|
+      ParticipantNotifier.price_reduced(self, participant, price_was).deliver
+    end
   end
 
   def generate_hashed_id

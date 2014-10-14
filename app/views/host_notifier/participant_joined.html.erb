@@ -1,1 +1,7 @@
-<h1>Someone booked your session!</h1>
+<h1>Your live session has been booked!</h1>
+
+<p>Hey! <%= @participant_name %> has booked your session <%= @group_session_title %>!</p>
+
+<p>See your group session at <%= link_to @url, @url %></p>
+
+<p>Thanks,<br>Jamby</p>
