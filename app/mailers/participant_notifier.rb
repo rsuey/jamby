@@ -21,10 +21,11 @@ class ParticipantNotifier < ActionMailer::Base
   end
 
   def reminder(group_session_id, user_id)
+    group_session = GroupSession.find(group_session_id)
+    user = User.find(user_id)
     @group_session_title = group_session.title
     @start_time = group_session.starts_at.strftime('%A, %b %e %l:%M%P')
     @url = group_session_url(group_session)
-    user = User.find(user_id)
     mail to: user.email
   end
 end
