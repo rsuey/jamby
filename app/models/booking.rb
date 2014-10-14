@@ -19,12 +19,12 @@ class Booking < GroupSessionsUser
 
     private
     def notify_create_by_email(group_session, user)
-      HostNotifier.participant_joined(group_session, user).deliver
+      HostNotifier.participant_joined(group_session).deliver
       ParticipantNotifier.group_session_booked(group_session, user).deliver
     end
 
     def notify_destroy_by_email(group_session, user)
-      HostNotifier.participant_canceled(group_session, user).deliver
+      HostNotifier.participant_canceled(group_session).deliver
       ParticipantNotifier.booking_canceled(group_session, user).deliver
     end
 
