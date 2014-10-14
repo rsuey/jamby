@@ -108,10 +108,7 @@ class GroupSession < ActiveRecord::Base
   end
 
   def generate_hashed_id
-    return true unless hashed_id.blank?
-    begin
-      self.hashed_id = SecureRandom.base64[0..6]
-    end while self.class.exists?(hashed_id: hashed_id)
+    GenerateToken.apply(self, :hashed_id)
   end
 
   def schedule_completion_job
