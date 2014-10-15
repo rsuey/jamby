@@ -4,7 +4,7 @@ feature 'User creates a group session' do
   scenario 'Creating a free group session' do
     page = NewGroupSessionPage.new
     year = Time.current.year + 1
-    dayname = DateTime.new(year, 1, 31).strftime('%A')
+    dayname = DateTime.new(year, 1, 31).to_s(:dayname)
     user = create(:signup)
 
     logged_in(user) do

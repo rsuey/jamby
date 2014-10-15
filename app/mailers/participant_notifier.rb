@@ -4,7 +4,7 @@ class ParticipantNotifier < ActionMailer::Base
   def group_session_booked(group_session, user)
     @group_session_title = group_session.title
     Time.use_zone(user.time_zone) do
-      @start_time = group_session.starts_at.strftime('%A, %b %e %l:%M%P')
+      @start_time = group_session.starts_at.to_s
     end
     @url = group_session_url(group_session)
     mail to: user.email
@@ -27,7 +27,7 @@ class ParticipantNotifier < ActionMailer::Base
     user = User.find(user_id)
     @group_session_title = group_session.title
     Time.use_zone(user.time_zone) do
-      @start_time = group_session.starts_at.strftime('%A, %b %e %l:%M%P')
+      @start_time = group_session.starts_at.to_s
     end
     @url = group_session_url(group_session)
     mail to: user.email

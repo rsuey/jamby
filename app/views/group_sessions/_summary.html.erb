@@ -5,7 +5,7 @@
     <dt><%= t('text.models.group_session.hosted_by') %></dt>
     <dd><%= group_session.host_name %></dd>
     <dt><%= t('text.models.group_session.starts_at') %></dt>
-    <dd><%= group_session.starts_at.strftime('%A, %B %e, %Y at %l:%M%P') %></dd>
+    <dd><%= group_session.starts_at.to_s %></dd>
     <dt><%= t('text.models.group_session.description') %></dt>
     <dd><%= group_session.description %></dd>
   </dl>
