@@ -33,7 +33,7 @@ class GroupSession < ActiveRecord::Base
     if paid_out? or not completed?
       0
     else
-      total_value * HOST_PAYOUT_RATE
+      (total_value * HOST_PAYOUT_RATE).round(2)
     end
   end
 
@@ -42,7 +42,7 @@ class GroupSession < ActiveRecord::Base
   end
 
   def total_value
-    bookings.count * price
+    (payments.sum(:amount) / 100.0).round(2) # payment amounts are in pennies
   end
 
   def guest_list

@@ -4,9 +4,8 @@ describe Account do
   describe '#transfer_payouts_due!' do
     it 'transfers payouts due to its payout account' do
       account = create(:account)
-      group_session = create(:group_session, host: account,
-                                             price: 1, ended_at: Time.current)
-      Booking.create(group_session, create(:user))
+      group_session = create(:group_session, host: account, ended_at: Time.current)
+      group_session.payments.create!(amount: 100)
 
       allow(account.payout_account).to receive(:transfer)
       account.transfer_payouts_due!
@@ -15,12 +14,11 @@ describe Account do
 
     it 'marks the group sessions as paid out' do
       account = create(:account)
-      group_session = create(:group_session, host: account,
-                                             price: 1, ended_at: Time.current)
+      group_session = create(:group_session, host: account, ended_at: Time.current)
       unended_group_session = create(:group_session, host: account, price: 1)
 
-      Booking.create(group_session, create(:user))
-      Booking.create(unended_group_session, create(:user))
+      group_session.payments.create!(amount: 100)
+      unended_group_session.payments.create!(amount: 100)
 
       allow(account.payout_account).to receive(:transfer)
       account.transfer_payouts_due!
@@ -32,16 +30,13 @@ describe Account do
 
   it 'knows its total payout value' do
     account = create(:account)
-    group_session = create(:group_session, host: account,
-                                           price: 1, ended_at: Time.current)
-    group_session2 = create(:group_session, host: account,
-                                            price: 1, ended_at: Time.current)
-    uncompleted_group_session = create(:group_session, host: account,
-                                                       price: 100)
+    group_session = create(:group_session, host: account, ended_at: Time.current)
+    group_session2 = create(:group_session, host: account, ended_at: Time.current)
+    uncompleted_group_session = create(:group_session, host: account)
 
-    3.times { Booking.create(group_session, create(:user)) }
-    2.times { Booking.create(group_session2, create(:user)) }
-    Booking.create(uncompleted_group_session, create(:user))
+    3.times { group_session.payments.create!(amount: 100) }
+    2.times { group_session2.payments.create!(amount: 100) }
+    uncompleted_group_session.payments.create!(amount: 50_000)
 
     expect(account.total_payout_due).to eq(4)
   end
