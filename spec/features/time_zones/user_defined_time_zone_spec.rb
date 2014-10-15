@@ -14,7 +14,7 @@ feature 'User defined time zones' do
       user = create(:signup, time_zone: 'Pacific Time (US & Canada)')
 
       logged_in(user) { page.visit }
-      expect(page).to have_content('Dec 31 9:00pm') # 2013, PST
+      expect(page).to have_content('Dec 31, 9:00pm PST') # 2013, PST
     end
   end
 end
