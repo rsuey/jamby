@@ -4,7 +4,7 @@ feature 'View live hangouts details', :js do
   scenario 'see the links when the session already has them saved' do
     user = create(:signup)
     group_session = create(:group_session, live_url: 'http://foo/bar',
-                                            broadcast_id: '123abcdefg')
+                                           broadcast_id: '123abcdefg')
     page = GroupSessionPage.new(group_session)
 
     Booking.create(group_session, user)

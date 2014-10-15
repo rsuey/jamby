@@ -20,7 +20,7 @@ describe GroupSessionsController do
 
     it 'cancels paid bookings' do
       user = create(:account)
-      group_session = create(:group_session, price: 1)
+      group_session = create(:priced_group_session)
 
       allow(controller).to receive(:current_user).and_return(user)
       allow(controller).to receive(:current_account).and_return(user)
@@ -135,7 +135,7 @@ describe GroupSessionsController do
   describe '#GET book' do
     it 'redirects to confirm payment for priced sessions' do
       user = create(:user)
-      group_session = create(:group_session, price: 1)
+      group_session = create(:priced_group_session)
 
       allow(controller).to receive(:current_user).and_return(user)
       get :book, id: group_session.id

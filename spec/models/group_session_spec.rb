@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe GroupSession do
   it 'tracks payout and total value if the price changes' do
-    group_session = create(:group_session, ended_at: Time.current)
+    group_session = create(:completed_group_session)
 
     group_session.payments.create!(amount: 100)
     group_session.payments.create!(amount: 50)
@@ -94,7 +94,7 @@ describe GroupSession do
   describe '#paid?' do
     context 'when it is free' do
       it 'returns true' do
-        group_session = create(:group_session, price: 0)
+        group_session = create(:free_group_session)
         expect(group_session).to be_paid(double(:user))
       end
     end
@@ -102,7 +102,7 @@ describe GroupSession do
     context 'when it is not free' do
       context 'and the user does not have a payment' do
         it 'returns false' do
-          group_session = create(:group_session, price: 1)
+          group_session = create(:priced_group_session)
           expect(group_session).to_not be_paid(double(:user))
         end
       end
@@ -110,7 +110,7 @@ describe GroupSession do
       context 'and the user has a payment' do
         it 'returns true' do
           user = create(:account)
-          group_session = create(:group_session, price: 1)
+          group_session = create(:priced_group_session)
           create(:payment, group_session: group_session, account: user)
           expect(group_session).to be_paid(user)
         end
@@ -119,7 +119,7 @@ describe GroupSession do
       context 'and the payment has been deleted' do
         it 'returns false' do
           user = create(:account)
-          group_session = create(:group_session, price: 1)
+          group_session = create(:priced_group_session)
           create(:payment, group_session: group_session, account: user)
           Payment.last.destroy
           expect(group_session).to_not be_paid(user)
@@ -187,14 +187,14 @@ describe GroupSession do
   describe '#free?' do
     context 'when the price is 0' do
       it 'returns true' do
-        group_session = create(:group_session, price: 0)
+        group_session = create(:free_group_session)
         expect(group_session).to be_free
       end
     end
 
     context 'when the price is greater than 0' do
       it 'returns false' do
-        group_session = create(:group_session, price: 0.01)
+        group_session = create(:priced_group_session)
         expect(group_session).to_not be_free
       end
     end

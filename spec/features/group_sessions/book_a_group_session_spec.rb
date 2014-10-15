@@ -37,7 +37,7 @@ feature 'User books a group session' do
   scenario 'User books a paid group session' do
     VCR.use_cassette('book a paid session') do
       user = create(:account)
-      group_session = create(:group_session, price: 1)
+      group_session = create(:priced_group_session)
       page = GroupSessionPage.new(group_session)
 
       logged_in(user) do
@@ -64,7 +64,7 @@ feature 'User books a group session' do
   scenario 'User books a paid group session with new payment information' do
     VCR.use_cassette('book a paid session with new payment method') do
       user = create(:account)
-      group_session = create(:group_session, price: 1)
+      group_session = create(:priced_group_session)
       page = GroupSessionPage.new(group_session)
 
       logged_in(user) do
