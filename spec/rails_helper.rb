@@ -26,13 +26,19 @@ RSpec.configure do |config|
   config.include ShowMeTheCookies, :type => :feature
   config.include SigninHelper
 
+  config.profile_examples = 10
+
   config.before(:suite) do
-    DatabaseCleaner.strategy = :truncation
+    DatabaseCleaner.strategy = :transaction
     begin
       DatabaseCleaner.start
     ensure
       DatabaseCleaner.clean
     end
+  end
+
+  config.before(:suite, type: :js) do
+    DatabaseCleaner.strategy = :truncation
   end
 
   config.before(:each) do
