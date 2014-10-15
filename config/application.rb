@@ -29,5 +29,7 @@ module Jamby
     config.filter_parameters += [:card, :payment_method, :remote_id,
                                  :authenticity_token, :auth_token, :socket_id,
                                  :channel_name, :routing_number, :account_number]
+
+    config.active_record.schema_format = :sql
   end
 end
