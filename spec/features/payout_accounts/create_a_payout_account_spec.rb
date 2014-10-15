@@ -3,10 +3,9 @@ require 'rails_helper'
 feature 'Creating a payouts account' do
   scenario 'A user who has not completed paid group sessions gets no link' do
     user = create(:signup)
-    create(:group_session, price: 0, host: user)
-    create(:group_session, price: 1, host: user)
-    create(:group_session, price: 1, deleted_at: Time.current, host: user)
-    create(:group_session, price: 0, ended_at: nil, host: user)
+    create(:free_group_session, host: user)
+    create(:priced_group_session, host: user)
+    create(:deleted_group_session, host: user)
 
     logged_in(user) { visit dashboard_account_path }
 
@@ -15,7 +14,7 @@ feature 'Creating a payouts account' do
 
   scenario 'Create the payouts account' do
     user = create(:signup)
-    create(:group_session, price: 1, ended_at: Time.current, host: user)
+    create(:completed_group_session, price: 1, host: user)
 
     logged_in(user) do
       visit dashboard_account_path
