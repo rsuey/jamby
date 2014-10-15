@@ -28,7 +28,7 @@ describe GroupSession do
   end
 
   it 'delegates name, avatar, and email to the host' do
-    user = create(:user, first_name: 'Foo', last_name: 'Bar',
+    user = build(:user, first_name: 'Foo', last_name: 'Bar',
                          email: 'host@example.com')
     group_session = build(:group_session, host: user)
     expect(group_session.host_email).to eq('host@example.com')
@@ -132,7 +132,7 @@ describe GroupSession do
 
   it 'is not booked out of thin air' do
     group_session = build(:group_session)
-    user = create(:user)
+    user = build(:user)
     expect(group_session).to_not be_booked_by(user)
   end
 
