@@ -2,8 +2,12 @@ class Booking < GroupSessionsUser
   scope :upcoming, -> { joins(:group_session).where('group_sessions.ended_at IS NULL') }
 
   class << self
+    def find(group_session, user)
+      find_by(group_session_id: group_session.id, user_id: user.id)
+    end
+
     def create(group_session, user)
-      unless find_by(group_session_id: group_session.id, user_id: user.id)
+      unless find(group_session, user)
         super(group_session: group_session, user: user)
         notify_create_by_email(group_session, user)
         schedule_email_reminder(group_session, user)
@@ -11,7 +15,7 @@ class Booking < GroupSessionsUser
     end
 
     def destroy(group_session, user)
-      if session = find_by(group_session_id: group_session.id, user_id: user.id)
+      if session = find(group_session, user)
         session.destroy
         notify_destroy_by_email(group_session, user)
       end
