@@ -7,9 +7,7 @@ feature 'Host a group session', :js do
                                            starts_at: 15.minutes.from_now)
     page = GroupSessionPage.new(group_session)
 
-    logged_in(user) do
-      page.visit
-    end
+    logged_in(user) { page.visit }
 
     iframeId = page.evaluate_script('$("iframe").first().attr("id")')
     within_frame(iframeId) do
@@ -23,9 +21,7 @@ feature 'Host a group session', :js do
                                            starts_at: 16.minutes.from_now)
     page = GroupSessionPage.new(group_session)
 
-    logged_in(user) do
-      page.visit
-    end
+    logged_in(user) { page.visit }
 
     iframeId = page.evaluate_script('$("iframe").first().attr("id")')
     expect(iframeId).to be_nil
