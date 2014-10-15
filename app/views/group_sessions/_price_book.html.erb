@@ -6,7 +6,7 @@
       <%= t('text.models.group_session.hosting') %>
     <% elsif group_session.fully_booked? %>
       <%= t('text.models.group_session.fully_booked') %>
-    <% elsif group_session.can_be_booked_by?(current_user) %>
+    <% elsif group_session.bookable_by?(current_user) %>
       <%= render 'book_now_button', group_session: group_session %>
     <% end %>
   </div>

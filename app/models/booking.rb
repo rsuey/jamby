@@ -7,7 +7,7 @@ class Booking < GroupSessionsUser
     end
 
     def create(group_session, user)
-      unless find(group_session, user)
+      if group_session.bookable_by?(user)
         super(group_session: group_session, user: user)
         notify_create_by_email(group_session, user)
         schedule_email_reminder(group_session, user)

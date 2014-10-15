@@ -22,7 +22,7 @@ class GroupSessionsController < ApplicationController
       Booking.create(@group_session, current_user)
       flash[:info] = t('controllers.group_sessions.book.successful')
       redirect_to after_successful_booking_path
-    elsif @group_session.can_be_booked_by?(current_user)
+    elsif @group_session.bookable_by?(current_user)
       flash[:info] = t('controllers.group_sessions.book.please_confirm')
       redirect_to confirm_payment_path(@group_session)
     else

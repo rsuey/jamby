@@ -77,7 +77,7 @@ class GroupSession < ActiveRecord::Base
     price.zero?
   end
 
-  def can_be_booked_by?(user)
+  def bookable_by?(user)
     host != user and not booked_by?(user)
   end
 
