@@ -12,6 +12,7 @@ class Account < Signup
   def transfer_payouts_due!
     payout_account.transfer(total_payout_due)
     group_sessions.completed.unpaid_out.find_each(&:payout!)
+    HostNotifier.payouts_transferred(self, total_payout_due).deliver
   end
 
   def total_payout_due

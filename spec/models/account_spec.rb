@@ -26,6 +26,22 @@ describe Account do
       expect(group_session.reload).to be_paid_out
       expect(uncompleted_group_session.reload).not_to be_paid_out
     end
+
+    it 'sends the host an email' do
+      ActionMailer::Base.deliveries.clear
+
+      account = create(:account)
+      group_session = create(:completed_group_session, host: account)
+      group_session.payments.create!(amount: 100)
+
+      allow(account.payout_account).to receive(:transfer)
+
+      account.transfer_payouts_due!
+      email = ActionMailer::Base.deliveries.last
+
+      expect(email.to).to eq([account.email])
+      expect(email.subject).to eq("You've been paid!")
+    end
   end
 
   it 'knows its total payout value' do

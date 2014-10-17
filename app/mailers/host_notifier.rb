@@ -12,4 +12,10 @@ class HostNotifier < ActionMailer::Base
     @group_session_title = group_session.title
     mail to: group_session.host_email
   end
+
+  def payouts_transferred(account, total_payout_amount)
+    @name = account.name
+    @total = total_payout_amount
+    mail to: account.email
+  end
 end

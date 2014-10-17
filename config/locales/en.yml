@@ -1,6 +1,9 @@
 en:
   application:
     title: 'Jamby'
+  host_notifier:
+    payouts_transferred:
+      subject: "You've been paid!"
   text:
     models:
       account:
