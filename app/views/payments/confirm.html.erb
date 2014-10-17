@@ -8,7 +8,7 @@
   <%= render 'shared/errors', record: @payment %>
 
   <%= form_for @payment do |f| %>
-    <%= f.hidden_field :group_session_id, value: @group_session.id %>
+    <%= f.hidden_field :group_session_id, value: @group_session.hashed_id %>
 
     <div id='existing-payment-method'>
       <%= render 'existing_payment_method', f: f,
