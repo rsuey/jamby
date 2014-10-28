@@ -10,10 +10,12 @@ feature 'User defined time zones' do
         create(:group_session, host: host, starts_at: Time.current)
                                                       # Jan 1, 2014 12:00am EST
       end
+
       page = GroupSessionPage.new(GroupSession.last)
       user = create(:signup, time_zone: 'Pacific Time (US & Canada)')
 
       logged_in(user) { page.visit }
+
       expect(page).to have_content('Dec 31, 9:00pm PST') # 2013, PST
     end
   end
