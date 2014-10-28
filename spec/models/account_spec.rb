@@ -4,11 +4,16 @@ describe Account do
   describe '#transfer_payouts_due!' do
     it 'transfers payouts due to its payout account' do
       account = create(:account)
+      payout_account = double(:payout_account)
       group_session = create(:completed_group_session, host: account)
+
       group_session.payments.create!(amount: 100)
 
-      allow(account.payout_account).to receive(:transfer)
+      allow(account).to receive(:payout_account) { payout_account }
+      allow(payout_account).to receive(:transfer)
+
       account.transfer_payouts_due!
+
       expect(account.payout_account).to have_received(:transfer).with(0.8)
     end
 
