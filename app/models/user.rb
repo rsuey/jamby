@@ -4,8 +4,8 @@ class User < ActiveRecord::Base
   has_many :bookings
   has_many :booked_sessions, through: :bookings, source: :group_session
 
-  has_attached_file :avatar, path: "public/system/accounts/:id/:style/:filename",
-                             url: "/system/accounts/:id/:style/:basename.:extension",
+  has_attached_file :avatar, path: "/system/accounts/:id/:style/:filename",
+                             url: ":s3_domain_url",
                              default_url: :gravatar_url,
                              default_style: :thumb,
                              styles: {
