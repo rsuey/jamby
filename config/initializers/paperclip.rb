@@ -15,3 +15,5 @@ Paperclip.interpolates(:gravatar_url) do |attachment, style|
   # and default is second
   attachment.instance.gravatar_url(nil, size)
 end
+
+Paperclip::Attachment.default_options[:url] = ':s3_domain_url'
