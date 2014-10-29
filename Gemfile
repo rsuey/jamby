@@ -32,6 +32,8 @@ gem 'rehearsal', github: 'joemsak/rehearsal'
 
 gem 'sdoc', '~> 0.4', group: :doc
 
+gem 'airbrake', '~> 4.1'
+
 group :development do
   gem 'spring', '~> 1.1'
 end
@@ -62,5 +64,4 @@ group :production, :staging do
   gem 'rails_12factor', '~> 0.0'
   gem 'unicorn', '~> 4.3'
   gem 'newrelic_rpm', '~> 3.9'
-  gem 'airbrake'
 end
