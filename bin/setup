@@ -1,0 +1,5 @@
+#!/bin/sh
+
+bundle
+rake db:create db:migrate
+brew install imagemagick
