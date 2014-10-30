@@ -30,17 +30,19 @@
                   .text("<%= t('links.models.group_session.join_live_session_now') %>")
                   .attr('href', data.url),
 
-          $iframe = $('<iframe></iframe>')
-                    .attr('width', 560).attr('height', 315)
-                    .attr('frameborder', 0).attr('allowfullscreen')
-                    .attr('src', "//youtube.com/embed/" + data.youtubeId);
+                  $iframe = $('<iframe></iframe>')
+                              .attr('width', 560)
+                              .attr('height', 315)
+                              .attr('frameborder', 0)
+                              .attr('allowfullscreen', '')
+                              .attr('src', "//youtube.com/embed/" + data.youtubeId);
 
       if (data.url !== undefined) {
         $('#join_session').html($link);
       }
 
       if (data.youtubeId !== undefined) {
-        $('#watch_live').html($youtubeLink);
+        $('#watch_live').html($iframe);
       }
     });
   });
