@@ -8,7 +8,7 @@
 
 <script>
   $(function() {
-    <% pusher_options = { authEndpoint: '/messenger/auth' } %>
+    <% pusher_options = { authEndpoint: messenger_auth_path } %>
 
     <% unless Rails.env.production? %>
       Pusher.log = function(message) {
