@@ -1,6 +1,7 @@
 #!/bin/sh
 
 brew update
+brew install qt
 brew install imagemagick
 
 bundle
