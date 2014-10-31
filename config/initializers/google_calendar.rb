@@ -1,15 +1,13 @@
 require 'rubygems'
 require 'google/api_client'
-require 'yaml'
 
-oauth_yaml = YAML.load_file('.google-api.yaml')
 GoogleClient = Google::APIClient.new
 
-GoogleClient.authorization.client_id = oauth_yaml["client_id"]
-GoogleClient.authorization.client_secret = oauth_yaml["client_secret"]
-GoogleClient.authorization.scope = oauth_yaml["scope"]
-GoogleClient.authorization.refresh_token = oauth_yaml["refresh_token"]
-GoogleClient.authorization.access_token = oauth_yaml["access_token"]
+GoogleClient.authorization.client_id = ENV['GOOGLE_CLIENT_ID']
+GoogleClient.authorization.client_secret = ENV['GOOGLE_CLIENT_SECRET']
+GoogleClient.authorization.scope = 'https://www.googleapis.com/auth/calendar'
+GoogleClient.authorization.refresh_token = ENV['GOOGLE_REFRESH_TOKEN']
+GoogleClient.authorization.access_token = ENV['GOOGLE_ACCESS_TOKEN']
 
 if GoogleClient.authorization.refresh_token && GoogleClient.authorization.expired?
   GoogleClient.authorization.fetch_access_token!

@@ -14,12 +14,16 @@ class Event
   end
 
   def save
-    result = Calendar.execute(api_method: Calendar.events.insert,
-                     parameters: { 'calendarId' => 'primary' },
-                     body: to_json,
-                     headers: { 'Content-Type' => 'application/json' })
-    @id = result.data.id
-    @url = result.data.hangoutLink
+    begin
+      result = Calendar.execute(api_method: Calendar.events.insert,
+                       parameters: { 'calendarId' => 'primary' },
+                       body: to_json,
+                       headers: { 'Content-Type' => 'application/json' })
+      @id = result.data.id
+      @url = result.data.hangoutLink
+    rescue
+      retry
+    end
   end
 
   def to_json
