@@ -1,6 +1,7 @@
 #!/bin/sh
 
-bundle
-rake db:create db:migrate
 brew update
 brew install imagemagick
+
+bundle
+rake db:create db:migrate
