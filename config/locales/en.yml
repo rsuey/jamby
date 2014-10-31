@@ -73,6 +73,7 @@ en:
         delete: 'cancel this session'
         edit: 'Edit this session'
         join_live_session_now: 'Join the live session now!'
+        launch: 'Start your session now!'
         list: 'Live sessions'
         watch_on_air_now: 'Watch live on Youtube'
       payment_method:

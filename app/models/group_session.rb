@@ -54,7 +54,7 @@ class GroupSession < ActiveRecord::Base
   end
 
   def live_details_ready?
-    live_url.present? && broadcast_id.present?
+    ready_to_start? && live_url.present?
   end
 
   def broadcast_embed

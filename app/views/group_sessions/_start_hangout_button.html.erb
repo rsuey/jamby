@@ -1,11 +1,9 @@
 <% if group_session.ready_to_start? %>
   <div id='hangout_button' class='row'>
     <div class='columns small-12'>
-      <g:hangout render="createhangout"
-                 topic='<%= group_session.title %>'
-                 widget_size=175
-                 hangout_type='onair'
-                 initial_apps="[{ 'app_id' : '<%= ENV["HANGOUTS_APP_ID"] %>', 'start_data' : '<%= group_session.hashed_id %>', 'app_type' : 'ROOM_APP' }]"></g:hangout>
+      <%= link_to t('links.models.group_session.launch'),
+                  group_session.live_url,
+                  class: 'button' %>
     </div>
   </div>
 <% end %>
