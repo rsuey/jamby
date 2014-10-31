@@ -4,12 +4,6 @@
   </div>
 </div>
 
-<div class='row'>
-  <div id='watch_live' class='columns small-6 small-centered'>
-    <center><%= t('text.models.group_session.waiting_to_start') %></center>
-  </div>
-</div>
-
 <script>
   $(function() {
     <% pusher_options = { authEndpoint: messenger_auth_path } %>
@@ -32,21 +26,10 @@
     channel.bind('session_is_live', function(data) {
       var $link = $('<a></a>')
                   .text("<%= t('links.models.group_session.join_live_session_now') %>")
-                  .attr('href', data.url),
-
-                  $iframe = $('<iframe></iframe>')
-                              .attr('width', 560)
-                              .attr('height', 315)
-                              .attr('frameborder', 0)
-                              .attr('allowfullscreen', '')
-                              .attr('src', "//youtube.com/embed/" + data.youtubeId);
+                  .attr('href', data.url);
 
       if (data.url !== undefined) {
         $('#join_session').html($link);
-      }
-
-      if (data.youtubeId !== undefined) {
-        $('#watch_live').html($iframe);
       }
     });
   });
