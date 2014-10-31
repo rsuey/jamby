@@ -1,9 +1,13 @@
 <div class='row'>
-  <div id='join_session' class='columns small-6 small-centered'></div>
+  <div id='join_session' class='columns small-6 small-centered'>
+    <center><%= image_tag 'spinner.gif' %></center>
+  </div>
 </div>
 
 <div class='row'>
-  <div id='watch_live' class='columns small-6 small-centered'></div>
+  <div id='watch_live' class='columns small-6 small-centered'>
+    <center><%= t('text.models.group_session.waiting_to_start') %></center>
+  </div>
 </div>
 
 <script>

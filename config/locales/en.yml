@@ -34,6 +34,7 @@ en:
           live: 'Live now'
           new: 'Host a live session'
           upcoming: 'Coming up'
+        waiting_to_start: 'Waiting for the host to begin the session...'
         with: 'with'
       password:
         titles:
