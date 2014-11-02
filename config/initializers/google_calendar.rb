@@ -1,16 +1,24 @@
 require 'rubygems'
 require 'google/api_client'
 
-GoogleClient = Google::APIClient.new
+procedure = lambda {
+  GoogleClient = Google::APIClient.new
 
-GoogleClient.authorization.client_id = ENV['GOOGLE_CLIENT_ID']
-GoogleClient.authorization.client_secret = ENV['GOOGLE_CLIENT_SECRET']
-GoogleClient.authorization.scope = 'https://www.googleapis.com/auth/calendar'
-GoogleClient.authorization.refresh_token = ENV['GOOGLE_REFRESH_TOKEN']
-GoogleClient.authorization.access_token = ENV['GOOGLE_ACCESS_TOKEN']
+  GoogleClient.authorization.client_id = ENV['GOOGLE_CLIENT_ID']
+  GoogleClient.authorization.client_secret = ENV['GOOGLE_CLIENT_SECRET']
+  GoogleClient.authorization.scope = 'https://www.googleapis.com/auth/calendar'
+  GoogleClient.authorization.refresh_token = ENV['GOOGLE_REFRESH_TOKEN']
+  GoogleClient.authorization.access_token = ENV['GOOGLE_ACCESS_TOKEN']
 
-if GoogleClient.authorization.refresh_token && GoogleClient.authorization.expired?
-  GoogleClient.authorization.fetch_access_token!
+  if GoogleClient.authorization.refresh_token && GoogleClient.authorization.expired?
+    GoogleClient.authorization.fetch_access_token!
+  end
+
+  GoogleCalendarService = GoogleClient.discovered_api('calendar', 'v3')
+}
+
+if defined?(VCR)
+  VCR.use_cassette('google client', &procedure)
+else
+  procedure.call
 end
-
-GoogleCalendarService = GoogleClient.discovered_api('calendar', 'v3')
