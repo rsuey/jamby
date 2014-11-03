@@ -9,6 +9,9 @@ gem 'bcrypt', '~> 3.1'
 gem 'permanent_records', '~> 3.1'
 gem 'stripe', '~> 1.15'
 gem 'aws-sdk', '~> 1.55'
+
+gem 'omniauth', '~> 1.2'
+gem 'omniauth-google-oauth2', '~> 0.2'
 gem 'google-api-client', '~> 0.7'
 
 gem 'sidekiq', '~> 3.2'
