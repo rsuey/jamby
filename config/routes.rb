@@ -18,6 +18,7 @@ Rails.application.routes.draw do
 
   resources :signups, only: :create
   resources :signins, only: :create
+  get '/auth/google_oauth2/callback' => 'events#create'
 
   resources :password_resets, only: [:new, :create]
   resources :passwords, only: [:new, :create]

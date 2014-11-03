@@ -48,9 +48,7 @@ class GroupSessionsController < ApplicationController
   def create
     @group_session = group_session_scope.new(group_session_params)
     if @group_session.save
-      CreateEvent.create(@group_session)
-      flash[:info] = t('controllers.group_sessions.create.successful')
-      redirect_to root_path
+      redirect_to '/auth/google_oauth2'
     else
       render :new
     end
