@@ -10,4 +10,8 @@ class Guest < User
   def is_guest?
     true
   end
+
+  def time_zone
+    'Pacific Time (US & Canada)'
+  end
 end
