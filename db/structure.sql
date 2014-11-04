@@ -251,7 +251,7 @@ CREATE TABLE users (
     first_name character varying(255) NOT NULL,
     last_name character varying(255) NOT NULL,
     auth_token uuid DEFAULT uuid_generate_v4(),
-    time_zone character varying(255),
+    time_zone character varying(255) DEFAULT 'Pacific Time (US & Canada)'::character varying,
     password_reset_token uuid DEFAULT uuid_generate_v4(),
     avatar_file_name character varying(255),
     avatar_content_type character varying(255),
