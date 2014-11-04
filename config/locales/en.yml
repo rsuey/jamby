@@ -21,6 +21,7 @@ en:
           change: 'Change your password'
       group_session:
         booked: "You're booked!"
+        check_here: "Check back here when the session is about to start!"
         description: 'Description'
         fully_booked: 'Fully booked, sorry!'
         hosted_by: 'Hosted by'

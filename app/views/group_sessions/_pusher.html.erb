@@ -1,6 +1,13 @@
 <div class='row'>
   <div id='join_session' class='columns small-6 small-centered'>
-    <center><%= image_tag 'spinner.gif' %></center>
+    <center>
+      <% if @group_session.ready_to_start? %>
+        <%= image_tag 'spinner.gif' %><br>
+        <%= t('text.models.group_session.waiting_to_start') %>
+      <% else %>
+        <%= t('text.models.group_session.check_here') %>
+      <% end %>
+    </center>
   </div>
 </div>
 
