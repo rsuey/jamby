@@ -12,13 +12,16 @@ Rails.application.routes.draw do
     end
   end
 
+  get 'events' => 'events#create'
+
   get 'signin' => 'signins#new'
   delete 'logout' => 'signins#destroy', as: :signout
   get 'signup' => 'signups#new'
 
   resources :signups, only: :create
   resources :signins, only: :create
-  get '/auth/google_oauth2/callback' => 'events#create'
+
+  get '/auth/google_oauth2/callback' => 'signups#update'
 
   resources :password_resets, only: [:new, :create]
   resources :passwords, only: [:new, :create]

@@ -48,7 +48,7 @@ class GroupSessionsController < ApplicationController
   def create
     @group_session = group_session_scope.new(group_session_params)
     if @group_session.save
-      redirect_to '/auth/google_oauth2'
+      redirect_to '/auth/google_oauth2' # must create event in host's calendar
     else
       render :new
     end

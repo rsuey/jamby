@@ -62,7 +62,8 @@ CREATE TABLE group_sessions (
     ended_at timestamp without time zone,
     hashed_id uuid DEFAULT uuid_generate_v4(),
     completion_job_id character varying(255),
-    paid_out_at timestamp without time zone
+    paid_out_at timestamp without time zone,
+    remote_id character varying(255)
 );
 
 
@@ -256,7 +257,8 @@ CREATE TABLE users (
     avatar_file_name character varying(255),
     avatar_content_type character varying(255),
     avatar_file_size integer,
-    avatar_updated_at timestamp without time zone
+    avatar_updated_at timestamp without time zone,
+    access_token character varying(255)
 );
 
 
@@ -405,6 +407,13 @@ CREATE INDEX index_group_sessions_on_host_id ON group_sessions USING btree (host
 
 
 --
+-- Name: index_group_sessions_on_remote_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_group_sessions_on_remote_id ON group_sessions USING btree (remote_id);
+
+
+--
 -- Name: index_group_sessions_users_on_group_session_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -472,6 +481,13 @@ CREATE INDEX index_payments_on_remote_id ON payments USING btree (remote_id);
 --
 
 CREATE INDEX index_payout_accounts_on_account_id ON payout_accounts USING btree (account_id);
+
+
+--
+-- Name: index_users_on_access_token; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_users_on_access_token ON users USING btree (access_token);
 
 
 --
@@ -576,4 +592,10 @@ INSERT INTO schema_migrations (version) VALUES ('20141011173853');
 INSERT INTO schema_migrations (version) VALUES ('20141013232902');
 
 INSERT INTO schema_migrations (version) VALUES ('20141015061337');
+
+INSERT INTO schema_migrations (version) VALUES ('20141103065201');
+
+INSERT INTO schema_migrations (version) VALUES ('20141103071815');
+
+INSERT INTO schema_migrations (version) VALUES ('20141104055333');
 

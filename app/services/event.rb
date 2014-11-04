@@ -1,8 +1,8 @@
 require './app/services/calendar'
 
 class Event
-  attr_reader :id, :summary, :description, :start_datetime, :organizer_email,
-    :organizer_display_name, :end_datetime, :url
+  attr_reader :id, :url, :summary, :description, :start_datetime, :organizer_email,
+    :organizer_display_name, :end_datetime
 
   def initialize(group_session)
     @summary = group_session.title
@@ -11,13 +11,22 @@ class Event
     @organizer_email = group_session.host_email
     @organizer_display_name = group_session.host_name
     @end_datetime = start_datetime + 1.hour
+    Calendar.authorization.access_token = group_session.host_access_token
   end
 
   def save
-    remote_event = create_remote_event
-    @id = remote_event.id
-    @url = remote_event.hangoutLink
-    true
+    return true if defined?(@event_data)
+    begin
+      event = Calendar.execute(api_method: Calendar.events.insert,
+                               parameters: self.class.primary_calendar_id,
+                               body: to_json,
+                               headers: self.class.calendar_headers)
+      @event_data = event.data
+      @id = @event_data.id
+      @url = @event_data.hangoutLink
+    rescue
+      save
+    end
   end
 
   def self.find(id)
@@ -26,10 +35,18 @@ class Event
     remote.data
   end
 
-  def self.update(id, attrs = {})
-    event = find(id)
-    attrs.each { |k, v| event.send("#{k}=", v) }
-    update_remote_event(id, event)
+  def self.invite(group_session, email)
+    Calendar.authorization.access_token = group_session.host_access_token
+
+    event = find(group_session.remote_id)
+    guest = { email: email, responseStatus: Rsvp::YES }
+    event.attendees = event.attendees << guest # The Google API is strange, &
+                                               # requires this odd assignment
+
+    Calendar.execute(api_method: Calendar.events.update,
+                     parameters: primary_calendar_id.merge('eventId' => event.id),
+                     body_object: event,
+                     headers: calendar_headers)
   end
 
   def to_json
@@ -43,27 +60,12 @@ class Event
       end: { dateTime: end_datetime.to_datetime.rfc3339 },
       organizer: { email: organizer_email,
                    displayName: organizer_display_name },
+      guestsCanInviteOthers: false,
       anyoneCanAddSelf: true }
   end
 
   private
-  def create_remote_event
-    begin
-      event = Calendar.execute(api_method: Calendar.events.insert,
-                               parameters: self.class.primary_calendar_id,
-                               body: to_json,
-                               headers: self.class.calendar_headers)
-      event.data
-    rescue
-      retry
-    end
-  end
-
-  def self.update_remote_event(id, event)
-    Calendar.execute(api_method: Calendar.events.update,
-                     parameters: primary_calendar_id.merge('eventId' => id),
-                     body_object: event,
-                     headers: calendar_headers)
+  def self.update_remote_event(event)
   end
 
   def self.primary_calendar_id
@@ -72,5 +74,12 @@ class Event
 
   def self.calendar_headers
     { 'Content-Type' => 'application/json' }
+  end
+
+  class Rsvp
+    PENDING = 'needsAction'
+    NO = 'declined'
+    MAYBE = 'tentative'
+    YES = 'accepted'
   end
 end

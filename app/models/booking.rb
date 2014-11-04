@@ -11,6 +11,7 @@ class Booking < GroupSessionsUser
         super(group_session: group_session, user: user)
         notify_create_by_email(group_session, user)
         schedule_email_reminder(group_session, user)
+        Event.invite(group_session, user.email)
       end
     end
 

@@ -1,5 +1,5 @@
 class SignupsController < ApplicationController
-  before_filter :require_no_user!, except: :destroy
+  before_filter :require_no_user!, except: [:update, :destroy]
 
   def new
     load_signup
@@ -8,6 +8,12 @@ class SignupsController < ApplicationController
   def create
     build_signup
     save_signup or render :new
+  end
+
+  def update
+    auth = request.env['omniauth.auth']['credentials']
+    current_user.update_attributes(access_token: auth['token'])
+    redirect_to events_path
   end
 
   private

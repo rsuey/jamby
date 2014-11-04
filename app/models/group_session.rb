@@ -10,7 +10,8 @@ class GroupSession < ActiveRecord::Base
 
   validates :title, :description, :starts_at, presence: true
 
-  delegate :name, :email, :avatar, to: :host, prefix: true, allow_nil: true
+  delegate :name, :email, :avatar, :access_token,
+    to: :host, prefix: true, allow_nil: true
 
   scope :upcoming, -> { not_completed.where('starts_at > ?', Time.current) }
   scope :live, -> { not_completed.where('starts_at <= ?', Time.current) }
