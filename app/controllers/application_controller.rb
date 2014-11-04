@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   rehearse_with 'jamby', 'joesak2k14'
 
-  around_filter :user_time_zone, if: :current_user
+  around_filter :user_time_zone
 
   helper_method :current_user
 
