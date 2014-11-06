@@ -3,8 +3,8 @@ require 'rails_helper'
 describe MessengerController do
   describe 'POST #auth' do
     it 'rejects unauthenticated requests' do
-      allow(controller).to receive(:current_user) { false }
-      post :auth
+      allow(controller).to receive(:current_user) { Guest.new }
+      post :auth, channel_name: 'name', socket_id: 'socket'
       expect(response.code).to eq('403')
       expect(response.body).to eq('Forbidden')
     end
