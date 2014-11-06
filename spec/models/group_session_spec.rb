@@ -77,13 +77,25 @@ describe GroupSession do
     expect(group_session.broadcast_embed).to eq('//youtube.com/embed/fooBar')
   end
 
-  it 'is #live_details_ready? if live_url and broadcast_id are present' do
+  it 'is #live_details_ready? if #live_url is present and is #ready_to_start' do
     group_session = build(:group_session)
+
     expect(group_session).to_not be_live_details_ready
 
-    group_session = build(:group_session, live_url: 'present',
-                                          broadcast_id: 'here')
+    group_session.live_url = 'present'
+    allow(group_session).to receive(:ready_to_start?) { true }
+
     expect(group_session).to be_live_details_ready
+  end
+
+  it 'is #ready_to_start when it #starts_at 15 minutes from now' do
+    group_session = create(:group_session, starts_at: 15.minutes.from_now)
+
+    expect(group_session).to be_ready_to_start
+
+    group_session.starts_at = 16.minutes.from_now
+
+    expect(group_session).not_to be_ready_to_start
   end
 
   it 'is paid when it is free' do
