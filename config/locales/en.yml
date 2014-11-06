@@ -63,6 +63,8 @@ en:
       signin:
         new: 'Sign in'
   links:
+    application:
+      cancel: 'cancel'
     models:
       account:
         edit: 'Edit your profile'
@@ -71,15 +73,15 @@ en:
         add: 'Host your own session'
         book_now: 'Book now'
         cancel_booking: 'cancel'
-        delete: 'cancel this session'
+        delete: 'Cancel session'
         edit: 'Edit this session'
         join_live_session_now: 'Join the live session now!'
         launch: 'Start your session now!'
         list: 'Live sessions'
         watch_on_air_now: 'Watch live on Youtube'
       payment_method:
-        edit: 'Edit'
-        delete: 'Delete'
+        edit: 'edit'
+        delete: 'delete'
         new: 'Add a payment method'
       payout_account:
         edit: 'edit'
