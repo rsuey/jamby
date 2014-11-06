@@ -96,6 +96,7 @@ describe Account do
                                          account: account)
     deleted_payment = create(:payment, group_session: upcoming_group_session,
                                        account: account)
+    orphaned_payment = create(:payment, account: account)
 
     account.destroy
 

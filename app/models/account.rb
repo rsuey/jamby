@@ -30,7 +30,9 @@ class Account < Signup
 
   def destroy_outstanding_payments
     payments.not_deleted.find_each do |payment|
-      payment.destroy unless payment.group_session.completed?
+      if payment.group_session && !payment.group_session.completed?
+        payment.destroy
+      end
     end
   end
 
