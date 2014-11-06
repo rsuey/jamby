@@ -50,9 +50,14 @@ class ApplicationController < ActionController::Base
   end
 
   def find_or_guest(klass)
-    cookies[:auth_token] &&
-      klass.find_by(auth_token: cookies[:auth_token]) ||
-        Guest.new
+    begin
+      cookies[:auth_token] &&
+        klass.find_by(auth_token: cookies[:auth_token]) ||
+          Guest.new
+    rescue PG::InvalidTextRepresentation
+      cookies.delete(:auth_token)
+      Guest.new
+    end
   end
 
   def user_time_zone(&block)
