@@ -27,48 +27,9 @@ describe GroupSessionsController do
       Booking.create(group_session, user)
       Payment.create!(group_session: group_session, account: user)
 
-      get :cancel_booking, id: group_session.id
+      get :cancel_booking, id: group_session.to_param
 
       expect(Payment.last.deleted_at).to_not be_nil
-    end
-  end
-
-  describe 'PUT #ping' do
-    it 'is a heartbeat for the live sessions' do
-      allow(GroupSession).to receive(:find).with('1') {
-        double(:group_session, completion_job_id: 'abc123')
-      }
-      allow(CompleteGroupSessionWorker).to receive(:reschedule)
-
-      Timecop.freeze(Time.current) do
-        put :ping, id: 1
-        expect(CompleteGroupSessionWorker).to have_received(:reschedule).with('abc123')
-      end
-    end
-  end
-
-  describe 'POST #ready' do
-    it 'notifies messenger for the group session' do
-      group_session = create(:group_session, id: 3)
-
-      allow(Messenger).to receive(:notify)
-      post :ready, id: 3, hangoutUrl: 'http://google.com/foo/bar',
-                          youtubeId: '123abcXYnfg'
-
-      expect(Messenger).to have_received(:notify)
-                           .with(group_session, 'session_is_live',
-                                 { url: 'http://google.com/foo/bar',
-                                   youtubeId: '123abcXYnfg' })
-    end
-
-    it 'saves the details to the group session' do
-      group_session = create(:group_session)
-
-      post :ready, id: group_session.id, hangoutUrl: 'http://foo/bar',
-                                         youtubeId: '123abcdefg'
-
-      expect(group_session.reload.live_url).to eq('http://foo/bar')
-      expect(group_session.broadcast_id).to eq('123abcdefg')
     end
   end
 

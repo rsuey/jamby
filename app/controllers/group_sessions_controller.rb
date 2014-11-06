@@ -1,10 +1,8 @@
 class GroupSessionsController < ApplicationController
-  skip_before_filter :require_http_basic_auth, only: [:ready, :ping]
-  protect_from_forgery except: [:ready, :ping]
+  protect_from_forgery
 
-  before_filter :store_location, except: [:create, :update, :destroy,
-                                          :ready, :ping]
-  before_filter :authenticate_user!, except: [:index, :show, :ready, :ping]
+  before_filter :store_location, except: [:create, :update, :destroy]
+  before_filter :authenticate_user!, except: [:index, :show]
 
   def index
     @live_sessions = group_session_scope.live
@@ -69,22 +67,6 @@ class GroupSessionsController < ApplicationController
     else
       render :edit
     end
-  end
-
-  def ready
-    group_session = GroupSession.find(params[:id])
-    Messenger.notify(group_session, 'session_is_live',
-                                    { url: params[:hangoutUrl],
-                                      youtubeId: params[:youtubeId] })
-    group_session.update_attributes(live_url: params[:hangoutUrl],
-                                    broadcast_id: params[:youtubeId])
-    render nothing: true
-  end
-
-  def ping
-    group_session = GroupSession.find(params[:id])
-    CompleteGroupSessionWorker.reschedule(group_session.completion_job_id)
-    render nothing: true
   end
 
   def destroy
