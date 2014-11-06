@@ -16,6 +16,7 @@ procedure = lambda {
 }
 
 if defined?(VCR)
+  require 'vcr_helper'
   VCR.use_cassette('google client', &procedure)
 else
   procedure.call

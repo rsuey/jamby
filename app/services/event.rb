@@ -36,6 +36,7 @@ class Event
   end
 
   def self.invite(group_session, email)
+    return if Calendar.test_mode
     Calendar.authorization.access_token = group_session.host_access_token
 
     event = find(group_session.remote_id)

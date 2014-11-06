@@ -1,6 +1,9 @@
+require 'pry'
 require 'sidekiq/testing'
+require './app/services/calendar'
 
 Sidekiq::Testing.disable!
+Calendar.test_mode!
 
 RSpec.configure do |config|
   config.filter_run :focus
