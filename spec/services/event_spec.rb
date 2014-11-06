@@ -10,7 +10,8 @@ describe Event do
                                            description: 'Hello world',
                                            starts_at: time,
                                            host_name: 'Joe Sak',
-                                           host_email: 'joe@joesak.com')
+                                           host_email: 'joe@joesak.com',
+                                           host_access_token: '123abc')
 
     event = Event.new(group_session)
 
@@ -26,7 +27,8 @@ describe Event do
                                            description: 'Hello world',
                                            starts_at: Time.current,
                                            host_name: 'Joe Sak',
-                                           host_email: 'joe@joesak.com')
+                                           host_email: 'joe@joesak.com',
+                                           host_access_token: '123abc')
 
     event = Event.new(group_session)
     event.save
