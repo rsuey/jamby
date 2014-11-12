@@ -1,65 +1,6 @@
 require 'rails_helper'
 
 describe Account do
-  describe '#transfer_payouts_due!' do
-    it 'transfers payouts due to its payout account' do
-      account = create(:account)
-      payout_account = double(:payout_account)
-      group_session = create(:completed_group_session, host: account)
-
-      group_session.payments.create!(amount: 100)
-
-      allow(account).to receive(:payout_account) { payout_account }
-      allow(payout_account).to receive(:transfer)
-
-      account.transfer_payouts_due!
-
-      expect(account.payout_account).to have_received(:transfer).with(0.8)
-    end
-
-    it 'marks the group sessions as paid out' do
-      account = create(:account)
-      group_session = create(:completed_group_session, host: account)
-      uncompleted_group_session = create(:priced_group_session, host: account)
-
-      group_session.payments.create!(amount: 100)
-      uncompleted_group_session.payments.create!(amount: 100)
-
-      VCR.use_cassette('create payout account') do
-        create(:payout_account, account: account)
-      end
-
-      VCR.use_cassette('tranfer payouts due') do
-        account.transfer_payouts_due!
-      end
-
-      expect(group_session.reload).to be_paid_out
-      expect(uncompleted_group_session.reload).not_to be_paid_out
-    end
-
-    it 'sends the host an email' do
-      ActionMailer::Base.deliveries.clear
-
-      account = create(:account)
-      group_session = create(:completed_group_session, host: account)
-      group_session.payments.create!(amount: 100)
-
-      VCR.use_cassette('create payout account') do
-        create(:payout_account, account: account)
-      end
-
-      VCR.use_cassette('tranfer payouts due') do
-        account.transfer_payouts_due!
-      end
-
-      email = ActionMailer::Base.deliveries.last
-
-      expect(email.to).to eq([account.email])
-      expect(email.subject).to eq("You've been paid!")
-      expect(email.text_part.decoded).to include('$0.80')
-    end
-  end
-
   it 'knows its total payout value' do
     account = create(:account)
     group_session = create(:completed_group_session, host: account)

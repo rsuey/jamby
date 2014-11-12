@@ -9,36 +9,15 @@ class Account < Signup
 
   after_destroy :cancel_outstanding_bookings, :destroy_outstanding_payments
 
-  def transfer_payouts_due!
-    if payable? && payout_account.present?
-      amount = total_payout_due
-      transfer_to_payout_account(amount)
-      mark_group_sessions_as_paid
-      email_host_about_payment(amount)
-    end
-  end
-
-  def total_payout_due
-    group_sessions.completed.inject(0) { |sum, g| g.payout_value + sum }
-  end
-
   def payable?
     total_payout_due > 0
   end
 
+  def total_payout_due
+    group_sessions.completed.unpaid_out.inject(0) { |sum, g| g.payout_value + sum }
+  end
+
   private
-  def transfer_to_payout_account(amount)
-    payout_account.transfer(amount)
-  end
-
-  def mark_group_sessions_as_paid
-    group_sessions.completed.unpaid_out.find_each(&:payout!)
-  end
-
-  def email_host_about_payment(amount)
-    HostNotifier.payouts_transferred(self, amount).deliver
-  end
-
   def cancel_outstanding_bookings
     bookings.upcoming.find_each(&:destroy)
   end
