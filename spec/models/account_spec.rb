@@ -56,6 +56,7 @@ describe Account do
 
       expect(email.to).to eq([account.email])
       expect(email.subject).to eq("You've been paid!")
+      expect(email.text_part.decoded).to include('$0.80')
     end
   end
 

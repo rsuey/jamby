@@ -11,9 +11,10 @@ class Account < Signup
 
   def transfer_payouts_due!
     if payable? && payout_account.present?
-      payout_account.transfer(total_payout_due)
-      group_sessions.completed.unpaid_out.find_each(&:payout!)
-      HostNotifier.payouts_transferred(self, total_payout_due).deliver
+      amount = total_payout_due
+      transfer_to_payout_account(amount)
+      mark_group_sessions_as_paid
+      email_host_about_payment(amount)
     end
   end
 
@@ -26,6 +27,18 @@ class Account < Signup
   end
 
   private
+  def transfer_to_payout_account(amount)
+    payout_account.transfer(amount)
+  end
+
+  def mark_group_sessions_as_paid
+    group_sessions.completed.unpaid_out.find_each(&:payout!)
+  end
+
+  def email_host_about_payment(amount)
+    HostNotifier.payouts_transferred(self, amount).deliver
+  end
+
   def cancel_outstanding_bookings
     bookings.upcoming.find_each(&:destroy)
   end
