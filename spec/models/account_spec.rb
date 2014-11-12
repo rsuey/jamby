@@ -25,8 +25,13 @@ describe Account do
       group_session.payments.create!(amount: 100)
       uncompleted_group_session.payments.create!(amount: 100)
 
-      allow(account.payout_account).to receive(:transfer)
-      account.transfer_payouts_due!
+      VCR.use_cassette('create payout account') do
+        create(:payout_account, account: account)
+      end
+
+      VCR.use_cassette('tranfer payouts due') do
+        account.transfer_payouts_due!
+      end
 
       expect(group_session.reload).to be_paid_out
       expect(uncompleted_group_session.reload).not_to be_paid_out
@@ -39,9 +44,14 @@ describe Account do
       group_session = create(:completed_group_session, host: account)
       group_session.payments.create!(amount: 100)
 
-      allow(account.payout_account).to receive(:transfer)
+      VCR.use_cassette('create payout account') do
+        create(:payout_account, account: account)
+      end
 
-      account.transfer_payouts_due!
+      VCR.use_cassette('tranfer payouts due') do
+        account.transfer_payouts_due!
+      end
+
       email = ActionMailer::Base.deliveries.last
 
       expect(email.to).to eq([account.email])
@@ -62,28 +72,31 @@ describe Account do
     expect(account.total_payout_due).to eq(4)
   end
 
-  it 'manages payout accounts when there are completed paid sessions' do
+  it 'is payable when there are completed paid sessions' do
     account = create(:account)
-    create(:completed_group_session, price: 1, host: account)
-    expect(account).to be_manages_payout_account
+    session = create(:completed_group_session, price: 1, host: account)
+    session.payments.create!(amount: 1)
+    expect(account).to be_payable
   end
 
-  it 'does not manage payout accounts when their paid sessions are not completed' do
+  it 'is not payable when their paid sessions are not completed' do
     account = create(:account)
-    create(:priced_group_session, host: account)
-    expect(account).not_to be_manages_payout_account
+    session = create(:priced_group_session, host: account)
+    session.payments.create!(amount: 1)
+    expect(account).not_to be_payable
   end
 
-  it 'does not manage payout accounts when their paid dessions were deleted' do
+  it 'is not payable when their paid dessions were deleted' do
     account = create(:account)
-    create(:deleted_group_session, price: 1, host: account)
-    expect(account).not_to be_manages_payout_account
+    session = create(:deleted_group_session, price: 1, host: account)
+    session.payments.create!(amount: 1)
+    expect(account).not_to be_payable
   end
 
-  it 'does not manage payout accounts when their sessions are not paid' do
+  it 'is not payable when their sessions are not paid' do
     account = create(:account)
     create(:completed_group_session, host: account)
-    expect(account).not_to be_manages_payout_account
+    expect(account).not_to be_payable
   end
 
   it 'refunds outstanding payments on delete' do
