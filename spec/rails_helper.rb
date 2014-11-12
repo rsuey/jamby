@@ -27,8 +27,6 @@ RSpec.configure do |config|
   config.include ShowMeTheCookies, :type => :feature
   config.include SigninHelper
 
-  config.profile_examples = 10
-
   config.before(:suite) do
     DatabaseCleaner.strategy = :transaction
     begin
