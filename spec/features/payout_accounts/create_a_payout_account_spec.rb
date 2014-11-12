@@ -14,7 +14,9 @@ feature 'Creating a payouts account' do
 
   scenario 'Create the payouts account' do
     user = create(:signup)
-    create(:completed_group_session, price: 1, host: user)
+    group_session = create(:completed_group_session, price: 1, host: user)
+    group_session.payments.create!(amount: 1)
+
 
     logged_in(user) do
       visit dashboard_account_path
