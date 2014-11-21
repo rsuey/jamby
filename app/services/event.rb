@@ -62,7 +62,15 @@ class Event
       organizer: { email: organizer_email,
                    displayName: organizer_display_name },
       guestsCanInviteOthers: false,
-      anyoneCanAddSelf: true }
+      anyoneCanAddSelf: true,
+      reminders: {
+        overrides: [
+          {
+            method: "email",
+            minutes: 60
+          }
+        ]
+      } }
   end
 
   private

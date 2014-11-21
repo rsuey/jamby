@@ -25,6 +25,7 @@ class Calendar
         '/events'
       else
         '/auth/google_oauth2' # must create event in host's calendar
+        # check SignupsController#update
       end
     end
 
