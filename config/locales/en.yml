@@ -69,6 +69,7 @@ en:
       account:
         edit: 'Edit your profile'
         destroy: 'Delete your account'
+        my_sessions: 'My Sessions'
       group_session:
         add: 'Host your own session'
         book_now: 'Book now'

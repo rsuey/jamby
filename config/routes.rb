@@ -29,6 +29,7 @@ Rails.application.routes.draw do
   resource :account, only: [:update, :destroy] do
     get :dashboard
     get :edit
+    get :my_sessions
   end
 
   resources :payout_accounts, except: :index

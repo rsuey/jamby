@@ -30,6 +30,10 @@
           <%= link_to t('links.models.signin.new'), signin_path %>
         </li>
       <% else %>
+        <li class="<%= active_if_current(my_sessions_account_path) %>">
+          <%= link_to icon('bookmark', t('links.models.account.my_sessions')),
+                      my_sessions_account_path %>
+        </li>
         <li class="<%= active_if_current(signout_path) %>">
            <%= link_to t('links.models.signin.destroy'),
                         signout_path, method: :delete %>

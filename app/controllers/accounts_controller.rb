@@ -6,6 +6,11 @@ class AccountsController < ApplicationController
     @account = current_account
   end
 
+  def my_sessions
+    @booked_sessions = current_account.booked_sessions.not_completed
+    @hosted_sessions = current_account.group_sessions.not_completed
+  end
+
   def edit
     @account = current_account
   end

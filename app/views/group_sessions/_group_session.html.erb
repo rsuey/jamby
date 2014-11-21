@@ -15,9 +15,9 @@
     <% end %>
 
     <article id='<%= dom_id(group_session) %>' class='group_session row'>
-      <%= render 'host_info', group_session: group_session %>
-      <%= render 'title_description', group_session: group_session %>
-      <%= render 'price_book', group_session: group_session %>
+      <%= render 'group_sessions/host_info', group_session: group_session %>
+      <%= render 'group_sessions/title_description', group_session: group_session %>
+      <%= render 'group_sessions/price_book', group_session: group_session %>
     </article>
   </div>
 </div>

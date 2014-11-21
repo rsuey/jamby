@@ -1,0 +1,5 @@
+<div id="group_sessions">
+  <% %W{booked hosted}.each do |type| %>
+    <%= render 'group_sessions/sessions', type: type %>
+  <% end %>
+</div>

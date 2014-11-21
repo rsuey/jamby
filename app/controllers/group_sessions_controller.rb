@@ -6,7 +6,6 @@ class GroupSessionsController < ApplicationController
 
   def index
     @live_sessions = group_session_scope.live
-    @booked_sessions = current_user.booked_sessions.not_completed
     @upcoming_sessions = group_session_scope.upcoming
   end
 

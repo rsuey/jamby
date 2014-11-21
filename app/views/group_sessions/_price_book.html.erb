@@ -1,13 +1,13 @@
 <aside class='group_session_meta columns small-4'>
   <div class='right'>
     <% if group_session.booked_by?(current_user) %>
-      <%= render 'booked_cancel', group_session: group_session %>
+      <%= render 'group_sessions/booked_cancel', group_session: group_session %>
     <% elsif group_session.host == current_user %>
       <%= t('text.models.group_session.hosting') %>
     <% elsif group_session.fully_booked? %>
       <%= t('text.models.group_session.fully_booked') %>
     <% elsif group_session.bookable_by?(current_user) %>
-      <%= render 'book_now_button', group_session: group_session %>
+      <%= render 'group_sessions/book_now_button', group_session: group_session %>
     <% end %>
   </div>
 </aside>
