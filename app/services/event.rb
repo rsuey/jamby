@@ -64,6 +64,7 @@ class Event
       guestsCanInviteOthers: false,
       anyoneCanAddSelf: true,
       reminders: {
+        useDefault: false,
         overrides: [
           {
             method: "email",
