@@ -10,7 +10,6 @@ class Booking < GroupSessionsUser
       if group_session.bookable_by?(user)
         super(group_session: group_session, user: user)
         notify_create_by_email(group_session, user)
-        schedule_email_reminder(group_session, user)
         Event.invite(group_session, user.email)
       end
     end
@@ -31,12 +30,6 @@ class Booking < GroupSessionsUser
     def notify_destroy_by_email(group_session, user)
       HostNotifier.participant_canceled(group_session).deliver
       ParticipantNotifier.booking_canceled(group_session, user).deliver
-    end
-
-    def schedule_email_reminder(group_session, user)
-      EmailReminderWorker.perform_at(group_session.starts_at - 1.hour,
-                                     group_session.id,
-                                     user.id)
     end
   end
 end
