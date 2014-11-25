@@ -10,7 +10,7 @@ module LayoutHelper
                when 'upcoming'
                  'warning'
                else
-                 ''
+                 type
                end
   end
 end

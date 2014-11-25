@@ -73,3 +73,9 @@ h1.group_session_info_title {
 #group_session_full_description, #hangout_button, #group_session_admin, #join_session, #watch_live {
   margin-top: 1em;
 }
+
+.label {
+  &.hosted {
+    background-color: purple;
+  }
+}

@@ -32,6 +32,7 @@ en:
         titles:
           booked: 'Booked'
           guest_list: 'Attending'
+          hosted: 'hosted'
           live: 'Live now'
           new: 'Host a live session'
           upcoming: 'Coming up'
