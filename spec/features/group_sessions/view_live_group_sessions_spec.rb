@@ -28,6 +28,8 @@ feature 'Users can view live group sessions' do
 
     logged_in(user) { page.visit }
 
+    click_link 'My Sessions'
+
     within('#booked_sessions') do
       expect(page).to have_css('h1', text: page.booked_sessions_title)
       expect(page).to have_content('Booked session')
